@@ -1,8 +1,13 @@
 .foot {
-    background-color: black;
-    width: 100vw;
-} 
+    font-size: 0.9rem;
+    margin: 20px;
+}
 
 .cont-foot {
-    padding: 15px;
+    margin-bottom: 1.5rem;
+}
+
+.img-foot, img {
+    width: 35px;
+    height: auto;
 }
