@@ -2,6 +2,8 @@
 
 * {
     font-family: "Montserrat", sans-serif;
+    padding: 0px;
+    margin: 0px;
 }
 
 section {
@@ -9,6 +11,16 @@ section {
     padding: 30px;
     margin: 15px;
     scroll-margin-top: 60px;
+}
+
+.img-sobre {
+    width: 100%;       
+    max-width: 450px; 
+    height: auto;
+}
+
+.texto-sobre {
+    margin-top: 30px;
 }
 
 /*Define o tamanho da imagem do produto*/
@@ -20,6 +32,6 @@ section {
 /*Efeito de sombreamento quando passa o mouse por cima dos produtos*/
 .card:hover {
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
-    transition: 0.3s ease;
+    transition: 0.2s ease;
     cursor: pointer;
 }

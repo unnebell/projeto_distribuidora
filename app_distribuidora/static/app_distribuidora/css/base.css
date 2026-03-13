@@ -1,6 +1,13 @@
 .foot {
-    font-size: 0.9rem;
     margin: 20px;
+
+    & h2 {
+        font-size: 1.1rem;
+    }
+
+    & p, li {
+        font-size: 0.9rem;
+    }
 }
 
 .cont-foot {
