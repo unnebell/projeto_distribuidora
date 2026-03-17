@@ -1,5 +1,6 @@
 .foot {
     margin: 20px;
+     color: #d6eeff;
 
     & h2 {
         font-size: 1.1rem;
@@ -8,10 +9,6 @@
     & p, li {
         font-size: 0.9rem;
     }
-}
-
-.cont-foot {
-    margin-bottom: 1.5rem;
 }
 
 .img-foot, img {
