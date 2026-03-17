@@ -2,15 +2,20 @@
 
 * {
     font-family: "Montserrat", sans-serif;
-    padding: 0px;
-    margin: 0px;
+    padding: 0 px;
+    margin: 0 px;
+    color: #d6eeff;
+}
+
+body {
+    background-color: #3f334d;
 }
 
 section {
-    background-color: lightblue;
+    background-color: #3f334d;
     padding: 30px;
     margin: 15px;
-    scroll-margin-top: 60px;
+    scroll-margin-top: 112px;
 }
 
 .img-sobre {
