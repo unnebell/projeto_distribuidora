@@ -5,37 +5,29 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Fahan Distribuidora Tech</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>FAHAN Distribuidora Tech</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'app_distribuidora/css/base.css' %}">
     <link rel="icon" href="data:,">
 </head>
 
 <body>
+    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">FAHAN Distribuidora Tech</a>
 
-    <header class="sticky-top">
+            <!-- Botão hambúrguer na versão mobile -->
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
+                data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false"
+                aria-label="Abrir menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
+            <!-- Conteúdo responsivo a tela -->
+            <div class="collapse navbar-collapse" id="menuPrincipal">
 
-                <a class="navbar-brand" href="#">Fahan Distribuidora Tech</a>
-
-                <div class="navbar-nav ms-auto flex-row gap-2 d-none d-lg-flex">
-                    <a class="nav-link" href="#login">Login</a>
-                    <a class="nav-link" href="#cadastro">Cadastre-se</a>
-                </div>
-
-                <div class="navbar-nav ms-auto d-flex d-lg-none">
-                    <a class="nav-link" href="#acesso">Acessar</a>
-                </div>
-
-            </div>
-        </nav>
-
-        <nav class="navbar navbar-expand-lg bg-body-secondary">
-            <div class="container-fluid justify-content-center">
-
-                <ul class="navbar-nav flex-row gap-2 text-center">
+                <!-- Links redirecionáveis para cada sessão da página -->
+                <ul class="navbar-nav gap-2 mx-auto position-lg-absolute start-lg-50 translate-lg-middle-x">
                     <li class="nav-item">
                         <a class="nav-link" href="#inicio">Início</a>
                     </li>
@@ -50,21 +42,39 @@
                     </li>
                 </ul>
 
+                <!--Links redirecionáveis para login e/ou cadastro-->
+                <ul class="navbar-nav flex-lg-row gap-2 ms-lg-auto">
+                    <!--Abaixo, somente links que aparecem em telas pequenas dentro do menu hambúrguer-->
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link" href="#acesso">Login</a>
+                    </li>
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link" href="#acesso">Cadastre-se</a>
+                    </li>
+
+                    <!--Abaixo, somente links que aparecem em telas grandes-->
+                    <li class="nav-item d-none d-lg-block">
+                        <a class="nav-link" href="#login">Login</a>
+                    </li>
+                    <li class="nav-item d-none d-lg-block">
+                        <a class="nav-link" href="#cadastro">Cadastre-se</a>
+                    </li>
+                </ul>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
-
+    <!--Conteúdo principal, definido no index.html-->
     {% block content %}{% endblock content %}
 
     <footer>
         <div class="foot row g-4 justify-content-center">
-
             <!-- Sobre -->
             <div class="col-12 col-sm-6 col-lg-3">
                 <div class="cont-foot">
-                    <h2>Fahan Distribuidora Tech</h2>
-                    <p>Sua distribuidora de confiança em tecnologia da informação com as melhores soluções para empresas de todos os portes.</p>
+                    <h2>FAHAN Distribuidora Tech</h2>
+                    <p>Sua distribuidora de confiança em tecnologia da informação com as melhores soluções para empresas
+                        de todos os portes.</p>
                 </div>
             </div>
 
@@ -72,7 +82,8 @@
             <div class="col-12 col-sm-6 col-lg-3">
                 <div class="cont-foot">
                     <h2>Produtos</h2>
-                    <p>Sua distribuidora de confiança em tecnologia da informação com as melhores soluções para empresas de todos os portes.</p>
+                    <p>Sua distribuidora de confiança em tecnologia da informação com as melhores soluções para empresas
+                        de todos os portes.</p>
                 </div>
             </div>
 
@@ -117,14 +128,12 @@
                 <p>Projeto Integrador para o Curso Técnico em Informática - EETEPA Deodoro de Mendonça</p>
             </div>
         </div>
-
     </footer>
 
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-        crossorigin="anonymous">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
+        </script>
 
 </body>
+
 </html>
