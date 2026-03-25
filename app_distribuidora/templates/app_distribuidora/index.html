@@ -151,7 +151,38 @@
 </section>
 <!--======================================SESSÃO CONTATO======================================-->
 <section id="contato" class="container-fluid">
-    <h1>Section</h1>
+    <div class="container-fluid text-center mb-4"> 
+        <h1>Entre em contato!</h1>
+    </div>
+    <div class="d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-between gap-4 px-md-5">
+
+        <!--Formulário de envio de mensagens via email-->
+        <form>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email</label>
+                <input type="email" class="form-control" id="exampleInputEmail1">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Mensagem</label>
+                <textarea class="form-control" id="form_mensagem"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+
+        <!-- Ícones de redes sociais -->
+        <div class="d-flex flex-row gap-3">
+            <div class="contato_img">
+                <a href="#"><img src="{% static 'app_distribuidora/img/icon-ctt-whatsapp.png' %}" alt="WhatsApp"></a>
+            </div>
+            <div class="contato_img">
+                <a href="#"><img src="{% static 'app_distribuidora/img/icon-ctt-facebook.png' %}" alt="Facebook"></a>
+            </div>
+            <div class="contato_img">
+                <a href="#"><img src="{% static 'app_distribuidora/img/icon-ctt-instagram.png' %}" alt="Instagram"></a>
+            </div>
+        </div>
+
+    </div>
 </section>
 
 {% endblock content %}
