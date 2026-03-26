@@ -12,10 +12,19 @@
 }
 
 :root {
-    --cor-01:#fff;
-    --cor-02:#fff;
-    --cor-03:#fff;
-    --cor-04:#fff;
+    --cor-01:#3F334D;
+    --cor-02:#D6EEFF;
+    --cor-03:#C7E6FC;
+    --cor-04:#88ff00;
     --cor-05:#fff;
 
+}
+
+body {
+    background-color: var(--cor-01);
+}
+
+.row {
+    margin-left: 0;
+    margin-right: 0;
 }

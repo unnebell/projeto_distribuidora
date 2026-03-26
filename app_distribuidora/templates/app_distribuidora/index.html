@@ -2,24 +2,28 @@
 {% load static %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'app_distribuidora/css/global.css' %}">
 <link rel="stylesheet" href="{% static 'app_distribuidora/css/index.css' %}">
 <title>Fahan</title>
 <!--======================================SESSÃO INÍCIO======================================-->
 <section id="inicio" class="container-fluid">
-    <div>
-        <h1>Soluções Completas em TI para você!</h1>
-        <p>Distribuidora líder em tecnologia com os melhores produtos, preços que cabem no seu bolso com a entrega mais
-            rápida de todo o Brasil.</p>
-        <ul class="container-fluid">
-            <li>Mais de 5.000 produtos em estoque</li>
-            <li>Saída de material em até 24 horas</li>
-            <li>Suporte técnico especializado</li>
-        </ul>
-    </div>
-    <div id="img_inicio">
-        <img src="../../static/app_distribuidora/img/img-inicio.jpg" alt="">
+    <div class="row align-items-center py-4">
+        <div class="col-12 col-md-6 px-4 px-md-5">
+            <h1>Soluções Completas em TI para você!</h1>
+            <p>Distribuidora líder em tecnologia com os melhores produtos, preços que cabem no seu bolso com a entrega mais
+                rápida de todo o Brasil.</p>
+            <ul class="container-fluid">
+                <li>Mais de 5.000 produtos em estoque</li>
+                <li>Saída de material em até 24 horas</li>
+                <li>Suporte técnico especializado</li>
+            </ul>
+        </div>
+        <div id="img_inicio" class="col-12 col-md-6 px-4 px-md-3 d-flex justify-content-center justify-content-md-end">
+            <img class="img-fluid rounded" src="{% static 'app_distribuidora/img/img-inicio.jpg' %}" alt="">
+        </div>
     </div>
 </section>
+
 <!--======================================SESSÃO PRODUTOS======================================-->
 <section id="produtos" class="container-fluid">
     <div class="container-fluid text-center">
@@ -31,9 +35,9 @@
         <!--======================================1º Produto======================================-->
         <div class="col-12 col-sm-6 col-md-4">
             <div class="card">
-                <img src="../../static/app_distribuidora/img/icon-servidor.png" class="card-img-top" alt="...">
+                <img src="{% static 'app_distribuidora/img/icon-servidor.png' %}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title py-10">Servidores</h5>
+                    <h5 class="card-title py-5">Servidores</h5>
                     <p class="card-text">Servidores de alta perfomance para todos os tipos de projetos.</p>
                 </div>
             </div>
@@ -41,9 +45,9 @@
         <!--======================================2º Produto======================================-->
         <div class="col-12 col-sm-6 col-md-4">
             <div class="card">
-                <img src="../../static/app_distribuidora/img/icon-servidor.png" class="card-img-top" alt="...">
+                <img src="{% static 'app_distribuidora/img/icon-servidor.png' %}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title py-10">Servidores</h5>
+                    <h5 class="card-title py-5">Servidores</h5>
                     <p class="card-text">Servidores de alta perfomance para todos os tipos de projetos.</p>
                 </div>
             </div>
@@ -51,9 +55,9 @@
         <!--======================================3º Produto======================================-->
         <div class="col-12 col-sm-6 col-md-4">
             <div class="card">
-                <img src="../../static/app_distribuidora/img/icon-servidor.png" class="card-img-top" alt="...">
+                <img src="{% static 'app_distribuidora/img/icon-servidor.png' %}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title py-10">Servidores</h5>
+                    <h5 class="card-title py-5">Servidores</h5>
                     <p class="card-text">Servidores de alta perfomance para todos os tipos de projetos.</p>
                 </div>
             </div>
@@ -61,9 +65,9 @@
         <!--======================================4º Produto======================================-->
         <div class="col-12 col-sm-6 col-md-4">
             <div class="card">
-                <img src="../../static/app_distribuidora/img/icon-servidor.png" class="card-img-top" alt="...">
+                <img src="{% static 'app_distribuidora/img/icon-servidor.png' %}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title py-10">Servidores</h5>
+                    <h5 class="card-title py-5">Servidores</h5>
                     <p class="card-text">Servidores de alta perfomance para todos os tipos de projetos.</p>
                 </div>
             </div>
@@ -71,9 +75,9 @@
         <!--======================================5º Produto======================================-->
         <div class="col-12 col-sm-6 col-md-4">
             <div class="card">
-                <img src="../../static/app_distribuidora/img/icon-servidor.png" class="card-img-top" alt="...">
+                <img src="{% static 'app_distribuidora/img/icon-servidor.png' %}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title py-10">Servidores</h5>
+                    <h5 class="card-title py-5">Servidores</h5>
                     <p class="card-text">Servidores de alta perfomance para todos os tipos de projetos.</p>
                 </div>
             </div>
@@ -81,9 +85,9 @@
         <!--======================================6º Produto======================================-->
         <div class="col-12 col-sm-6 col-md-4">
             <div class="card">
-                <img src="../../static/app_distribuidora/img/icon-servidor.png" class="card-img-top" alt="...">
+                <img src="{% static 'app_distribuidora/img/icon-servidor.png' %}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title py-10">Servidores</h5>
+                    <h5 class="card-title py-5">Servidores</h5>
                     <p class="card-text">Servidores de alta perfomance para todos os tipos de projet os.</p>
                 </div>
             </div>
@@ -118,7 +122,7 @@
         <div class="card-sobre col-12 col-sm-6 col-md-4">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h5 class="card-title py-10">Missão</h5>
+                        <h5 class="card-title py-5">Missão</h5>
                         <p class="card-text">Fornecer soluções tecnológicas de ponta com excelência no atendimento,  
                             facilitando o acesso às melhores marcas e produtos de TI do mercado.</p>
                     </div>
@@ -129,7 +133,7 @@
         <div class="card-sobre col-12 col-sm-6 col-md-4">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h5 class="card-title py-10">Visão</h5>
+                        <h5 class="card-title py-5">Visão</h5>
                         <p class="card-text">Ser a distribuidora de TI mais confiável e inovadora do Brasil,  
                             reconhecida pela qualidade dos produtos e pelo compromisso com nossos  clientes.</p>
                     </div>
@@ -140,7 +144,7 @@
         <div class="card-sobre col-12 col-sm-6 col-md-4">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h5 class="card-title py-10">Valores</h5>
+                        <h5 class="card-title py-5">Valores</h5>
                         <p class="card-text">Comprometimento com a excelência, transparência nas relações 
                             comerciais, inovação constante e foco total na satisfação do cliente.</p>
                     </div>
@@ -149,6 +153,7 @@
     </div>
 
 </section>
+
 <!--======================================SESSÃO CONTATO======================================-->
 <section id="contato" class="container-fluid">
     <div class="container-fluid text-center mb-4"> 
