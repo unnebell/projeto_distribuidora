@@ -76,6 +76,15 @@ section {
     }
 }
 
+@media (max-width: 768px) {
+    #sobre {
+        & .texto-sobre > p {
+            text-align: center;
+        }
+    }
+    
+}
+
 /*=========================================== Contato ===========================================*/
 #contato {
     margin-bottom: 50px;
@@ -84,9 +93,16 @@ section {
 form {
     width: 100%;
     max-width: 400px;
-    background-color: black;
     padding: 20px;
     border-radius: 5px;
+
+    background-color: var(--cor-02);
+    color: var(--cor-01);
+
+    & #btn-form {
+        background-color: var(--cor-01);
+        color: var(--cor-02);
+    }
 }
 
 #form_mensagem {
@@ -96,7 +112,7 @@ form {
 
 .contato_img {
     width: 80px;
-    background-color: white;
+    background-color: var(--cor-02);
     padding: 5px;
     display: flex;
     justify-content: center;
