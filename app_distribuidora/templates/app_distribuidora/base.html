@@ -22,6 +22,7 @@
   </head>
 
   <body>
+    <!-- ================================Barra de navegação ================================-->
     <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">FAHAN Distribuidora Tech</a>
@@ -63,18 +64,18 @@
           <ul class="navbar-nav flex-lg-row gap-2 ms-lg-auto">
             <!--Abaixo, somente links que aparecem em telas pequenas dentro do menu hambúrguer-->
             <li class="nav-item d-lg-none">
-              <a class="nav-link" href="#acesso">Login</a>
+              <a class="nav-link" href="{% url 'login' %}">Login</a>
             </li>
             <li class="nav-item d-lg-none">
-              <a class="nav-link" href="#acesso">Cadastre-se</a>
+              <a class="nav-link" href="{% url 'register' %}">Cadastre-se</a>
             </li>
 
             <!--Abaixo, somente links que aparecem em telas grandes-->
             <li class="nav-item d-none d-lg-block">
-              <a class="nav-link" href="#login">Login</a>
+              <a class="nav-link" href="{% url 'login' %}">Login</a>
             </li>
             <li class="nav-item d-none d-lg-block">
-              <a class="nav-link" href="#cadastro">Cadastre-se</a>
+              <a class="nav-link" href="{% url 'register' %}">Cadastre-se</a>
             </li>
           </ul>
         </div>

@@ -8,3 +8,11 @@ def index(request):
 def base(request):
     """Barra de navegação e rodapé da página"""
     return render(request, 'app_distribuidora/base.html')
+
+def login(request):
+    """Página para login de usuários e adms"""
+    return render(request, 'app_distribuidora/login.html')
+
+def register(request):
+    """Página para cadastro de usuários"""
+    return render(request, 'app_distribuidora/register.html')

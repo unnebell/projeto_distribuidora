@@ -21,5 +21,7 @@ from app_distribuidora import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
-    path('base', views.base, name='base')
+    path('base', views.base, name='base'),
+    path('login', views.login, name='login'),
+    path('register', views.register, name='register'),
 ]
