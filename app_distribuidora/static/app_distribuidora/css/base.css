@@ -1,5 +1,5 @@
 .foot {
-    margin: 20px;
+    padding: 20px;
      color: var(--cor-02);
 
     & h2 {
@@ -7,14 +7,11 @@
     }
 
     & h3 {
-        font-size: 0.9rem;
+        font-size: 1rem;
+        font-weight: 400;
     }
 
     & p, li {
         font-size: 0.9rem;
     }
-}
-
-.integrante-foot {
-    min-width: 250px; 
 }
