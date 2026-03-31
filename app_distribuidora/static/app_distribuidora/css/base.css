@@ -3,7 +3,11 @@
      color: var(--cor-02);
 
     & h2 {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
+    }
+
+    & h3 {
+        font-size: 0.9rem;
     }
 
     & p, li {
@@ -11,7 +15,6 @@
     }
 }
 
-.img-foot, img {
-    width: 35px;
-    height: auto;
+.integrante-foot {
+    min-width: 250px; 
 }
