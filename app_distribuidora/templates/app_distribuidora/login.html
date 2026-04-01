@@ -5,8 +5,10 @@
 <link rel="stylesheet" href="{% static 'app_distribuidora/css/global.css' %}" />
 <link rel="stylesheet" href="{% static 'app_distribuidora/css/login.css' %}" />
 
+<!-- ================================ Página Login ================================   -->
+
 <div class="container-fluid d-flex justify-content-center align-items-center vh-100">
-    <div class="box-login row g-0 shadow">
+    <div class="box-auth row g-0 shadow">
         <form class="col-12 col-sm-6 col-lg-5 p-4">
             <div class="mb-3">
                 <h1>Login</h1>
@@ -22,7 +24,7 @@
                 <label class="form-check-label" for="exampleCheck1">Lembrar Senha</label>
             </div>
             <p class="text-center mb-4">Não tem uma conta? <a href="{% url 'register' %}">Registre-se</a></p>
-            <button type="submit" class="btn btn-primary d-grid gap-2 col-8 mx-auto">Submit</button>
+            <button type="submit" class="btn btn-primary d-grid gap-2 col-8 mx-auto">Entrar</button>
         </form>
         <div class="img-login col-12 col-sm-6 col-lg-7">
             <img src="{% static 'app_distribuidora/img/img-login.jpg' %}" alt="imagem inicio">

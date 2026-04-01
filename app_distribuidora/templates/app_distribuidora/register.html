@@ -1,2 +1,37 @@
-<h1>Register</h1>
-<a href="{% url 'index' %}">Voltar</a>
+<title>Fahan - Register</title>
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'app_distribuidora/css/bootstrap.min.css' %}"/>
+<link rel="stylesheet" href="{% static 'app_distribuidora/css/global.css' %}" />
+<link rel="stylesheet" href="{% static 'app_distribuidora/css/register.css' %}" />
+
+<!-- ================================ Página Registro ================================   -->
+
+<div class="container-fluid d-flex justify-content-center align-items-center vh-100">
+    <div class="box-auth row g-0 shadow">
+        <div class="img-register col-12 col-sm-6 col-lg-7">
+            <img src="{% static 'app_distribuidora/img/img-register.jpg' %}" alt="imagem inicio">
+        </div>
+        <form class="col-12 col-sm-6 col-lg-5 p-4">
+            <div class="mb-3">
+                <h1>Registre-se</h1>
+                <label for="exampleInputEmail1" class="form-label">Usuário</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Email</label>
+                <input type="password" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Senha</label>
+                <input type="password" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Confirmar Senha</label>
+                <input type="password" class="form-control" id="exampleInputPassword1">
+            </div>
+            <p class="text-center mb-4">Já possui uma conta? <a href="{% url 'login' %}">Faça login</a></p>
+            <button type="submit" class="btn btn-primary d-grid gap-2 col-8 mx-auto">Registrar</button>
+        </form>
+    </div>
+</div>

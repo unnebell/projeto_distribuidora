@@ -1,12 +1,3 @@
-.box-login {
-    background-color: var(--cor-02);
-    overflow: hidden;
-
-    border-radius: 15px;
-    width: 100%;
-    max-width: 750px;
-}
-
 h1 {
     text-align: center;
 }

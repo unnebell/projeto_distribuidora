@@ -28,3 +28,12 @@ body {
     margin-left: 0;
     margin-right: 0;
 }
+
+.box-auth {
+    background-color: var(--cor-02);
+    overflow: hidden;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 750px;
+    min-height: 480px; 
+}
