@@ -16,3 +16,7 @@ def login(request):
 def register(request):
     """Página para cadastro de usuários"""
     return render(request, 'app_distribuidora/register.html')
+
+def produtos(request):
+    """Página dedicada para mostrar os produtos ao cliente"""
+    return render(request, 'app_distribuidora/produtos.html')

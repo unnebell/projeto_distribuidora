@@ -29,11 +29,44 @@ body {
     margin-right: 0;
 }
 
+section {
+    background-color: var(--cor-01);
+    color: var(--cor-02);
+
+    padding-top: 10px;
+    margin-top: 25px;
+    scroll-margin-top: 60px;
+}
+
+/* .btn-voltar {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    transform: none;
+    background-color: var(--cor-02);
+    color: var(--cor-04);
+    padding: 8px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    z-index: 999;
+}
+
+.btn-voltar:hover {
+    background-color: var(--cor-03);
+    color: var(--cor-04);
+} */
+
 .box-auth {
     background-color: var(--cor-02);
     overflow: hidden;
     border-radius: 15px;
     width: 100%;
     max-width: 750px;
-    min-height: 480px; 
+    height: 450px; 
+}
+
+.box-auth .form-label {
+    margin-bottom: 0.75rem;
 }

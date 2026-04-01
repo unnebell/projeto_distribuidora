@@ -18,7 +18,7 @@
       rel="stylesheet"
       href="{% static 'app_distribuidora/css/base.css' %}"
     />
-    <link rel="icon" href="data:," />
+    <link rel="icon" href="{% static 'app_distribuidora/img/flavicon.jpeg' %}" />
   </head>
 
   <body>
@@ -43,21 +43,21 @@
         <!-- Conteúdo responsivo a tela -->
         <div class="collapse navbar-collapse" id="menuPrincipal">
           <!-- Links redirecionáveis para cada sessão da página -->
-          <ul
-            class="navbar-nav gap-2 mx-auto position-lg-absolute start-lg-50 translate-lg-middle-x"
-          >
-            <li class="nav-item">
-              <a class="nav-link" href="#inicio">Início</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#produtos">Produtos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#sobre">Sobre</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#contato">Contato</a>
-            </li>
+          <ul class="navbar-nav gap-2 mx-auto position-lg-absolute start-lg-50 translate-lg-middle-x">
+            {% block nav_links %} <!-- Adicionado para alteração singular em outras páginas que não precisem dos links -->
+              <li class="nav-item">
+                <a class="nav-link" href="#inicio">Início</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#produtos">Produtos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#sobre">Sobre</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#contato">Contato</a>
+              </li>
+            {% endblock nav_links %}
           </ul>
 
           <!--Links redirecionáveis para login e/ou cadastro-->
@@ -85,6 +85,7 @@
     <!--Conteúdo principal, definido no index.html-->
     {% block content %}{% endblock content %}
 
+    <!-- ================================ Rodapé ================================-->
     <footer>
       <div class="container-fluid">
         <div class="foot row g-3 justify-content-center">
