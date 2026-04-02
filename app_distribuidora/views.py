@@ -21,8 +21,8 @@ def login(request):
     if request.method == "GET":
         return render(request, 'app_distribuidora/login.html')
     else:
-        username = request.POST.get('username')
-        senha = request.POST.get('senha')
+        username = request.POST.get('username', '').strip()
+        senha = request.POST.get('senha', '').strip()
         
         user = authenticate(username=username, password=senha)
         
@@ -33,27 +33,27 @@ def login(request):
             else:
                 return redirect('index')       # Redireciona para página principal
         else:
-            return HttpResponse('Usuário ou Senha inválidos') 
+            return render(request, 'app_distribuidora/login.html', {
+                'erro': 'Usuário ou senha inválidos.'
+            })
         
 def register(request):
     """Página para cadastro de usuários"""
     if request.method == "GET":
         return render(request, 'app_distribuidora/register.html')
     else:
-        username = request.POST.get('username')
-        email = request.POST.get('email')
-        senha = request.POST.get('senha')
+        username = request.POST.get('username', '').strip()
+        email = request.POST.get('email', '').strip()
+        senha = request.POST.get('senha', '').strip()
         
-        
-        user = User.objects.filter(username=username).first()
-        
-        if user:
-            return HttpResponse('Já existe um usuário com esse username')
+        if User.objects.filter(username=username).exists():
+            return render(request, 'app_distribuidora/register.html', {
+                'erros': {'username': 'Este usuário já existe!'} 
+            })
         
         user = User.objects.create_user(username=username, email=email, password=senha) #cria o usuário 
-        user.save()
         
-        return render(request, 'app_distribuidora/login.html')
+        return redirect('login')
 
 @login_required(login_url='/auth/login/')
 @user_passes_test(lambda u: u.is_staff, login_url='/auth/login/') # Bloqueio de clientes para página adm - acesso somente de administrador

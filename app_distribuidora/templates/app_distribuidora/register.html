@@ -14,19 +14,21 @@
         </div>
 
         <!-- Formulário para cadastrar -->
-        <form action="{% url 'register' %}" method="POST" class="col-12 col-sm-6 col-lg-5 p-4">{% csrf_token %}
-            <div class="mb-3">
+        <form id="formRegister" action="{% url 'register' %}" method="POST" class="col-12 col-sm-6 col-lg-5 p-4">{% csrf_token %}
+            <div class="mb-1">
                 <h1>Registre-se</h1>
                 <label class="form-label">Usuário</label>
-                <input type="text" class="form-control" name="username">
+                <input type="text" class="form-control {% if erros.username %}is-invalid{% endif %}" 
+                    name="username" id="username" 
+                    placeholder="{% if erros.username %}{{ erros.username }}{% else %}Digite seu usuário{% endif %}">
             </div>
-            <div class="mb-3">
+            <div class="mb-1">
                 <label class="form-label">Email</label>
-                <input type="email" class="form-control" name="email">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Digite seu email">
             </div>
-            <div class="mb-3">
+            <div class="mb-1">
                 <label class="form-label">Senha</label>
-                <input type="password" class="form-control" name="senha">
+                <input type="password" class="form-control" name="senha" id="senha" placeholder="Digite sua senha">
             </div>
             <p class="text-center mb-4">Já possui uma conta? <a href="{% url 'login' %}">Faça login</a></p>
             <button type="submit" class="btn btn-primary d-grid gap-2 col-8 mx-auto">Registrar</button>
@@ -34,4 +36,5 @@
     </div>
 </div>
 
+<script src="{% static 'app_distribuidora/js/register.js' %}"></script>
 <!-- <a href="{% url 'index' %}" class="btn-voltar shadow">&#8592; Voltar</a> -->

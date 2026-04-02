@@ -10,21 +10,24 @@
     <div class="box-auth row g-0 shadow">
 
         <!-- Formulário -->
-        <form action="{% url 'login' %}" method="POST" class="col-12 col-sm-6 col-lg-5 p-4">{% csrf_token %}
-            <div class="mb-3">
+        <form id="formLogin" action="{% url 'login' %}" method="POST" class="col-12 col-sm-6 col-lg-5 p-4">{% csrf_token %}
+            <div class="mb-2">
                 <h1>Login</h1>
                 <label class="form-label">Usuário</label>
-                <input type="text" class="form-control" name="username">
+                <input type="text" class="form-control" name="username" id="username" placeholder="Digite seu usuário">
             </div>
-            <div class="mb-3">
+            <div class="mb-2">
                 <label class="form-label">Senha</label>
-                <input type="password" class="form-control" name="senha">
+                <input type="password" class="form-control" name="senha" id="senha" placeholder="Digite sua senha">
             </div>
-            <div class="mb-3 form-check">
+            <div class="mb-2 form-check">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                 <label class="form-check-label" for="exampleCheck1">Lembrar Senha</label>
             </div>
             <p class="text-center mb-4">Não tem uma conta? <a href="{% url 'register' %}">Registre-se</a></p>
+            {% if erro %}
+                <div class="alert alert-danger py-1">{{ erro }}</div>
+            {% endif %}
             <button type="submit" class="btn btn-primary d-grid gap-2 col-8 mx-auto">Entrar</button>
         </form>
         <div class="img-login col-12 col-sm-6 col-lg-7">
@@ -33,4 +36,5 @@
     </div>
 </div>
 
+<script src="{% static 'app_distribuidora/js/login.js' %}"></script>
 <!-- <a href="{% url 'index' %}" class="btn-voltar shadow">&#8592; Voltar</a> -->
