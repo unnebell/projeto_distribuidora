@@ -1,11 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
-from django.contrib.auth import login as login_django
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, logout
+from django.contrib.auth import login as login_django # serve para não dar conflito com a função login
+from django.contrib.auth.decorators import login_required, user_passes_test
 
-# Create your views here.
 def index(request):
     """Página principal"""
     return render(request, 'app_distribuidora/index.html')
@@ -17,9 +16,8 @@ def base(request):
 def produtos(request):
     """Página dedicada para mostrar os produtos ao cliente"""
     return render(request, 'app_distribuidora/produtos.html')
-
+     
 def login(request):
-    """Página para login de usuários e adms"""
     if request.method == "GET":
         return render(request, 'app_distribuidora/login.html')
     else:
@@ -30,11 +28,13 @@ def login(request):
         
         if user:
             login_django(request, user)
-            
-            return HttpResponse('Autenticado!')
+            if user.is_staff:
+                return redirect('admin-area')   # Redireciona para página admin
+            else:
+                return redirect('index')       # Redireciona para página principal
         else:
-            return HttpResponse('Usuário ou Senha inválidos')
-
+            return HttpResponse('Usuário ou Senha inválidos') 
+        
 def register(request):
     """Página para cadastro de usuários"""
     if request.method == "GET":
@@ -50,12 +50,16 @@ def register(request):
         if user:
             return HttpResponse('Já existe um usuário com esse username')
         
-        user = User.objects.create_user(username=username, email=email, password=senha)
+        user = User.objects.create_user(username=username, email=email, password=senha) #cria o usuário 
         user.save()
         
         return render(request, 'app_distribuidora/login.html')
 
-@login_required(login_url='/auth/login/') # Decorator redireciona para a tela de login caso não esteja logado
+@login_required(login_url='/auth/login/')
+@user_passes_test(lambda u: u.is_staff, login_url='/auth/login/') # Bloqueio de clientes para página adm - acesso somente de administrador
 def painel_admin(request):
-    """Página destinada a manutenção da aplicação com acesso somente por administradores"""
     return render(request, 'app_distribuidora/admin_custom/admin-area.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect('index')
