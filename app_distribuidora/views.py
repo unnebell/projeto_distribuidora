@@ -20,3 +20,7 @@ def register(request):
 def produtos(request):
     """Página dedicada para mostrar os produtos ao cliente"""
     return render(request, 'app_distribuidora/produtos.html')
+
+def painel_admin(request):
+    """Página destinada a manutenção da aplicação com acesso somente por administradores"""
+    return render(request, 'app_distribuidora/admin_custom/admin-area.html')
