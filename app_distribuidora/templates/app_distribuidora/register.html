@@ -12,19 +12,21 @@
         <div class="img-register col-12 col-sm-6 col-lg-7">
             <img src="{% static 'app_distribuidora/img/img-register.jpg' %}" alt="imagem inicio">
         </div>
-        <form class="col-12 col-sm-6 col-lg-5 p-4">
+
+        <!-- Formulário para cadastrar -->
+        <form action="{% url 'register' %}" method="POST" class="col-12 col-sm-6 col-lg-5 p-4">{% csrf_token %}
             <div class="mb-3">
                 <h1>Registre-se</h1>
-                <label for="exampleInputEmail1" class="form-label">Usuário</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <label class="form-label">Usuário</label>
+                <input type="text" class="form-control" name="username">
             </div>
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Email</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" name="email">
             </div>
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Senha</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
+                <label class="form-label">Senha</label>
+                <input type="password" class="form-control" name="senha">
             </div>
             <p class="text-center mb-4">Já possui uma conta? <a href="{% url 'login' %}">Faça login</a></p>
             <button type="submit" class="btn btn-primary d-grid gap-2 col-8 mx-auto">Registrar</button>

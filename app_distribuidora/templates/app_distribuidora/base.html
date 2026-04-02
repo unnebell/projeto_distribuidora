@@ -77,78 +77,80 @@
     {% block content %}{% endblock content %}
 
     <!-- ================================ Rodapé ================================-->
-    <footer>
-      <div class="container-fluid">
-        <div class="foot row g-3 justify-content-center">
-          <!-- Sobre -->
-          <div class="col-12 col-sm-6 col-lg-6">
-            <div class="cont-foot">
-              <h2>FAHAN Distribuidora Tech</h2>
+    {% block footer %}
+      <footer>
+        <div class="container-fluid">
+          <div class="foot row g-3 justify-content-center">
+            <!-- Sobre -->
+            <div class="col-12 col-sm-6 col-lg-6">
+              <div class="cont-foot">
+                <h2>FAHAN Distribuidora Tech</h2>
+                <p>
+                  Pensado, projetado e desenvolvido por técnicos de informática da
+                  EETEPA Deodoro de Mendonça, um grande desafio que foi vencido
+                  com uma equipe competente. Agradecemos o Professor Rildo e Bruno
+                  pela orientação ao longo desse projeto.
+                </p>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-6">
+              <h2>Equipe</h2>
+              <div class="equipe-foot row g-3">
+                <div class="integrante-foot col-12 col-sm-12 col-lg-6">
+                  <h3>Adriele da Rocha Paiva - Front-end</h3>
+                  <a href="#">instagram</a>
+                  <a href="#">linkedin</a>
+                  <p>(91) 9 9999-9999</p>
+                </div>
+
+                <div class="integrante-foot col-12 col-sm-12 col-lg-6">
+                  <h3>Andreia Amaro da Silva - DBA</h3>
+                  <a href="#">instagram</a>
+                  <a href="#">linkedin</a>
+                  <p>(91) 9 9999-9999</p>
+                </div>
+
+                <div class="integrante-foot col-12 col-sm-12 col-lg-6">
+                  <h3>Maria de Nazaré Santos - Designer</h3>
+                  <a href="#">instagram</a>
+                  <a href="#">linkedin</a>
+                  <p>(91) 9 9999-9999</p>
+                </div>
+
+                <div class="integrante-foot col-12 col-sm-12 col-lg-6">
+                  <h3>Fábio Kauã Silva - Fullstack</h3>
+                  <a href="#">instagram</a>
+                  <a href="#">linkedin</a>
+                  <p>(91) 9 9999-9999</p>
+                </div>
+
+                <div class="integrante-foot col-12 col-sm-12 col-lg-6">
+                  <h3>Helionete Ribeiro Rodrigues - Documentadora</h3>
+                  <a href="#">instagram</a>
+                  <a href="#">linkedin</a>
+                  <p>(91) 9 9999-9999</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="foot row">
+            <hr />
+            <div class="credits text-center">
               <p>
-                Pensado, projetado e desenvolvido por técnicos de informática da
-                EETEPA Deodoro de Mendonça, um grande desafio que foi vencido
-                com uma equipe competente. Agradecemos o Professor Rildo e Bruno
-                pela orientação ao longo desse projeto.
+                &copy; 2026 Fahan Distribuidora Tech. Todos os direitos
+                reservados.
+              </p>
+              <p>
+                Projeto Integrador para o Curso Técnico em Informática - EETEPA
+                Deodoro de Mendonça
               </p>
             </div>
           </div>
-
-          <div class="col-12 col-sm-6 col-lg-6">
-            <h2>Equipe</h2>
-            <div class="equipe-foot row g-3">
-              <div class="integrante-foot col-12 col-sm-12 col-lg-6">
-                <h3>Adriele da Rocha Paiva - Front-end</h3>
-                <a href="#">instagram</a>
-                <a href="#">linkedin</a>
-                <p>(91) 9 9999-9999</p>
-              </div>
-
-              <div class="integrante-foot col-12 col-sm-12 col-lg-6">
-                <h3>Andreia Amaro da Silva - DBA</h3>
-                <a href="#">instagram</a>
-                <a href="#">linkedin</a>
-                <p>(91) 9 9999-9999</p>
-              </div>
-
-              <div class="integrante-foot col-12 col-sm-12 col-lg-6">
-                <h3>Maria de Nazaré Santos - Designer</h3>
-                <a href="#">instagram</a>
-                <a href="#">linkedin</a>
-                <p>(91) 9 9999-9999</p>
-              </div>
-
-              <div class="integrante-foot col-12 col-sm-12 col-lg-6">
-                <h3>Fábio Kauã Silva - Fullstack</h3>
-                <a href="#">instagram</a>
-                <a href="#">linkedin</a>
-                <p>(91) 9 9999-9999</p>
-              </div>
-
-              <div class="integrante-foot col-12 col-sm-12 col-lg-6">
-                <h3>Helionete Ribeiro Rodrigues - Documentadora</h3>
-                <a href="#">instagram</a>
-                <a href="#">linkedin</a>
-                <p>(91) 9 9999-9999</p>
-              </div>
-            </div>
-          </div>
         </div>
-
-        <div class="foot row">
-          <hr />
-          <div class="credits text-center">
-            <p>
-              &copy; 2026 Fahan Distribuidora Tech. Todos os direitos
-              reservados.
-            </p>
-            <p>
-              Projeto Integrador para o Curso Técnico em Informática - EETEPA
-              Deodoro de Mendonça
-            </p>
-          </div>
-        </div>
-      </div>
-    </footer>
+      </footer>
+    {% endblock footer %}
 
     <script src="{% static 'app_distribuidora/js/bootstrap.bundle.min.js' %}"></script>
   </body>
