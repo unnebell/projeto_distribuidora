@@ -53,39 +53,21 @@
 
           <!--Links redirecionáveis para login e/ou cadastro-->
           <ul class="navbar-nav flex-lg-row gap-2 ms-lg-auto">
-            <!--Abaixo, somente links que aparecem em telas pequenas dentro do menu hambúrguer-->
-              {% if user.is_authenticated %}
-                <li class="nav-item d-lg-none">
-                  <a class="nav-link" href="#">{{ user.username }}</a>
-                </li>
-                <li class="nav-item d-lg-none">
-                  <a class="nav-link" href="{% url 'logout' %}">Sair</a>
-                </li>
-              {% else %}
-                <li class="nav-item d-lg-none">
-                  <a class="nav-link" href="{% url 'login' %}">Login</a>
-                </li>
-                <li class="nav-item d-lg-none">
-                  <a class="nav-link" href="{% url 'register' %}">Cadastre-se</a>
-                </li>
-              {% endif %}
-
-              <!--Abaixo, somente links que aparecem em telas grandes-->
-              {% if user.is_authenticated %} 
-                <li class="nav-item d-none d-lg-block">
-                  <a class="nav-link" href="#">{{ user.username }}</a>
-                </li>
-                <li class="nav-item d-none d-lg-block">
-                  <a class="nav-link" href="{% url 'logout' %}">Sair</a>
-                </li>
-              {% else %}
-                <li class="nav-item d-none d-lg-block">
-                  <a class="nav-link" href="{% url 'login' %}">Login</a>
-                </li>
-                <li class="nav-item d-none d-lg-block">
-                  <a class="nav-link" href="{% url 'register' %}">Cadastre-se</a>
-                </li>
-              {% endif %}
+            {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="#">{{ user.username }}</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Sair</a>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'register' %}">Cadastre-se</a>
+              </li>
+            {% endif %}
           </ul>
         </div>
       </div>

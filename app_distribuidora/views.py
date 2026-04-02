@@ -61,5 +61,5 @@ def painel_admin(request):
     return render(request, 'app_distribuidora/admin_custom/admin-area.html')
 
 def logout_view(request):
-    logout(request)
-    return redirect('index')
+    logout(request) # Limpa os dados da sessão
+    return redirect('index') # Redireciona o usuário para tela principal
