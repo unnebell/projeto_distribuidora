@@ -1,17 +1,18 @@
 .foot {
     padding: 20px;
-     color: var(--cor-02);
+    color: var(--cor-02);
+}
 
-    & h2 {
-        font-size: 1.2rem;
-    }
+.foot h2 {
+    font-size: 1.2rem;
+}
 
-    & h3 {
-        font-size: 1rem;
-        font-weight: 400;
-    }
+.foot h3 {
+    font-size: 1rem;
+    font-weight: 400;
+}
 
-    & p, li {
-        font-size: 0.9rem;
-    }
+.foot p,
+.foot li {
+    font-size: 0.9rem;
 }
