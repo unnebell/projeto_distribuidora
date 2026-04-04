@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="{% static 'app_distribuidora/css/bootstrap.min.css' %}"/>
 <link rel="stylesheet" href="{% static 'app_distribuidora/css/global.css' %}" />
 <link rel="stylesheet" href="{% static 'app_distribuidora/css/login.css' %}" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 
 <!-- ================================ Página Login ================================   -->
 <div class="container-fluid d-flex justify-content-center align-items-center vh-100">
@@ -14,12 +15,13 @@
         <form id="formLogin" action="{% url 'login' %}" method="POST" class="col-12 col-sm-6 col-lg-5 p-4">{% csrf_token %}
             <div class="mb-2">
                 <h1>Login</h1>
-                <label class="form-label">Usuário</label>
-                <input type="text" class="form-control" name="username" id="username" placeholder="Digite seu usuário">
+                <label class="form-label mb-1 mt-2">Usuário</label>
+                <input type="text" class="form-control" name="username" id="username" placeholder="Digite seu usuário" autocomplete="off">
             </div>
-            <div class="mb-2">
-                <label class="form-label">Senha</label>
-                <input type="password" class="form-control" name="senha" id="senha" placeholder="Digite sua senha">
+            <label class="form-label mb-1 mt-2" for="senha">Senha</label>
+            <div class="position-relative">
+                <input type="password" class="form-control pe-5" name="senha" id="senha" placeholder="Digite sua senha" autocomplete="off">
+                <span class="bi bi-eye toggle-senha" onclick="toggleSenha('senha', this)"></span>
             </div>
             <p class="text-center mb-4 mt-4">Não tem uma conta? <a href="{% url 'register' %}">Registre-se</a></p>
             {% if erro %}

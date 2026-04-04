@@ -45,3 +45,26 @@ document.getElementById('formLogin').addEventListener('submit', function(e) {
 
     if (!valido) e.preventDefault();
 });
+
+// =======================================================
+
+// função para mostrar/ocultar senha
+document.getElementById('toggleSenha').addEventListener('touchstart', function(e) {
+    e.preventDefault();
+    toggleSenha('senha', this);
+});
+
+document.getElementById('toggleSenha').addEventListener('click', function(e) {
+    toggleSenha('senha', this);
+});
+
+function toggleSenha(inputId, icone) {
+    const input = document.getElementById(inputId);
+    if (input.type === 'password') {
+        input.type = 'text';
+        icone.classList.replace('bi-eye', 'bi-eye-slash');
+    } else {
+        input.type = 'password';
+        icone.classList.replace('bi-eye-slash', 'bi-eye');
+    }
+}

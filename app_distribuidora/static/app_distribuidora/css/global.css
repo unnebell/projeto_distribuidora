@@ -67,14 +67,43 @@ section {
     max-height: 450px; 
 }
 
-.box-auth .form-label {
-    margin-bottom: 0.75rem;
+.box-auth input {
+    background-color: transparent;
+    border: 2px solid var(--cor-01);
+    border-radius: 15px;
+}
+
+.box-auth input:focus {
+    background-color: transparent;
+    border: 2px solid var(--cor-01);
+    box-shadow: none;
+    outline: none;
+}
+
+.box-auth input::placeholder {
+    padding: 5px;
+    color: var(--cor-01);
+}
+
+.toggle-senha {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 1.1rem;
+    z-index: 10;
+    user-select: none;
+}
+
+.form-floating {
+    position: relative;
 }
 
 @media (max-width: 576px) {
     .box-auth {
         height: 100vh; /*Caso o navegador não suporte dvh*/
         height: 100dvh; /*Pega a altura total disponível do browser*/
-        max-height: 500px;
+        max-height: 650px;
     }
 }
