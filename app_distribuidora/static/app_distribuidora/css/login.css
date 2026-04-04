@@ -20,3 +20,20 @@ form {
     min-height: 250px; 
 }
 
+@media (max-width: 576px) {
+    .box-auth {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+    }
+
+    .img-login {
+        display: none;
+    }
+
+    p {
+        padding: 15px 0px;
+        font-size: 0.9rem;
+    }
+
+}

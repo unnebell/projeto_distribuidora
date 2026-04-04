@@ -64,9 +64,17 @@ section {
     border-radius: 15px;
     width: 100%;
     max-width: 750px;
-    height: 450px; 
+    max-height: 450px; 
 }
 
 .box-auth .form-label {
     margin-bottom: 0.75rem;
+}
+
+@media (max-width: 576px) {
+    .box-auth {
+        height: 100vh; /*Caso o navegador não suporte dvh*/
+        height: 100dvh; /*Pega a altura total disponível do browser*/
+        max-height: 500px;
+    }
 }

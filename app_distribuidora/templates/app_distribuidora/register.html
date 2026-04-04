@@ -1,4 +1,5 @@
 <title>Fahan - Register</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" /> <!--Precisa ter a meta para responsividade funcionar-->
 
 {% load static %}
 <link rel="stylesheet" href="{% static 'app_distribuidora/css/bootstrap.min.css' %}"/>
@@ -30,7 +31,7 @@
                 <label class="form-label">Senha</label>
                 <input type="password" class="form-control" name="senha" id="senha" placeholder="Digite sua senha">
             </div>
-            <p class="text-center mb-4">Já possui uma conta? <a href="{% url 'login' %}">Faça login</a></p>
+            <p class="text-center mb-4 mt-4">Já possui uma conta? <a href="{% url 'login' %}">Faça login</a></p>
             <button type="submit" class="btn btn-primary d-grid gap-2 col-8 mx-auto">Registrar</button>
         </form>
     </div>

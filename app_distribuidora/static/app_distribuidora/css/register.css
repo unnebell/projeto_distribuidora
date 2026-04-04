@@ -19,3 +19,28 @@ form {
     height: 100%;    
     min-height: 250px; 
 }
+
+@media (max-width: 576px) {
+    body {
+        height: 100vh;
+    }
+    
+    .box-auth {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+    }
+
+    .img-login {
+        display: none;
+    }
+
+    p {
+        padding: 15px 0px;
+        font-size: 0.9rem;
+    }
+
+    .img-register {
+        display: none;
+    }
+}
