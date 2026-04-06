@@ -1,0 +1,21 @@
+.box-alteracao {
+    color: var(--cor-01);
+    background-color: var(--cor-02);
+    border-radius: 15px;
+    overflow: hidden;
+    height: 100%;
+}
+
+.row {
+    gap: 4rem;
+}
+
+.box-alteracao thead th {
+    text-align: center;
+    color: var(--cor-02);
+    background-color: var(--cor-01);
+}
+
+th, td {
+    text-align: center;
+}
