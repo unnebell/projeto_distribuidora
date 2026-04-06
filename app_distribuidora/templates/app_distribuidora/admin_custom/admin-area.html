@@ -19,14 +19,17 @@
                 <div class="col-12 col-lg-4">
                     <div class="box-alteracao shadow p-4">
                         <form method="POST">{% csrf_token %}
-                            <h2 class="mb-3">Alterações</h2>
+                            <h2 class="mb-3 text-center">Alterações</h2>
                             <div class="mb-2">
-                                <input type="text" class="form-control" autocomplete="off">
+                                <input type="text" class="form-control" autocomplete="off" placeholder="nome">
                             </div>
                             <div class="mb-2">
-                                <input type="text" class="form-control" autocomplete="off">
+                                <input type="text" class="form-control" autocomplete="off" placeholder="quantidade">
                             </div>
-                            <button type="submit" class="btn btn-primary mt-3">Alterar</button>
+                            <div class="mb-2">
+                                <input type="text" class="form-control" autocomplete="off" placeholder="descrição">
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-3 d-block mx-auto">Alterar</button>
                         </form>
                     </div>
                 </div>
@@ -50,7 +53,7 @@
                                     <td>3</td>
                                     <td>Ideapad 3I</td>
                                     <td>
-                                        <button class="btn btn-sm btn-info"><i class="bi bi-eye"></i></button>
+                                        <button class="btn btn-sm btn-info"><i class="bi bi-eye" ></i></button>
                                         <button class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></button>
                                         <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
                                     </td>
