@@ -58,7 +58,33 @@ def register(request):
 @login_required(login_url='/auth/login/')
 @user_passes_test(lambda u: u.is_staff, login_url='/auth/login/') # Bloqueio de clientes para página adm - acesso somente de administrador
 def painel_admin(request):
-    return render(request, 'app_distribuidora/admin_custom/admin-area.html')
+    produtos = [
+        {'id': 1, 'nome': 'Notebook', 'quantidade': 3, 'descricao': 'Ideapad 3I'},
+        {'id': 2, 'nome': 'Mouse', 'quantidade': 10, 'descricao': 'Logitech G305'},
+        {'id': 3, 'nome': 'Teclado', 'quantidade': 5, 'descricao': 'Mecânico RGB'},
+        {'id': 3, 'nome': 'Teclado', 'quantidade': 5, 'descricao': 'Mecânico RGB'},
+        {'id': 3, 'nome': 'Teclado', 'quantidade': 5, 'descricao': 'Mecânico RGB'},
+        {'id': 3, 'nome': 'Teclado', 'quantidade': 5, 'descricao': 'Mecânico RGB'},
+        {'id': 3, 'nome': 'Teclado', 'quantidade': 5, 'descricao': 'Mecânico RGB'},
+        {'id': 3, 'nome': 'Teclado', 'quantidade': 5, 'descricao': 'Mecânico RGB'},
+        {'id': 3, 'nome': 'Teclado', 'quantidade': 5, 'descricao': 'Mecânico RGB'},
+        {'id': 3, 'nome': 'Teclado', 'quantidade': 5, 'descricao': 'Mecânico RGB'},
+        {'id': 3, 'nome': 'Teclado', 'quantidade': 5, 'descricao': 'Mecânico RGB'},
+        {'id': 3, 'nome': 'Teclado', 'quantidade': 5, 'descricao': 'Mecânico RGB'},
+        {'id': 3, 'nome': 'Teclado', 'quantidade': 5, 'descricao': 'Mecânico RGB'},
+        {'id': 3, 'nome': 'Teclado', 'quantidade': 5, 'descricao': 'Mecânico RGB'},
+        {'id': 3, 'nome': 'Teclado', 'quantidade': 5, 'descricao': 'Mecânico RGB'},
+        {'id': 3, 'nome': 'Teclado', 'quantidade': 5, 'descricao': 'Mecânico RGB'},
+        {'id': 3, 'nome': 'Teclado', 'quantidade': 5, 'descricao': 'Mecânico RGB'},
+        {'id': 3, 'nome': 'Teclado', 'quantidade': 5, 'descricao': 'Mecânico RGB'},
+        {'id': 3, 'nome': 'Teclado', 'quantidade': 5, 'descricao': 'Mecânico RGB'},
+        {'id': 3, 'nome': 'Teclado', 'quantidade': 5, 'descricao': 'Mecânico RGB'},
+        {'id': 3, 'nome': 'Teclado', 'quantidade': 5, 'descricao': 'Mecânico RGB'},
+        {'id': 10, 'nome': 'Teclado', 'quantidade': 5, 'descricao': 'Mecânico RGB'},
+    ]
+    
+    
+    return render(request, 'app_distribuidora/admin_custom/admin-area.html', {'produtos':produtos})
 
 def logout_view(request):
     logout(request) # Limpa os dados da sessão
