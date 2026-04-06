@@ -19,3 +19,13 @@
 th, td {
     text-align: center;
 }
+
+.btn-acao {
+    background-color: var(--cor-01);
+    color: var(--cor-02);
+}
+
+.btn-acao:hover {
+    border-color: var(--cor-01);
+    background-color: var(--cor-02);
+}

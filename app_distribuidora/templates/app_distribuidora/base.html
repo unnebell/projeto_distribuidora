@@ -1,7 +1,7 @@
+{% load static %}
 <!doctype html>
 <html lang="pt-br">
-  {% load static %}
-
+  
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -34,7 +34,7 @@
         <!-- Conteúdo responsivo a tela -->
         <div class="collapse navbar-collapse" id="menuPrincipal">
           <!-- Links redirecionáveis para cada sessão da página -->
-          <ul class="navbar-nav gap-2 mx-auto position-lg-absolute start-lg-50 translate-lg-middle-x">
+          <ul class="navbar-nav gap-2 mx-auto">
             {% block nav_links %} <!-- Adicionado para alteração singular em outras páginas que não precisem dos links -->
               <li class="nav-item">
                 <a class="nav-link" href="#inicio">Início</a>
@@ -54,8 +54,11 @@
           <!--Links redirecionáveis para login e/ou cadastro-->
           <ul class="navbar-nav flex-lg-row gap-2 ms-lg-auto">
             {% if user.is_authenticated %}
-              <li class="nav-item">
-                <a class="nav-link" href="#">{{ user.username }}</a>
+              <li class="nav-item ms-lg-auto">
+                <!--Verifica se o usuário é admin ou cliente, caso admin -> admin-area.html // caso cliente -> index.html -->
+                <a class="nav-link  mb-0 mt-0" href="{% if user.is_superuser %}{% url 'admin-area' %}{% else %}{% url 'index' %}{% endif %}">
+                  {{ user.username }}
+                </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'logout' %}">Sair</a>
