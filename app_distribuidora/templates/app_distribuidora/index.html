@@ -34,7 +34,7 @@
 
     <div class="row g-4 justify-content-center">
         <!--======================================1º Produto======================================-->
-        {% for produto in produtos %}
+        {% for produto in produtos|slice:":6" %}
         <div class="col-12 col-sm-6 col-md-4">
             <div class="card">
                 <img src="{% static 'app_distribuidora/img/icon-servidor.png' %}" class="card-img-top" alt="...">
