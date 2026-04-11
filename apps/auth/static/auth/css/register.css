@@ -20,6 +20,10 @@ form {
     min-height: 250px; 
 }
 
+#senha.form-control.is-invalid { /*Ajuste para nao mostrar o ícone de erro */
+    background-image: none !important;
+}
+
 @media (max-width: 576px) {
     body {
         height: 100vh;

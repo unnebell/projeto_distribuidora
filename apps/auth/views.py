@@ -42,8 +42,14 @@ def register(request):
             })
         
         user = User.objects.create_user(username=username, email=email, password=senha) #cria o usuário 
+        login_django(request, user) # Faz login automático após o registro
         
-        return redirect('login')
+        redirect_url = 'index'
+        return render(request, 'auth/register.html', {
+                'register_success': True,
+                'redirect_url': redirect_url,
+                'username': user.username,
+            })
 
 def logout_view(request):
     logout(request) # Limpa os dados da sessão
