@@ -1,3 +1,47 @@
-from django.shortcuts import render
+from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
+from django.contrib.auth import logout, authenticate
+from django.contrib.auth import login as login_django
 
 # Create your views here.
+def login(request):
+    if request.method == "GET":
+        return render(request, 'auth/login.html')
+    else:
+        username = request.POST.get('username', '').strip()
+        senha = request.POST.get('senha', '').strip()
+        
+        user = authenticate(username=username, password=senha)
+        
+        if user:
+            login_django(request, user)
+            if user.is_staff:
+                return redirect('admin-area')   # Redireciona para página admin
+            else:
+                return redirect('index')       # Redireciona para página principal
+        else:
+            return render(request, 'auth/login.html', {
+                'erro': 'Usuário ou senha inválidos.'
+            })
+
+def register(request):
+    """Página para cadastro de usuários"""
+    if request.method == "GET":
+        return render(request, 'auth/register.html')
+    else:
+        username = request.POST.get('username', '').strip()
+        email = request.POST.get('email', '').strip()
+        senha = request.POST.get('senha', '').strip()
+        
+        if User.objects.filter(username=username).exists():
+            return render(request, 'auth/register.html', {
+                'erros': {'username': 'Este usuário já existe!'} 
+            })
+        
+        user = User.objects.create_user(username=username, email=email, password=senha) #cria o usuário 
+        
+        return redirect('login')
+
+def logout_view(request):
+    logout(request) # Limpa os dados da sessão
+    return redirect('login') 

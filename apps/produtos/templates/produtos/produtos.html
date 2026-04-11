@@ -1,4 +1,4 @@
-{% extends "app_distribuidora/base.html" %}
+{% extends "base.html" %}
 {% load static %}
 
 
@@ -11,9 +11,9 @@
 
 <!-- Sessão responsável por apresentar os produtos ao cliente -->
 {% block content %}
-<link rel="stylesheet" href="{% static 'app_distribuidora/css/bootstrap.min.css' %}">
-<link rel="stylesheet" href="{% static 'app_distribuidora/css/global.css' %}">
-<link rel="stylesheet" href="{% static 'app_distribuidora/css/produtos.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/global.css' %}">
+<link rel="stylesheet" href="{% static 'css/produtos.css' %}">
 
 <section>
      <div class="container-fluid text-center">
@@ -22,15 +22,18 @@
     </div>
 
     <div class="row g-4 justify-content-center">
+        <!--======================================Loop de Produtos ======================================-->
+        {% for produto in produtos|slice:":6" %}
         <div class="col-12 col-sm-6 col-md-4">
             <div class="card">
-                <img src="{% static 'app_distribuidora/img/icon-servidor.png' %}" class="card-img-top" alt="...">
+                <img src="{% static 'img/icon-servidor.png' %}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title py-2">Servidores</h5>
-                    <p class="card-text">Servidores de alta perfomance para todos os tipos de projetos.</p>
+                    <h5 class="card-title py-2">{{ produto.nome }}</h5>
+                    <p class="card-text">{{ produto.descricao }}</p>
                 </div>
             </div>
         </div>
-    </div>
+        {% endfor %}
+    <!-- Botão para acessar a página de produtos - somente cliente -->
 </section>
 {% endblock content %}

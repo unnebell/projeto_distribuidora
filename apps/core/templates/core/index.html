@@ -1,10 +1,10 @@
-{% extends "app_distribuidora/base.html" %}
+{% extends "base.html" %}
 {% load static %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'app_distribuidora/css/bootstrap.min.css' %}">
-<link rel="stylesheet" href="{% static 'app_distribuidora/css/global.css' %}">
-<link rel="stylesheet" href="{% static 'app_distribuidora/css/index.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/global.css' %}">
+<link rel="stylesheet" href="{% static 'core/css/index.css' %}">
 <title>Fahan</title>
 <!--======================================SESSÃO INÍCIO======================================-->
 <section id="inicio" class="container-fluid">
@@ -20,7 +20,7 @@
             </ul>
         </div>
         <div id="img_inicio" class="col-12 col-md-6 px-4 px-md-3 d-flex justify-content-center justify-content-md-end">
-            <img class="img-fluid rounded" src="{% static 'app_distribuidora/img/img-inicio.jpg' %}" alt="">
+            <img class="img-fluid rounded" src="{% static 'img/img-inicio.jpg' %}" alt="">
         </div>
     </div>
 </section>
@@ -37,7 +37,7 @@
         {% for produto in produtos|slice:":6" %}
         <div class="col-12 col-sm-6 col-md-4">
             <div class="card">
-                <img src="{% static 'app_distribuidora/img/icon-servidor.png' %}" class="card-img-top" alt="...">
+                <img src="{% static 'img/icon-servidor.png' %}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title py-2">{{ produto.nome }}</h5>
                     <p class="card-text">{{ produto.descricao }}</p>
@@ -60,7 +60,7 @@
     <!--Imagem e descrição detalhada-->
     <div class="row align-items-center justify-content-center gx-5">
         <div class="col-12 col-lg-6 mb-4 mb-lg-0">
-            <img id="img-sobre" class="img-fluid rounded" src="{% static 'app_distribuidora/img/img-sobre.jpg' %}" alt="...">
+            <img id="img-sobre" class="img-fluid rounded" src="{% static 'img/img-sobre.jpg' %}" alt="...">
         </div>
         <div id="descricao-sobre" class="col-12 col-lg-6 texto-sobre text-center text-lg-start">
             <h2 class="mb-3">Distribuição de TI com Excelência</h2>
@@ -131,13 +131,13 @@
         <!-- Ícones de redes sociais -->
         <div class="d-flex flex-row gap-3">
             <div class="contato_img">
-                <a href="#"><img src="{% static 'app_distribuidora/img/icon-ctt-whatsapp.png' %}" alt="WhatsApp"></a>
+                <a href="#"><img src="{% static 'img/icon-ctt-whatsapp.png' %}" alt="WhatsApp"></a>
             </div>
             <div class="contato_img">
-                <a href="#"><img src="{% static 'app_distribuidora/img/icon-ctt-facebook.png' %}" alt="Facebook"></a>
+                <a href="#"><img src="{% static 'img/icon-ctt-facebook.png' %}" alt="Facebook"></a>
             </div>
             <div class="contato_img">
-                <a href="#"><img src="{% static 'app_distribuidora/img/icon-ctt-instagram.png' %}" alt="Instagram"></a>
+                <a href="#"><img src="{% static 'img/icon-ctt-instagram.png' %}" alt="Instagram"></a>
             </div>
         </div>
 

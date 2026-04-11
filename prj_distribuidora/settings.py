@@ -41,7 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app_distribuidora',
+    'apps.auth',
+    'apps.core',
+    'apps.dashboard',
+    'apps.pedidos',
+    'apps.produtos',
 ]
 
 MIDDLEWARE = [
@@ -59,7 +63,7 @@ ROOT_URLCONF = 'prj_distribuidora.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -115,6 +119,8 @@ USE_I18N = True
 
 USE_TZ = True
 
+LOGIN_URL = '/auth/login/'
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
@@ -122,5 +128,5 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'app_distribuidora' / 'static',
+    BASE_DIR / 'static',
 ]

@@ -2,9 +2,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" /> <!--Precisa ter a meta para responsividade funcionar-->
 
 {% load static %}
-<link rel="stylesheet" href="{% static 'app_distribuidora/css/bootstrap.min.css' %}"/>
-<link rel="stylesheet" href="{% static 'app_distribuidora/css/global.css' %}" />
-<link rel="stylesheet" href="{% static 'app_distribuidora/css/register.css' %}" />
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/global.css' %}" />
+<link rel="stylesheet" href="{% static 'auth/css/register.css' %}" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 
 <!-- ================================ Página Registro ================================   -->
@@ -12,7 +12,7 @@
 <div class="container-fluid d-flex justify-content-center align-items-center vh-100">
     <div class="box-auth row g-0 shadow">
         <div class="img-register col-12 col-sm-6 col-lg-7">
-            <img src="{% static 'app_distribuidora/img/img-register.jpg' %}" alt="imagem inicio">
+            <img src="{% static 'img/img-register.jpg' %}" alt="imagem inicio">
         </div>
 
         <!-- Formulário para cadastrar -->
@@ -41,5 +41,5 @@
     </div>
 </div>
 
-<script src="{% static 'app_distribuidora/js/register.js' %}"></script>
+<script src="{% static 'auth/js/register.js' %}"></script>
 <!-- <a href="{% url 'index' %}" class="btn-voltar shadow">&#8592; Voltar</a> -->
