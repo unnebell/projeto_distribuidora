@@ -52,5 +52,5 @@ def register(request):
             })
 
 def logout_view(request):
-    logout(request) # Limpa os dados da sessão
-    return redirect('login') 
+    logout(request)
+    return redirect('login')
