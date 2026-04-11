@@ -35,5 +35,23 @@
     </div>
 </div>
 
+{% if login_success %}
+<div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3">
+    <div class="toast align-items-center text-bg-success border-0 show" role="alert">
+        <div class="d-flex">
+            <div class="toast-body fw-semibold">
+                <i class="bi bi-check-circle-fill me-2"></i>Bem-vindo, {{ username }}! Redirecionando...
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    setTimeout(function () {
+        window.location.href = "{% url redirect_url %}";
+    }, 2000);
+</script>
+{% endif %}
+
 <script src="{% static 'auth/js/login.js' %}"></script>
 <!-- <a href="{% url 'index' %}" class="btn-voltar shadow">&#8592; Voltar</a> -->

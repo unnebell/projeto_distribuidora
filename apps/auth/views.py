@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.contrib.auth import logout, authenticate
 from django.contrib.auth import login as login_django
 
@@ -15,10 +16,12 @@ def login(request):
         
         if user:
             login_django(request, user)
-            if user.is_staff:
-                return redirect('admin-area')   # Redireciona para página admin
-            else:
-                return redirect('index')       # Redireciona para página principal
+            redirect_url = 'admin-area' if user.is_staff else 'index'
+            return render(request, 'auth/login.html', {
+                'login_success': True,
+                'redirect_url': redirect_url,
+                'username': user.username,
+            })
         else:
             return render(request, 'auth/login.html', {
                 'erro': 'Usuário ou senha inválidos.'
@@ -39,8 +42,14 @@ def register(request):
             })
         
         user = User.objects.create_user(username=username, email=email, password=senha) #cria o usuário 
+        login_django(request, user) # Faz login automático após o registro
         
-        return redirect('login')
+        redirect_url = 'index'
+        return render(request, 'auth/register.html', {
+                'register_success': True,
+                'redirect_url': redirect_url,
+                'username': user.username,
+            })
 
 def logout_view(request):
     logout(request) # Limpa os dados da sessão
