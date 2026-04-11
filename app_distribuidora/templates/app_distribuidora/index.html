@@ -34,66 +34,17 @@
 
     <div class="row g-4 justify-content-center">
         <!--======================================1º Produto======================================-->
+        {% for produto in produtos %}
         <div class="col-12 col-sm-6 col-md-4">
             <div class="card">
                 <img src="{% static 'app_distribuidora/img/icon-servidor.png' %}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title py-2">Servidores</h5>
-                    <p class="card-text">Servidores de alta perfomance para todos os tipos de projetos.</p>
+                    <h5 class="card-title py-2">{{ produto.nome }}</h5>
+                    <p class="card-text">{{ produto.descricao }}</p>
                 </div>
             </div>
         </div>
-        <!--======================================2º Produto======================================-->
-        <div class="col-12 col-sm-6 col-md-4">
-            <div class="card">
-                <img src="{% static 'app_distribuidora/img/icon-servidor.png' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title py-2">Servidores</h5>
-                    <p class="card-text">Servidores de alta perfomance para todos os tipos de projetos.</p>
-                </div>
-            </div>
-        </div>
-        <!--======================================3º Produto======================================-->
-        <div class="col-12 col-sm-6 col-md-4">
-            <div class="card">
-                <img src="{% static 'app_distribuidora/img/icon-servidor.png' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title py-2">Servidores</h5>
-                    <p class="card-text">Servidores de alta perfomance para todos os tipos de projetos.</p>
-                </div>
-            </div>
-        </div>
-        <!--======================================4º Produto======================================-->
-        <div class="col-12 col-sm-6 col-md-4">
-            <div class="card">
-                <img src="{% static 'app_distribuidora/img/icon-servidor.png' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title py-2">Servidores</h5>
-                    <p class="card-text">Servidores de alta perfomance para todos os tipos de projetos.</p>
-                </div>
-            </div>
-        </div>
-        <!--======================================5º Produto======================================-->
-        <div class="col-12 col-sm-6 col-md-4">
-            <div class="card">
-                <img src="{% static 'app_distribuidora/img/icon-servidor.png' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title py-2">Servidores</h5>
-                    <p class="card-text">Servidores de alta perfomance para todos os tipos de projetos.</p>
-                </div>
-            </div>
-        </div>
-        <!--======================================6º Produto======================================-->
-        <div class="col-12 col-sm-6 col-md-4">
-            <div class="card">
-                <img src="{% static 'app_distribuidora/img/icon-servidor.png' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title py-2">Servidores</h5>
-                    <p class="card-text">Servidores de alta perfomance para todos os tipos de projetos.</p>
-                </div>
-            </div>
-        </div>
-    </div>
+        {% endfor %}
     <!-- Botão para acessar a página de produtos - somente cliente -->
     <a class="btn-produtos btn btn-light d-flex justify-content-center mx-auto" href="{% url 'produtos' %}">Conheça mais!</a>
 </section>
