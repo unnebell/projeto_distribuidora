@@ -25,6 +25,6 @@ urlpatterns = [
     path('produtos', views.produtos, name='produtos'),
     path('auth/login/', views.login, name='login'),
     path('auth/register/', views.register, name='register'),
-    path('auth/admin-area/', views.painel_admin, name='admin-area'),
+    path('auth/admin-area/', views.admin_area, name='admin-area'),
     path('auth/logout/', views.logout_view, name='logout'),
 ]
