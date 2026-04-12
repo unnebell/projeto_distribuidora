@@ -63,19 +63,60 @@
             {% endblock nav_links %}
           </ul>
 
-          <!--Links redirecionáveis para login e/ou cadastro-->
+          <!-- Menu para usuário e links de redirecionamento para registro e login-->
           <ul class="navbar-nav flex-lg-row gap-2 ms-lg-auto">
-            {% if user.is_authenticated %}
-              <li class="nav-item ms-lg-auto">
-                <!--Verifica se o usuário é admin ou cliente, caso admin -> admin-area.html // caso cliente -> index.html -->
-                <a class="nav-link  mb-0 mt-0" href="{% if user.is_superuser %}{% url 'admin-area' %}{% else %}{% url 'index' %}{% endif %}">
+            {% if user.is_authenticated %} <!-- Dropdown do usuário atual caso esteja autenticado-->
+              <li class="nav-item dropdown ms-lg-auto">  
+                <a class="nav-link dropdown-toggle d-flex align-items-center gap-2 px-2 py-1 rounded-pill"
+                  href="#" role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false">
+
+                  <!-- Avatar com iniciais -->
+                  <span class="rounded-circle d-flex align-items-center justify-content-center fw-semibold">
+                    {{ user.username|slice:":2"|upper }}
+                  </span>
                   {{ user.username }}
                 </a>
+                
+
+                <ul class="dropdown-menu dropdown-menu-end mt-1 shadow-sm">
+                  <!-- Cabeçalho -->
+                  <li class="px-3 py-2 border-bottom">
+                    <p class="mb-0 fw-semibold small">Olá! {{ user.username }}</p>
+                    <p class="mb-0 text-muted" style="font-size:12px;">{{ user.email }}</p>
+                  </li>
+
+                  {% if user.is_superuser %}
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center gap-2" href="{% url 'admin-area' %}">
+                        <i class="bi bi-shield-lock"></i> Painel Admin
+                      </a>
+                    </li>
+                  {% endif %}
+
+                  <li>
+                    <a class="dropdown-item d-flex align-items-center gap-2" href="#">
+                      <i class="bi bi-person"></i> Meu perfil
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item d-flex align-items-center gap-2" href="{% url 'pedidos' %}">
+                      <i class="bi bi-bag"></i> Meus pedidos
+                    </a>
+                  </li>
+
+                  <li><hr class="dropdown-divider"></li>
+
+                  <li>
+                    <a class="dropdown-item d-flex align-items-center gap-2 text-danger" href="#"
+                      onclick="confirmarLogout(event)">
+                      <i class="bi bi-box-arrow-right"></i> Sair
+                    </a>
+                  </li>
+                </ul>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" onclick="confirmarLogout(event)">Sair</a>
-              </li>
-            {% else %}
+            {% else %} <!-- Caso não esteja autenticado -->
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'login' %}">Login</a>
               </li>

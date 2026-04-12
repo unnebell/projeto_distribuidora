@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     'apps.dashboard',
     'apps.pedidos',
     'apps.produtos',
+
+    #apps terciarios
+    "django_browser_reload",
 ]
 
 MIDDLEWARE = [
@@ -56,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
 ROOT_URLCONF = 'prj_distribuidora.urls'

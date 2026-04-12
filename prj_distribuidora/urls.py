@@ -25,4 +25,5 @@ urlpatterns = [
     path('pedidos/', include('apps.pedidos.urls')),
     path('auth/', include('apps.auth.urls')),
     path('dashboard/', include('apps.dashboard.urls')),
+    path("__reload__/", include("django_browser_reload.urls")),
 ]
