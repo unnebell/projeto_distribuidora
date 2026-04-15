@@ -12,4 +12,4 @@ def dashboard(request):
     ]
     
     
-    return render(request, 'dashboard/admin-area.html', {'produtos':produtos})
+    return render(request, 'dashboard/painel.html', {'produtos':produtos})
