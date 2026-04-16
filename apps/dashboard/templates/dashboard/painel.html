@@ -2,9 +2,26 @@
 {% load static %} 
 
 {% block nav_links %}
-<li class="nav-item">
-  <a href="{% url 'index' %}" class="nav-link">Voltar ao site principal</a>
-</li>
+  <li class="nav-item">
+    <a class="nav-link {% if aba == 'produtos' %}active{% endif %}" href="?page=produtos">
+      <i class="bi bi-box-seam"></i> Produtos
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link {% if aba == 'pedidos' %}active{% endif %}" href="?page=pedidos">
+      <i class="bi bi-clipboard-check"></i> Pedidos
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link {% if aba == 'clientes' %}active{% endif %}" href="?page=clientes">
+      <i class="bi bi-person"></i> Clientes
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link {% if aba == 'usuarios' %}active{% endif %}" href="?page=usuarios">
+      <i class="bi bi-gear"></i> Usuários
+    </a>
+  </li>
 {% endblock nav_links %} 
 
 {% block content %}
