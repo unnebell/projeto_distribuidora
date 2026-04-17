@@ -32,32 +32,32 @@
 
 <!-- Cards com informações resumidas -->
 <div class="row g-3 p-3 dashboard-cards">
-    <div class="col-6 col-md-3">
-        <div class="box-admin">
-            <i class="bi bi-box-seam card-icon"></i>
-            <span class="card-label">Produtos Cadastrados</span>
-            <span class="card-valor">teste valor</span>
-        </div>
+  <div class="col-6 col-md-3">
+    <div class="box-admin">
+      <i class="bi bi-box-seam card-icon"></i>
+          <span class="card-label">Produtos Cadastrados</span>
+          <span class="card-valor mt-2 mb-0 h-100">{{ produtos.count }}</span>
     </div>
+  </div>
     <div class="col-6 col-md-3">
-        <div class="box-admin">
-            <i class="bi bi-archive card-icon"></i>
+      <div class="box-admin">
+        <i class="bi bi-archive card-icon"></i>
             <span class="card-label">Total em Estoque</span>
-            <span class="card-valor">teste valor</span>
-        </div>
+            <span class="card-valor mt-2 mb-0 h-100">{{ total_estoque }}</span>
+      </div>
     </div>
     <div class="col-6 col-md-3">
         <div class="box-admin">
             <i class="bi bi-clipboard-check card-icon"></i>
             <span class="card-label">Pedidos este Mês</span>
-            <span class="card-valor">teste valor</span>
+            <span class="card-valor mt-2 mb-0 h-100">0</span> <!-- Falta criar as requisições de pedidos-->
         </div>
     </div>
     <div class="col-6 col-md-3">
         <div class="box-admin">
             <i class="bi bi-exclamation-triangle card-icon"></i>
-            <span class="card-label">Itens c/ Estoque Baixo</span>  
-            <span class="card-valor">teste valor</span>
+            <span class="card-label">Produtos c/ Estoque Baixo</span>  
+            <span class="card-valor mt-2 mb-0 h-100">{{ total_estoque_baixo }}</span>
         </div>
     </div>
 </div>
