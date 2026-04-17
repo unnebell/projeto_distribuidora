@@ -1,0 +1,43 @@
+.dashboard-cards {
+    margin-top: 1.5rem;
+}
+
+.box-admin {
+    background: var(--cor-01);
+    border: 1px solid var(--cor-02);
+    border-radius: 15px;
+    padding: 1.25rem 1.5rem;
+    color: var(--cor-02);
+
+    min-height: 100%;
+}
+
+.box-admin:hover {
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+
+    transition: all 0.2s ease;
+}
+
+.box-admin .card-icon {
+    font-size: 1.5rem;
+    color: var(--cor-02);
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.box-admin .card-valor {
+    font-size: 1.8rem;
+    font-weight: 600;
+    display: block;
+    line-height: 1.2;
+}
+
+.box-admin .card-label {
+    font-size: 0.75rem;
+    color: var(--cor-02);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: block;
+    margin-top: 4px;
+}
