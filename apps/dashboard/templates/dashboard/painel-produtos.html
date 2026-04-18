@@ -34,7 +34,39 @@
 <link rel="stylesheet" href="{% static 'css/global.css' %}"/>
 <link rel="stylesheet" href="{% static 'dashboard/css/painel.css' %}"/>
 
-<h1>Teste</h1>
+
+<div class="d-flex justify-content-center mt-4 mb-4">
+  <div class="col-10">
+    <table class="table w-100">
+        <thead>
+            <tr>
+            <th class="text-center">ID</th>
+            <th class="text-center">Nome</th>
+            <th class="text-center">Quantidade</th>
+            <th class="text-center">Descrição</th>
+            <th class="text-center">Preço</th>
+            <th class="text-center">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for produto in produtos %}
+            <tr>
+                <td class="text-start px-3">{{ produto.id }}</td>
+                <td class="text-start px-3">{{ produto.nome }}</td>
+                <td class="text-start px-3">{{ produto.quantidade }}</td>
+                <td class="text-start px-3">{{ produto.descricao }}</td>
+                <td class="text-start px-3">R$ {{ produto.preco }}</td>
+                <td class="text-center px-3">
+                    <a href="#" class="btn btn-sm btn-primary"><i class="bi bi-eye"></i> Ver</a>
+                    <a href="#" class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i> Editar</a>
+                    <a href="#" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Excluir</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    </div>
+  </div>
 
 {% endblock content %}
 
