@@ -22,3 +22,11 @@ def dashboard(request):
 
     if request.method == 'GET':
         return render(request, 'dashboard/painel.html', context)
+    
+    
+@login_required(login_url='/auth/login/')
+@user_passes_test(lambda u: u.is_staff, login_url='/auth/login')       
+def painel_produtos(request):
+    produtos = Produto.objects.all()
+    context = {'produtos': produtos}
+    return render(request, 'dashboard/painel-produtos.html', context)
