@@ -11,11 +11,13 @@ def dashboard(request):
     
     total_estoque = produtos.aggregate(Sum('quantidade'))['quantidade__sum'] or 0 # Soma de cada item cadastrado
     total_estoque_baixo = produtos.filter(quantidade__lt=15).count()  # Contagem de produto com estoque abaixo de 15
+    produto_estoque_baixo = produtos.filter(quantidade__lt=15) # Lista de produtos com estoque abaixo de 15
     
     context = {
         'produtos': produtos,
         'total_estoque': total_estoque,
         'total_estoque_baixo': total_estoque_baixo,
+        'produto_estoque_baixo': produto_estoque_baixo,
     }
 
     if request.method == 'GET':
