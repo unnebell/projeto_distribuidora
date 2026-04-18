@@ -3,6 +3,11 @@
 
 {% block nav_links %}
   <li class="nav-item">
+    <a class="nav-link link-redirect active" href="{% url 'dashboard' %}">
+      <i class="bi bi-bar-chart"></i> Dashboard
+    </a>
+  </li>
+  <li class="nav-item">
     <a class="nav-link link-redirect {% if aba == 'produtos' %}active{% endif %}" href="{% url 'painel_produtos' %}">
       <i class="bi bi-box-seam"></i> Produtos
     </a>
