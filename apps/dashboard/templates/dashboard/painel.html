@@ -60,9 +60,15 @@
     </div>
     <div class="col-6 col-md-3">
         <div class="box-admin">
-            <i class="bi bi-exclamation-triangle card-icon text-warning pulse-alert"></i>
-            <span class="card-label text-warning pulse-alert">Produtos c/ Estoque Baixo</span>  
-            <span class="card-valor mt-2 mb-0 h-100 text-danger pulse-alert">{{ total_estoque_baixo }}</span>
+            {% if produto_estoque_baixo.count > 0 %} <!-- Se tiver produtos com estoque baixo, o card fica em alerta -->
+                <i class="bi bi-exclamation-triangle card-icon text-warning pulse-alert"></i>
+                <span class="card-label text-warning pulse-alert">Produtos c/ Estoque Baixo</span>
+                <span class="card-valor mt-2 mb-0 h-100 text-danger pulse-alert">{{ produto_estoque_baixo.count }}</span>
+            {% else %}
+                <i class="bi bi-exclamation-triangle card-icon"></i>
+                <span class="card-label">Produtos c/ Estoque Baixo</span>
+                <span class="card-valor mt-2 mb-0 h-100">{{ produto_estoque_baixo.count }}</span>
+            {% endif %}
         </div>
     </div>
 </div>
@@ -73,10 +79,11 @@
   <div class="col-12 col-sm-6"> 
     <div class="box-admin">
       <h5>Produtos com estoque baixo</h5>
-      <p>Estoque abaixo de 15 unidades</p>
 
       <!--  TABELA PARA PRODUTOS COM ESTOQUE BAIXO -->
 
+      {% if produto_estoque_baixo.count > 0  %}
+      <p>Estoque abaixo de 15 unidades</p>
       <table class="w-100 mb-3 mt-3">
         <thead>
           <tr>
@@ -121,6 +128,9 @@
           {% endfor %}
         </tbody>
       </table>
+      {% else %}
+        <p class="text-start mt-3 mb-3">Nenhum produto com estoque baixo</p>
+      {% endif %}
       {% if produto_estoque_baixo.count > 5 %}<!-- Caso tenha mais de 5 produtos com estoque baixo, aparece o link para ver mais produtos-->
           <div class="text-center mt-2">
             <a href="#" class="btn-estoque-baixo p-2">Ver mais <i class="bi bi-search"></i></a>
