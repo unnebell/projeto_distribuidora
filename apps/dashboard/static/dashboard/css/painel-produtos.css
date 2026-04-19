@@ -1,0 +1,41 @@
+.btn-criar-produto {
+    background-color: var(--cor-01);
+    border: 1px solid var(--cor-02);
+    color: var(--cor-02);
+    border-radius: 10px;
+}
+
+.btn-criar-produto:hover {
+    background-color: var(--cor-02);
+    color: var(--cor-01);
+
+    transition: ease-in-out 0.3s;
+}
+
+table {
+    border-collapse: collapse;
+
+    background-color: var(--cor-01);
+    color: var(--cor-02);
+
+    border: 1px solid var(--cor-02);
+    border-radius: 10px;
+}
+
+th, td {
+    border-bottom: 1px solid var(--cor-02);
+}
+
+.btn-acao {
+    background-color: transparent;
+    border: 1px solid var(--cor-02);
+    color: var(--cor-02);
+    border-radius: 5px;
+}
+
+.btn-acao:hover {
+    background-color: var(--cor-02);
+    color: var(--cor-01);
+
+    transition: ease-in-out 0.3s;
+}
