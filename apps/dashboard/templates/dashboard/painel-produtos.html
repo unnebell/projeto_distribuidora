@@ -59,7 +59,7 @@
                 <td class="text-center px-3 py-2">{{ produto.id }}</td>
                 <td class="text-center px-3 py-2">{{ produto.nome }}</td>
                 <td class="text-center px-3 py-2">{{ produto.quantidade }}</td>
-                <td class="text-center px-3 py-2">{{ produto.descricao }}</td>
+                <td class="text-center px-3 py-2">{{ produto.descricao|truncatechars:15 }}</td>
                 <td class="text-center px-3 py-2">R$ {{ produto.preco }}</td>
                 <td class="text-center px-3 py-2">
                     <a href="#" class="btn btn-sm btn-acao"><i class="bi bi-eye"></i> Ver</a>
