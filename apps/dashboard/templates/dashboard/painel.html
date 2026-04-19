@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+{% load static %} 
+
+{% block nav_links %}
+  <li class="nav-item">
+    <a class="nav-link link-redirect active" href="{% url 'dashboard' %}">
+      <i class="bi bi-bar-chart"></i> Dashboard
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link link-redirect {% if aba == 'produtos' %}active{% endif %}" href="{% url 'painel_produtos' %}">
+      <i class="bi bi-box-seam"></i> Produtos
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link link-redirect {% if aba == 'pedidos' %}active{% endif %}" href="?page=pedidos">
+      <i class="bi bi-clipboard-check"></i> Pedidos
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link link-redirect {% if aba == 'clientes' %}active{% endif %}" href="?page=clientes">
+      <i class="bi bi-person"></i> Clientes
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link link-redirect {% if aba == 'usuarios' %}active{% endif %}" href="?page=usuarios">
+      <i class="bi bi-gear"></i> Usuários
+    </a>
+  </li>
+{% endblock nav_links %} 
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/global.css' %}"/>
+<link rel="stylesheet" href="{% static 'dashboard/css/painel.css' %}"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"/>
+
+<!-- Cards com informações resumidas -->
+<div class="row g-3 p-3 dashboard-cards">
+  <div class="col-6 col-md-3">
+    <div class="box-admin">
+      <i class="bi bi-box-seam card-icon"></i>
+          <span class="card-label">Produtos Cadastrados</span>
+          <span class="card-valor mt-2 mb-0 h-100">{{ produtos.count }}</span>
+    </div>
+  </div>
+    <div class="col-6 col-md-3">
+      <div class="box-admin">
+        <i class="bi bi-archive card-icon"></i>
+            <span class="card-label">Total em Estoque</span>
+            <span class="card-valor mt-2 mb-0 h-100">{{ total_estoque }}</span>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="box-admin">
+            <i class="bi bi-clipboard-check card-icon"></i>
+            <span class="card-label">Pedidos este Mês</span>
+            <span class="card-valor mt-2 mb-0 h-100">0</span> <!-- Falta criar as requisições de pedidos-->
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="box-admin">
+            {% if produto_estoque_baixo.count > 0 %} <!-- Se tiver produtos com estoque baixo, o card fica em alerta -->
+                <i class="bi bi-exclamation-triangle card-icon text-warning pulse-alert"></i>
+                <span class="card-label text-warning pulse-alert">Produtos c/ Estoque Baixo</span>
+                <span class="card-valor mt-2 mb-0 h-100 text-danger pulse-alert">{{ produto_estoque_baixo.count }}</span>
+            {% else %}
+                <i class="bi bi-exclamation-triangle card-icon"></i>
+                <span class="card-label">Produtos c/ Estoque Baixo</span>
+                <span class="card-valor mt-2 mb-0 h-100">{{ produto_estoque_baixo.count }}</span>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Quadros  -->
+
+<div class="row g-3 p-3 dashboard-atividades">
+  <div class="col-12 col-sm-6"> 
+    <div class="box-admin">
+      <h5>Produtos com estoque baixo</h5>
+
+      <!--  TABELA PARA PRODUTOS COM ESTOQUE BAIXO -->
+
+      {% if produto_estoque_baixo.count > 0  %}
+      <p>Estoque abaixo de 15 unidades</p>
+      <table class="w-100 mb-3 mt-3">
+        <thead>
+          <tr>
+            <th class="text-center">Produto</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">Estoque</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for produto in produto_estoque_baixo|slice:":5" %}
+            <tr>
+              <!-- NOME DOS PRODUTOS -->
+
+              <td class="text-center px-1">
+                {% if produto.quantidade < 5 %}
+                  <span class="badge bg-danger w-100">{{ produto.nome }}</span>
+                {% elif produto.quantidade < 15 %}
+                  <span class="badge bg-warning text-dark w-100">{{ produto.nome }}</span>
+                {% endif %}
+              </td>
+
+              <!-- STATUS DOS PRODUTOS -->
+
+              <td class="text-center px-1">
+                {% if produto.quantidade < 5 %}
+                  <span class="badge bg-danger w-100">Crítico</span>
+                {% elif produto.quantidade < 15 %}
+                  <span class="badge bg-warning text-dark w-100">Atenção</span>
+                {% endif %}
+              </td>
+
+              <!-- QUANTIDADE DOS PRODUTOS -->
+
+              <td class="text-center px-1">
+                {% if produto.quantidade < 5 %}
+                  <span class="badge bg-danger w-100">{{ produto.quantidade }}</span>
+                {% elif produto.quantidade < 15 %}
+                  <span class="badge bg-warning text-dark w-100">{{ produto.quantidade }}</span>
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+        <p class="text-start mt-3 mb-3">Nenhum produto com estoque baixo</p>
+      {% endif %}
+      {% if produto_estoque_baixo.count > 5 %}<!-- Caso tenha mais de 5 produtos com estoque baixo, aparece o link para ver mais produtos-->
+          <div class="text-center mt-2">
+            <a href="#" class="btn-estoque-baixo p-2">Ver mais <i class="bi bi-search"></i></a>
+          </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="col-12 col-sm-6">
+    <div class="box-admin">
+      <h5>Top Produtos</h5>
+      <p>Produtos mais vendidos</p>
+    </div>
+  </div>
+</div>
+
+<!-- Quadro de atividades recentes -->
+  
+<div class="row g-3 p-3 dashboard-atividades">
+  <div class="col-12">
+    <div class="box-admin">
+      <h5>Atividades Recentes</h5>
+      <ul class="list-unstyled">
+        <li class="mt-3">Produto "X" adicionado ao estoque</li>
+        <li class="mt-3">Pedido #1234 finalizado</li>
+        <li class="mt-3">Cliente "Y" cadastrado</li>
+        <li class="mt-3">Usuário "admin" atualizado perfil</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% endblock content %} 
+
+{% block footer %} 
+{% endblock footer %}

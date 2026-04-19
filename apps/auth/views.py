@@ -16,7 +16,7 @@ def login(request):
         
         if user:
             login_django(request, user)
-            redirect_url = 'admin-area' if user.is_staff else 'index'
+            redirect_url = 'dashboard' if user.is_staff else 'index'
             return render(request, 'auth/login.html', {
                 'login_success': True,
                 'redirect_url': redirect_url,

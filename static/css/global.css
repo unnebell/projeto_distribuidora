@@ -100,6 +100,26 @@ section {
     position: relative;
 }
 
+
+.link-redirect {
+    position: relative;
+}
+
+.link-redirect::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px; /* espessura da linha */
+    background-color: var(--cor-01);
+    transition: width 0.3s ease-in-out;
+}
+
+.link-redirect:hover::after {
+    width: 100%;
+}
+
 @media (max-width: 576px) {
     .box-auth {
         height: 100vh; /*Caso o navegador não suporte dvh*/

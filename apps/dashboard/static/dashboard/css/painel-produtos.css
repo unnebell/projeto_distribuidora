@@ -1,0 +1,89 @@
+.btn-criar-produto {
+    background-color: var(--cor-01);
+    border: 1px solid var(--cor-02);
+    color: var(--cor-02);
+    border-radius: 10px;
+}
+
+.btn-criar-produto:hover {
+    background-color: var(--cor-02);
+    color: var(--cor-01);
+
+    transition: ease-in-out 0.3s;
+}
+
+table {
+    border-collapse: collapse;
+
+    background-color: var(--cor-01);
+    color: var(--cor-02);
+
+    border: 1px solid var(--cor-02);
+    border-radius: 10px;
+}
+
+th, td {
+    border-bottom: 1px solid var(--cor-02);
+}
+
+.btn-acao {
+    background-color: transparent;
+    border: 1px solid var(--cor-02);
+    color: var(--cor-02);
+    border-radius: 5px;
+}
+
+.btn-acao:hover {
+    background-color: var(--cor-02);
+    color: var(--cor-01);
+
+    transition: ease-in-out 0.3s;
+}
+
+.modal-header .btn-close {  /* Mudando a cor do botão x do modal*/
+    background-image: none !important;
+    background-color: var(--cor-02);
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3E%3C/svg%3E") !important;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3E%3C/svg%3E") !important;
+    mask-size: 1em !important;
+    mask-repeat: no-repeat !important;
+    mask-position: center !important;
+    opacity: 1 !important;
+}
+
+/* Tira as setas para esolher um número */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.cadastro-poupup {
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    background-color: var(--cor-01);
+    color: var(--cor-02);
+    border: 1px solid var(--cor-02);
+}
+
+.modal-header, .modal-footer {
+    border-color: var(--cor-02);
+}
+
+.form-control {
+    background-color: var(--cor-01);
+    color: var(--cor-02);
+}
+
+.form-control:focus {
+    background-color: var(--cor-01);
+    color: var(--cor-02);
+}
+
+.form-control::placeholder {
+    background-color: var(--cor-01);
+    color: var(--cor-02);
+}
