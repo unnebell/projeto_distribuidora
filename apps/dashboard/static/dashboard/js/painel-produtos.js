@@ -4,7 +4,7 @@ document.getElementById('btn-salvar').addEventListener('click', () => {
   const erros = document.getElementById('form-erros');
   const data = new FormData(form);
 
-  fetch("{% url 'produto_adicionar' %}", {
+  fetch( urlAdicionarProduto, {
     method: 'POST',
     headers: { 'X-CSRFToken': data.get('csrfmiddlewaretoken') },
     body: data,
@@ -27,6 +27,7 @@ document.getElementById('btn-salvar').addEventListener('click', () => {
         <td class="text-center px-3 py-2">
           <a href="#" class="btn btn-sm btn-acao"><i class="bi bi-eye"></i> Ver</a>
           <a href="#" class="btn btn-sm btn-acao"><i class="bi bi-pencil"></i> Editar</a>
+          <a href="#" class="btn btn-sm btn-acao"><i class="bi bi-trash"></i> Excluir</a>
         </td>
       `;
       tbody.appendChild(tr);
