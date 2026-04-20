@@ -35,6 +35,7 @@
 <link rel="stylesheet" href="{% static 'dashboard/css/painel-produtos.css' %}"/>
 
 
+
 <div class="d-flex justify-content-center mt-4 mb-4">
   <div class="col-10">
     <div class="text-end">
@@ -42,8 +43,14 @@
       Adicionar Produto <i class="bi bi-plus-lg"></i>
     </a>
     </div>
-    <table class="w-100">
-        <thead>
+
+    <div class="d-flex gap-3 align-items-start">
+
+      <!-- Tabela principal -->
+      <div class="flex-grow-1">
+        <h6 class="mb-2">Produtos Ativos</h6>
+        <table class="w-100">
+          <thead>
             <tr class="sticky-top">
             <th class="text-center py-2">ID</th>
             <th class="text-center py-2">Nome</th>
@@ -52,27 +59,57 @@
             <th class="text-center py-2">Preço</th>
             <th class="text-center py-2">Ações</th>
             </tr>
-        </thead>
-        <tbody>
-            {% for produto in produtos %}
+          </thead>
+          <tbody>
+            {% for produto in produtos_ativos %}
             <tr>
-                <td class="text-center px-3 py-2">{{ produto.id }}</td>
-                <td class="text-center px-3 py-2">{{ produto.nome }}</td>
-                <td class="text-center px-3 py-2">{{ produto.quantidade }}</td>
-                <td class="text-center px-3 py-2">{{ produto.descricao|truncatechars:15 }}</td>
-                <td class="text-center px-3 py-2">R$ {{ produto.preco }}</td>
-                <td class="text-center px-3 py-2">
+                <td class="text-center px-2 py-2">{{ produto.id }}</td>
+                <td class="text-center px-2 py-2">{{ produto.nome }}</td>
+                <td class="text-center px-2 py-2">{{ produto.quantidade }}</td>
+                <td class="text-center px-2 py-2">{{ produto.descricao|truncatechars:15 }}</td>
+                <td class="text-center px-2 py-2">R$ {{ produto.preco }}</td>
+                <td class="text-center px-2 py-2">
                     <a href="#" class="btn btn-sm btn-acao"><i class="bi bi-eye"></i> Ver</a>
                     <a href="#" class="btn btn-sm btn-acao"><i class="bi bi-pencil"></i> Editar</a>
                     <a href="#" class="btn btn-sm btn-acao"><i class="bi bi-trash"></i> Excluir</a>
                 </td>
             </tr>
             {% endfor %}
-        </tbody>
+          </tbody>
         </table>
+      </div>
+
+      <!-- Tabela secundária -->
+      {% if produtos_inativos %}
+      <div style="min-width: 260px; max-width: 320px;">
+        <h6 class="mb-2">Produtos Inativos</h6>
+        <table class="w-100">
+          <thead>
+            <tr class="sticky-top">
+              <th class="text-center py-2">Nome</th>
+              <th class="text-center py-2">Quantidade</th>
+              <th class="text-center py-2">Ação</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for produto in produtos_inativos %}
+            <tr>
+              <td class="text-center px-2 py-2">{{ produto.nome }}</td>
+              <td class="text-center px-2 py-2">{{ produto.quantidade }}</td>
+              <td class="text-center px-2 py-2">
+                <a href="#" class="btn btn-sm btn-acao"><i class="bi bi-power"></i> Ativar</a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% endif %}
+
     </div>
   </div>
-
+</div>
+  
   <!-- Modal Adicionar Produto -->
 <div class="modal fade cadastro-poupup" id="modalAdicionarProduto" tabindex="-1">
   <div class="modal-dialog">

@@ -23,14 +23,23 @@ def dashboard(request):
 
     if request.method == 'GET':
         return render(request, 'dashboard/painel.html', context)
-    
-    
+
+
+# Mostra somente itens ativos na tabela principal e inativos em uma segunda tabela
 @login_required(login_url='/auth/login/')
 @user_passes_test(lambda u: u.is_staff, login_url='/auth/login')       
 def painel_produtos(request):
-    produtos = Produto.objects.all()
-    context = {'produtos': produtos}
+    produtos_ativos = Produto.objects.filter(ativo=True)
+    produtos_inativos = Produto.objects.filter(ativo=False)
+
+    context = {
+        'produtos_ativos': produtos_ativos,
+        'produtos_inativos': produtos_inativos,
+        }
+    
     return render(request, 'dashboard/painel-produtos.html', context)
+
+
 
 @login_required(login_url='/auth/login/')
 @user_passes_test(lambda u: u.is_staff, login_url='/auth/login') 
