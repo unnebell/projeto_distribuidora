@@ -12,18 +12,37 @@
     transition: ease-in-out 0.3s;
 }
 
-table {
-    border-collapse: collapse;
-
-    background-color: var(--cor-01);
+h6 {
     color: var(--cor-02);
+}
+
+.tabela-container {
+    background-color: var(--cor-01);
+    height: auto;
+    max-height: 60vh;
+    overflow-y: auto;
 
     border: 1px solid var(--cor-02);
     border-radius: 10px;
 }
 
-th, td {
-    border-bottom: 1px solid var(--cor-02);
+.tabela-container {
+    scrollbar-color: var(--cor-02) var(--cor-01);
+    scrollbar-width: thin;
+}
+
+thead th {
+    position: sticky;
+    z-index: 1;
+    background-color: var(--cor-01);
+
+    box-shadow: inset 0 -1px 0 var(--cor-02);
+}
+
+table {
+    border-collapse: collapse;
+    background-color: var(--cor-01);
+    color: var(--cor-02);
 }
 
 .btn-acao {

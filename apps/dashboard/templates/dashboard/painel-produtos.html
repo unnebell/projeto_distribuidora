@@ -49,69 +49,73 @@
       <!-- Tabela principal -->
       <div class="flex-grow-1">
         <h6 class="mb-2">Produtos Ativos</h6>
-        <table class="w-100">
-          <thead>
-            <tr class="sticky-top">
-            <th class="text-center py-2">ID</th>
-            <th class="text-center py-2">Nome</th>
-            <th class="text-center py-2">Quantidade</th>
-            <th class="text-center py-2">Descrição</th>
-            <th class="text-center py-2">Preço</th>
-            <th class="text-center py-2">Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for produto in produtos_ativos %}
-            <tr>
-                <td class="text-center px-2 py-2">{{ produto.id }}</td>
-                <td class="text-center px-2 py-2">{{ produto.nome }}</td>
-                <td class="text-center px-2 py-2">{{ produto.quantidade }}</td>
-                <td class="text-center px-2 py-2">{{ produto.descricao|truncatechars:15 }}</td>
-                <td class="text-center px-2 py-2">R$ {{ produto.preco }}</td>
-                <td class="text-center px-2 py-2">
-                    <a class="btn btn-sm btn-acao"><i class="bi bi-eye"></i> Ver</a>
-                    <a class="btn btn-sm btn-acao"><i class="bi bi-pencil"></i> Editar</a>
+        <div class="tabela-container">
+          <table class="w-100">
+            <thead>
+              <tr class="sticky-top">
+              <th class="text-center py-2">ID</th>
+              <th class="text-center py-2">Nome</th>
+              <th class="text-center py-2">Qtd</th>
+              <th class="text-center py-2">Descrição</th>
+              <th class="text-center py-2">Preço</th>
+              <th class="text-center py-2">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for produto in produtos_ativos %}
+              <tr>
+                  <td class="text-center px-2 py-2">{{ produto.id }}</td>
+                  <td class="text-center px-2 py-2">{{ produto.nome }}</td>
+                  <td class="text-center px-2 py-2">{{ produto.quantidade }}</td>
+                  <td class="text-center px-2 py-2">{{ produto.descricao|truncatechars:15 }}</td>
+                  <td class="text-center px-2 py-2">R$ {{ produto.preco }}</td>
+                  <td class="text-center px-2 py-2">
+                      <a class="btn btn-sm btn-acao"><i class="bi bi-eye"></i> Ver</a>
+                      <a class="btn btn-sm btn-acao"><i class="bi bi-pencil"></i> Editar</a>
 
-                    <!-- Botão Excluir-->
-                    <a class="btn btn-sm btn-acao"
-                      data-bs-toggle="modal"
-                      data-bs-target="#modalExcluirProduto"
-                      data-id="{{ produto.id }}"
-                      data-nome="{{ produto.nome }}">
-                      <i class="bi bi-trash"></i>
-                      Excluir
-                    </a>
-                </td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+                      <!-- Botão Excluir-->
+                      <a class="btn btn-sm btn-acao"
+                        data-bs-toggle="modal"
+                        data-bs-target="#modalExcluirProduto"
+                        data-id="{{ produto.id }}"
+                        data-nome="{{ produto.nome }}">
+                        <i class="bi bi-trash"></i>
+                        Excluir
+                      </a>
+                  </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <!-- Tabela secundária -->
       {% if produtos_inativos %}
       <div style="min-width: 260px; max-width: 320px;">
         <h6 class="mb-2">Produtos Inativos</h6>
-        <table class="w-100">
-          <thead>
-            <tr class="sticky-top">
-              <th class="text-center py-2">Nome</th>
-              <th class="text-center py-2">Quantidade</th>
-              <th class="text-center py-2">Ação</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for produto in produtos_inativos %}
-            <tr>
-              <td class="text-center px-2 py-2">{{ produto.nome }}</td>
-              <td class="text-center px-2 py-2">{{ produto.quantidade }}</td>
-              <td class="text-center px-2 py-2">
-                <a href="#" class="btn btn-sm btn-acao"><i class="bi bi-power"></i> Ativar</a>
-              </td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+        <div class="tabela-container">
+          <table class="w-100">
+            <thead>
+              <tr class="sticky-top">
+                <th class="text-center py-2">Nome</th>
+                <th class="text-center py-2">Qtd</th>
+                <th class="text-center py-2">Ação</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for produto in produtos_inativos %}
+              <tr>
+                <td class="text-center px-2 py-2">{{ produto.nome }}</td>
+                <td class="text-center px-2 py-2">{{ produto.quantidade }}</td>
+                <td class="text-center px-2 py-2">
+                  <a href="#" class="btn btn-sm btn-acao"><i class="bi bi-power"></i> Ativar</a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
       </div>
       {% endif %}
 
