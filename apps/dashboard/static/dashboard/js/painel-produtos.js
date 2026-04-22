@@ -50,3 +50,11 @@ document.querySelectorAll('input[type="number"]').forEach(input => {
     });
 });
 
+// Mostrando o produto que será excluído no modal
+document.getElementById('modalExcluirProduto').addEventListener('show.bs.modal', function(e) {
+  const btn = e.relatedTarget;
+  document.getElementById('nome-produto-modal').textContent = btn.dataset.nome;
+  document.getElementById('id-produto-modal').textContent = btn.dataset.id;
+  document.getElementById('btn-desativar').onclick = () => desativarProduto(btn.dataset.id);
+  document.getElementById('btn-excluir').onclick = () => excluirProduto(btn.dataset.id);
+});

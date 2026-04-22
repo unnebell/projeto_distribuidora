@@ -69,9 +69,18 @@
                 <td class="text-center px-2 py-2">{{ produto.descricao|truncatechars:15 }}</td>
                 <td class="text-center px-2 py-2">R$ {{ produto.preco }}</td>
                 <td class="text-center px-2 py-2">
-                    <a href="#" class="btn btn-sm btn-acao"><i class="bi bi-eye"></i> Ver</a>
-                    <a href="#" class="btn btn-sm btn-acao"><i class="bi bi-pencil"></i> Editar</a>
-                    <a href="#" class="btn btn-sm btn-acao"><i class="bi bi-trash"></i> Excluir</a>
+                    <a class="btn btn-sm btn-acao"><i class="bi bi-eye"></i> Ver</a>
+                    <a class="btn btn-sm btn-acao"><i class="bi bi-pencil"></i> Editar</a>
+
+                    <!-- Botão Excluir-->
+                    <a class="btn btn-sm btn-acao"
+                      data-bs-toggle="modal"
+                      data-bs-target="#modalExcluirProduto"
+                      data-id="{{ produto.id }}"
+                      data-nome="{{ produto.nome }}">
+                      <i class="bi bi-trash"></i>
+                      Excluir
+                    </a>
                 </td>
             </tr>
             {% endfor %}
@@ -111,7 +120,7 @@
 </div>
   
   <!-- Modal Adicionar Produto -->
-<div class="modal fade cadastro-poupup" id="modalAdicionarProduto" tabindex="-1">
+<div class="modal fade modal-poupup" id="modalAdicionarProduto" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
 
@@ -154,6 +163,32 @@
   </div>
 </div>
 
+<!-- Modal excluir produto -->
+<div class="modal fade modal-poupup" id="modalExcluirProduto" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Atenção!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div id="form-erros-excluir" class="alert alert-danger d-none"></div>
+        <form id="form-produto">
+          {% csrf_token %}
+          <div class="mb-3">
+            <p><strong>Esta ação não pode ser desfeita!</strong> Você também pode apenas desativar o produto para ocultá-lo.</p>
+            <p> <strong>Produto: </strong>[ <span id="id-produto-modal"></span> ] - <span id="nome-produto-modal"></span></p>
+          </div>
+          <div class="text-center">
+            <button type="button" class="btn btn-acao m-3 mb-0" id="btn-desativar">Desativar</button>
+            <button type="button" class="btn btn-danger m-3 mb-0" id="btn-excluir">Excluir</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 <script>const urlAdicionarProduto = "{% url 'adicionar_produto' %}";</script>
 <script src="{% static 'dashboard/js/painel-produtos.js' %}"></script>

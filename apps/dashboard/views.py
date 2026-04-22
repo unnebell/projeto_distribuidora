@@ -63,3 +63,9 @@ def adicionar_produto(request):
             }
         })
     return JsonResponse({'ok':False}, status=405)
+
+@login_required(login_url='/auth/login/')
+@user_passes_test(lambda u: u.is_staff, login_url='/auth/login') 
+def excluir_produto(request, id):
+    produto = get_object_or_404(Produto, id=id)
+    return render(request, 'painel-admin.html', {'produto': produto})
