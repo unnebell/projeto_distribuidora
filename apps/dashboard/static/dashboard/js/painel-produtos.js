@@ -58,3 +58,43 @@ document.getElementById('modalExcluirProduto').addEventListener('show.bs.modal',
   document.getElementById('btn-desativar').onclick = () => desativarProduto(btn.dataset.id);
   document.getElementById('btn-excluir').onclick = () => excluirProduto(btn.dataset.id);
 });
+
+// Excluindo produto
+function getCsrf() {
+    return document.cookie.split(';')
+        .find(c => c.trim().startsWith('csrftoken='))
+        ?.split('=')[1];
+}
+
+function mostrarToast(mensagem, tipo = 'success') {
+    const icone = tipo === 'success' ? 'bi-check-circle-fill' : 'bi-x-circle-fill';
+    const cor = tipo === 'success' ? 'text-bg-success' : 'text-bg-danger';
+
+    const container = document.createElement('div');
+    container.className = 'toast-container position-fixed top-0 start-50 translate-middle-x p-3';
+    container.style.zIndex = 9999;
+    container.innerHTML = `
+        <div class="toast align-items-center ${cor} border-0 show" role="alert">
+            <div class="d-flex">
+                <div class="toast-body fw-semibold">
+                    <i class="bi ${icone} me-2"></i>${mensagem}
+                </div>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(container);
+    setTimeout(() => location.reload(), 2000);
+}
+
+async function excluirProduto(id) {
+    const url = urlExcluirProduto.replace('/0/', `/${id}/`);
+    const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'X-CSRFToken': getCsrf() }
+    });
+    const data = await res.json();
+    if (data.sucesso) {
+        bootstrap.Modal.getInstance(document.getElementById('modalExcluirProduto')).hide();
+        mostrarToast(data.mensagem);
+}
+}

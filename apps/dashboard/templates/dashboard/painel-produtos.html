@@ -214,7 +214,10 @@
   </div>
 </div>
 
-<script>const urlAdicionarProduto = "{% url 'adicionar_produto' %}";</script>
+<script>
+  const urlAdicionarProduto = "{% url 'adicionar_produto' %}";
+  const urlExcluirProduto = "{% url 'excluir_produto' id=0 %}";
+</script>
 <script src="{% static 'dashboard/js/painel-produtos.js' %}"></script>
 
 {% endblock content %}

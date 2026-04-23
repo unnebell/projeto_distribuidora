@@ -39,8 +39,7 @@ def painel_produtos(request):
     
     return render(request, 'dashboard/painel-produtos.html', context)
 
-
-
+# Adiciona produto
 @login_required(login_url='/auth/login/')
 @user_passes_test(lambda u: u.is_staff, login_url='/auth/login') 
 def adicionar_produto(request):
@@ -64,8 +63,14 @@ def adicionar_produto(request):
         })
     return JsonResponse({'ok':False}, status=405)
 
+# Modal para excluir produto
 @login_required(login_url='/auth/login/')
 @user_passes_test(lambda u: u.is_staff, login_url='/auth/login') 
 def excluir_produto(request, id):
+    if request.method != 'POST':
+        return JsonResponse({'erro':'Método não permitido'}, status=405)
+    
     produto = get_object_or_404(Produto, id=id)
-    return render(request, 'painel-admin.html', {'produto': produto})
+    nome = produto.nome
+    produto.delete()
+    return JsonResponse({'sucesso':True, 'mensagem': f'Produto {nome} excluído com sucesso!'})
