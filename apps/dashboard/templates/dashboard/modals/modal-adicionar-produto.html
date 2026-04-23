@@ -1,0 +1,46 @@
+<div class="modal fade modal-poupup" id="modalAdicionarProduto" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Novo Produto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <div id="form-erros" class="alert alert-danger d-none"></div>
+        <form id="form-produto">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label class="form-label">Nome</label>
+            <input type="text" name="nome" class="form-control" placeholder="Nome do produto" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Descrição</label>
+            <textarea name="descricao" class="form-control" placeholder="Escreva uma breve descrição sobre o produto" rows="3" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Preço</label>
+            <input type="number" onkeydown="return ['0','1','2','3','4','5','6','7','8','9','Backspace','Delete','ArrowLeft','ArrowRight','Tab','.', ','].includes(event.key)"
+             name="preco" class="form-control" placeholder="R$" step="0.01" min="0" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Quantidade</label>
+            <input type="number" onkeydown="return ['0','1','2','3','4','5','6','7','8','9','Backspace','Delete','ArrowLeft','ArrowRight','Tab',].includes(event.key)"
+             name="quantidade" class="form-control" placeholder="0" min="0" required>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-acao" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-acao" id="btn-salvar">Salvar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  const urlAdicionarProduto = "{% url 'adicionar_produto' %}";
+</script>
