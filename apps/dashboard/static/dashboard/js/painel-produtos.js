@@ -27,8 +27,19 @@ document.getElementById('btn-salvar').addEventListener('click', () => {
         <td class="text-center px-2 py-2">
           <!-- Desktop -->
           <div class="d-none d-md-flex justify-content-center gap-1">
-            <a class="btn btn-sm btn-acao" title="Ver"><i class="bi bi-eye"></i> <span>Ver</span></a>
+              <a class="btn btn-sm btn-acao" title="Ver"
+                data-bs-toggle="modal"
+                data-bs-target="#modalVerProduto"
+                data-id="${ res.produto.id }"
+                data-nome="${ res.produto.nome }"
+                data-qtd = "${ res.produto.quantidade }"
+                data-descricao = "${ res.produto.descricao }"
+                data-preco="${ res.produto.preco }">
+                <i class="bi bi-eye"></i> <span>Ver</span>
+              </a>
+
             <a class="btn btn-sm btn-acao" title="Editar"><i class="bi bi-pencil"></i> <span>Editar</span></a>
+           
             <a class="btn btn-sm btn-acao" title="Excluir"
               data-bs-toggle="modal"
               data-bs-target="#modalExcluirProduto"
@@ -37,14 +48,28 @@ document.getElementById('btn-salvar').addEventListener('click', () => {
               <i class="bi bi-trash"></i> <span>Excluir</span>
             </a>
           </div>
+
           <!-- Mobile -->
           <div class="d-md-none dropdown">
             <button class="btn btn-sm btn-acao dropdown-toggle" data-bs-toggle="dropdown">
               <i class="bi bi-three-dots-vertical"></i>
             </button>
             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-custom">
-              <li><a class="dropdown-item"><i class="bi bi-eye"></i> Ver</a></li>
+            <li>  
+              <a class="btn btn-sm btn-acao" title="Ver"
+                data-bs-toggle="modal"
+                data-bs-target="#modalVerProduto"
+                data-id="${ res.produto.id }"
+                data-nome="${ res.produto.nome }"
+                data-qtd = "${ res.produto.quantidade }"
+                data-descricao = "${ res.produto.descricao }"
+                data-preco="${ res.produto.preco }">
+                <i class="bi bi-eye"></i> <span>Ver</span>
+                </a>
+              </li>
+
               <li><a class="dropdown-item"><i class="bi bi-pencil"></i> Editar</a></li>
+
               <li>
                 <a class="dropdown-item"
                   data-bs-toggle="modal"
@@ -68,7 +93,6 @@ document.getElementById('btn-salvar').addEventListener('click', () => {
 });
 
 // Permitindo somente numeração nos campos number
-
 document.querySelectorAll('input[type="number"]').forEach(input => {
     input.addEventListener('keydown', function(e) {
         const allowed = ['0','1','2','3','4','5','6','7','8','9',
@@ -76,6 +100,16 @@ document.querySelectorAll('input[type="number"]').forEach(input => {
                          'ArrowUp','ArrowDown','Tab','.'];
         if (!allowed.includes(e.key)) e.preventDefault();
     });
+});
+
+// Transmitindo informações ao modal para ver o produto
+document.getElementById('modalVerProduto').addEventListener('show.bs.modal', function (e) {
+  const btn = e.relatedTarget;
+  document.getElementById('verProdutoId').textContent       = btn.dataset.id;
+  document.getElementById('verProdutoNome').textContent     = btn.dataset.nome;
+  document.getElementById('verProdutoQtd').textContent      = btn.dataset.qtd;
+  document.getElementById('verProdutoDescricao').textContent = btn.dataset.descricao;
+  document.getElementById('verProdutoPreco').textContent    = btn.dataset.preco;
 });
 
 // Mostrando o produto que será excluído no modal
