@@ -106,3 +106,16 @@ input[type="number"]::-webkit-outer-spin-button {
     background-color: var(--cor-01);
     color: var(--cor-02);
 }
+
+@media (max-width: 1150px){
+    .btn-acao span {
+        display: none;
+  }
+  .col-descricao {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    
+}
