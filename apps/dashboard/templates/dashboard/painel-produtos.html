@@ -78,9 +78,19 @@
                           data-qtd = "{{ produto.quantidade }}"
                           data-descricao = "{{ produto.descricao }}"
                           data-preco="{{ produto.preco }}">
-                          <i class="bi bi-eye"></i> <span>Ver</span></a>
+                          <i class="bi bi-eye"></i> <span>Ver</span>
+                        </a>
 
-                        <a class="btn btn-sm btn-acao" title="Editar"><i class="bi bi-pencil"></i> <span>Editar</span></a>
+                        <a class="btn btn-sm btn-acao" title="Editar"
+                          data-bs-toggle="modal"
+                          data-bs-target="#modalEditarProduto"
+                          data-id="{{ produto.id }}"
+                          data-nome="{{ produto.nome }}"
+                          data-qtd = "{{ produto.quantidade }}"
+                          data-descricao = "{{ produto.descricao }}"
+                          data-preco="{{ produto.preco }}">
+                          <i class="bi bi-pencil"></i> <span>Editar</span>
+                        </a>
                         
                         <a class="btn btn-sm btn-acao" title="Excluir"
                             data-bs-toggle="modal"
@@ -97,8 +107,30 @@
                             <i class="bi bi-three-dots-vertical"></i>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-custom">
-                            <li><a class="dropdown-item"><i class="bi bi-eye"></i> Ver</a></li>
-                            <li><a class="dropdown-item"><i class="bi bi-pencil"></i> Editar</a></li>
+                            <li><a class="btn btn-sm btn-acao" title="Ver"
+                                data-bs-toggle="modal"
+                                data-bs-target="#modalVerProduto"
+                                data-id="{{ produto.id }}"
+                                data-nome="{{ produto.nome }}"
+                                data-qtd = "{{ produto.quantidade }}"
+                                data-descricao = "{{ produto.descricao }}"
+                                data-preco="{{ produto.preco }}">
+                                <i class="bi bi-eye"></i> <span>Ver</span>
+                              </a>
+                            </li>
+
+                            <li>
+                              <a class="btn btn-sm btn-acao" title="Editar"
+                                data-bs-toggle="modal"
+                                data-bs-target="#modalEditarProduto"
+                                data-id="{{ produto.id }}"
+                                data-nome="{{ produto.nome }}"
+                                data-qtd = "{{ produto.quantidade }}"
+                                data-descricao = "{{ produto.descricao }}"
+                                data-preco="{{ produto.preco }}">
+                                <i class="bi bi-pencil"></i> <span>Editar</span></a>
+                            </li>
+
                             <li>
                                 <a class="dropdown-item"
                                     data-bs-toggle="modal"
@@ -154,6 +186,7 @@
 {% include "dashboard/modals/modal-adicionar-produto.html" %}
 {% include "dashboard/modals/modal-excluir-produto.html" %}
 {% include "dashboard/modals/modal-ver-produto.html" %}
+{% include "dashboard/modals/modal-editar-produto.html" %}
 
 <script>
   const urlAtivarProduto = "{% url 'ativar_produto' id=0 %}";

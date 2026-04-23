@@ -24,7 +24,6 @@ def dashboard(request):
     if request.method == 'GET':
         return render(request, 'dashboard/painel.html', context)
 
-
 # Mostra somente itens ativos na tabela principal e inativos em uma segunda tabela
 @login_required(login_url='/auth/login/')
 @user_passes_test(lambda u: u.is_staff, login_url='/auth/login')       
@@ -39,7 +38,7 @@ def painel_produtos(request):
     
     return render(request, 'dashboard/painel-produtos.html', context)
 
-# Adiciona produto
+# Modal para adicionar produto
 @login_required(login_url='/auth/login/')
 @user_passes_test(lambda u: u.is_staff, login_url='/auth/login') 
 def adicionar_produto(request):
@@ -100,3 +99,30 @@ def ativar_produto(request, id):
     produto.ativo = True
     produto.save()
     return JsonResponse({'sucesso':True, 'mensagem': f'Produto {nome} Ativado com sucesso!'})
+
+# Modal para Atualizar/Editar Produto
+@login_required(login_url='/auth/login/')
+@user_passes_test(lambda u: u.is_staff, login_url='/auth/login')
+def editar_produto(request, id):
+    produto = get_object_or_404(Produto, id=id)
+
+    if request.method != 'POST':
+        return JsonResponse({'erro': 'Método não permitido'}, status=405)
+
+    produto.nome      = request.POST.get('nome')
+    produto.descricao = request.POST.get('descricao')
+    produto.preco     = request.POST.get('preco')
+    produto.quantidade = request.POST.get('quantidade')
+    produto.save()
+
+    return JsonResponse({
+        'ok': True,
+        'mensagem': f'Produto {produto.nome} atualizado com sucesso!',
+        'produto': {
+            'id': produto.id,
+            'nome': produto.nome,
+            'descricao': produto.descricao,
+            'preco': str(produto.preco),
+            'quantidade': produto.quantidade,
+        }
+    })

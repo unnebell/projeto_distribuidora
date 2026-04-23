@@ -27,18 +27,27 @@ document.getElementById('btn-salvar').addEventListener('click', () => {
         <td class="text-center px-2 py-2">
           <!-- Desktop -->
           <div class="d-none d-md-flex justify-content-center gap-1">
-              <a class="btn btn-sm btn-acao" title="Ver"
-                data-bs-toggle="modal"
-                data-bs-target="#modalVerProduto"
-                data-id="${ res.produto.id }"
-                data-nome="${ res.produto.nome }"
-                data-qtd = "${ res.produto.quantidade }"
-                data-descricao = "${ res.produto.descricao }"
-                data-preco="${ res.produto.preco }">
-                <i class="bi bi-eye"></i> <span>Ver</span>
-              </a>
+            <a class="btn btn-sm btn-acao" title="Ver"
+              data-bs-toggle="modal"
+              data-bs-target="#modalVerProduto"
+              data-id="${ res.produto.id }"
+              data-nome="${ res.produto.nome }"
+              data-qtd = "${ res.produto.quantidade }"
+              data-descricao = "${ res.produto.descricao }"
+              data-preco="${ res.produto.preco }">
+              <i class="bi bi-eye"></i> <span>Ver</span>
+            </a>
 
-            <a class="btn btn-sm btn-acao" title="Editar"><i class="bi bi-pencil"></i> <span>Editar</span></a>
+            <a class="btn btn-sm btn-acao" title="Editar"
+              data-bs-toggle="modal"
+              data-bs-target="#modalEditarProduto"
+              data-id="${ res.produto.id }"
+              data-nome="${ res.produto.nome }"
+              data-qtd = "${ res.produto.quantidade }"
+              data-descricao = "${ res.produto.descricao }"
+              data-preco="${ res.produto.preco }">
+              <i class="bi bi-pencil"></i> <span>Editar</span>
+            </a>
            
             <a class="btn btn-sm btn-acao" title="Excluir"
               data-bs-toggle="modal"
@@ -57,18 +66,29 @@ document.getElementById('btn-salvar').addEventListener('click', () => {
             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-custom">
             <li>  
               <a class="btn btn-sm btn-acao" title="Ver"
-                data-bs-toggle="modal"
-                data-bs-target="#modalVerProduto"
-                data-id="${ res.produto.id }"
-                data-nome="${ res.produto.nome }"
-                data-qtd = "${ res.produto.quantidade }"
-                data-descricao = "${ res.produto.descricao }"
-                data-preco="${ res.produto.preco }">
-                <i class="bi bi-eye"></i> <span>Ver</span>
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalVerProduto"
+                  data-id="${ res.produto.id }"
+                  data-nome="${ res.produto.nome }"
+                  data-qtd = "${ res.produto.quantidade }"
+                  data-descricao = "${ res.produto.descricao }"
+                  data-preco="${ res.produto.preco }">
+                  <i class="bi bi-eye"></i> <span>Ver</span>
                 </a>
               </li>
 
-              <li><a class="dropdown-item"><i class="bi bi-pencil"></i> Editar</a></li>
+              <li>
+                <a class="btn btn-sm btn-acao" title="Editar"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEditarProduto"
+                  data-id="${ res.produto.id }"
+                  data-nome="${ res.produto.nome }"
+                  data-qtd = "${ res.produto.quantidade }"
+                  data-descricao = "${ res.produto.descricao }"
+                  data-preco="${ res.produto.preco }">
+                  <i class="bi bi-pencil"></i> <span>Editar</span>
+                </a>
+              </li>
 
               <li>
                 <a class="dropdown-item"
@@ -110,6 +130,44 @@ document.getElementById('modalVerProduto').addEventListener('show.bs.modal', fun
   document.getElementById('verProdutoQtd').textContent      = btn.dataset.qtd;
   document.getElementById('verProdutoDescricao').textContent = btn.dataset.descricao;
   document.getElementById('verProdutoPreco').textContent    = btn.dataset.preco;
+});
+
+// Preenche o modal de editar com os dados do produto
+document.getElementById('modalEditarProduto').addEventListener('show.bs.modal', function (e) {
+  const btn = e.relatedTarget.closest('[data-id]');
+  document.getElementById('editarProdutoId').value         = btn.dataset.id;
+  document.getElementById('editarProdutoNome').textContent = btn.dataset.nome;
+  document.getElementById('editarInputNome').value         = btn.dataset.nome;
+  document.getElementById('editarInputDescricao').value    = btn.dataset.descricao;
+  document.getElementById('editarInputPreco').value = btn.dataset.preco.replace(',', '.');
+  document.getElementById('editarInputQtd').value          = btn.dataset.qtd;
+});
+
+// Salva a edição via AJAX
+document.getElementById('btn-salvar-edicao').addEventListener('click', () => {
+  const form = document.getElementById('form-editar-produto');
+  const erros = document.getElementById('editar-form-erros');
+  const id = document.getElementById('editarProdutoId').value;
+  const data = new FormData(form);
+  const url = urlEditarProduto.replace('/0/', `/${id}/`);
+
+  fetch(url, {
+    method: 'POST',
+    headers: { 'X-CSRFToken': data.get('csrfmiddlewaretoken') },
+    body: data,
+  })
+  .then(r => r.json())
+  .then(res => {
+    if (res.ok) {
+      bootstrap.Modal.getInstance(document.getElementById('modalEditarProduto')).hide();
+      erros.classList.add('d-none');
+      mostrarToast(res.mensagem);
+    } else {
+      const msgs = Object.values(res.errors).flat().join('<br>');
+      erros.innerHTML = msgs;
+      erros.classList.remove('d-none');
+    }
+  });
 });
 
 // Mostrando o produto que será excluído no modal
