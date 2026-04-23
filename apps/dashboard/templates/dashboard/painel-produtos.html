@@ -188,10 +188,11 @@
 {% include "dashboard/modals/modal-ver-produto.html" %}
 {% include "dashboard/modals/modal-editar-produto.html" %}
 
-<script>
-  const urlAtivarProduto = "{% url 'ativar_produto' id=0 %}";
-</script>
-<script src="{% static 'dashboard/js/painel-produtos.js' %}"></script>
+<script src="{% static 'dashboard/js/utils.js' %}"></script>
+<script src="{% static 'dashboard/js/funcao-adicionar-produto.js' %}"></script>
+<script src="{% static 'dashboard/js/funcao-editar-produto.js' %}"></script>
+<script src="{% static 'dashboard/js/funcao-excluir-produto.js' %}"></script>
+<script src="{% static 'dashboard/js/funcao-ver-produto.js' %}"></script>
 
 {% endblock content %}
 
