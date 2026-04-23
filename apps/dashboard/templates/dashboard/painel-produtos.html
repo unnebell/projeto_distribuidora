@@ -153,7 +153,7 @@
       <!-- Tabela secundária -->
       {% if produtos_inativos %}
       <div style="min-width: 260px;">
-        <h6 class="mb-2">Produtos Inativos</h6>
+        <h6 class="mb-2 pulse-alert text-warning">Produtos Inativos</h6>
         <div class="tabela-container table-responsive">
           <table class="w-100">
             <thead>
@@ -169,7 +169,7 @@
                 <td class="text-center px-2 py-2">{{ produto.nome }}</td>
                 <td class="text-center px-2 py-2">{{ produto.quantidade }}</td>
                 <td class="text-center px-2 py-2">
-                  <a href="#" class="btn btn-sm btn-acao" onclick="ativarProduto({{ produto.id }})"><i class="bi bi-power"></i> Ativar</a>
+                  <a href="#" class="btn btn-sm btn-acao pulse-alert" onclick="ativarProduto({{ produto.id }})"><i class="bi bi-power"></i> Ativar</a>
                 </td>
               </tr>
               {% endfor %}
