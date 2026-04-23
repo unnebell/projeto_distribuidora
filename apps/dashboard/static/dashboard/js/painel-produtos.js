@@ -141,3 +141,16 @@ async function desativarProduto(id) {
         mostrarToast(data.mensagem);
 }
 }
+
+// Função assíncrona para Ativar produto
+async function ativarProduto(id) {
+    const url = urlAtivarProduto.replace('/0/', `/${id}/`);
+    const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'X-CSRFToken': getCsrf() }
+    });
+    const data = await res.json();
+    if (data.sucesso) {
+        mostrarToast(data.mensagem);
+}
+}

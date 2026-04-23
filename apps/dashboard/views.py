@@ -87,3 +87,16 @@ def desativar_produto(request, id):
     produto.ativo = False
     produto.save()
     return JsonResponse({'sucesso':True, 'mensagem': f'Produto {nome} desativado com sucesso!'})
+
+# Modal para Ativar produto
+@login_required(login_url='/auth/login/')
+@user_passes_test(lambda u: u.is_staff, login_url='/auth/login') 
+def ativar_produto(request, id):
+    if request.method != 'POST':
+        return JsonResponse({'erro':'Método não permitido'}, status=405)
+    
+    produto = get_object_or_404(Produto, id=id)
+    nome = produto.nome
+    produto.ativo = True
+    produto.save()
+    return JsonResponse({'sucesso':True, 'mensagem': f'Produto {nome} Ativado com sucesso!'})

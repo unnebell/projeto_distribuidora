@@ -129,11 +129,11 @@
                 <td class="text-center px-2 py-2">{{ produto.nome }}</td>
                 <td class="text-center px-2 py-2">{{ produto.quantidade }}</td>
                 <td class="text-center px-2 py-2">
-                  <a href="#" class="btn btn-sm btn-acao"><i class="bi bi-power"></i> Ativar</a>
+                  <a href="#" class="btn btn-sm btn-acao" onclick="ativarProduto({{ produto.id }})"><i class="bi bi-power"></i> Ativar</a>
                 </td>
               </tr>
               {% endfor %}
-            </tbody>
+            </tbody> 
           </table>
         </div>
       </div>
@@ -218,6 +218,7 @@
   const urlAdicionarProduto = "{% url 'adicionar_produto' %}";
   const urlExcluirProduto = "{% url 'excluir_produto' id=0 %}";
   const urlDesativarProduto = "{% url 'desativar_produto' id=0 %}";
+  const urlAtivarProduto = "{% url 'ativar_produto' id=0 %}";
 </script>
 <script src="{% static 'dashboard/js/painel-produtos.js' %}"></script>
 
