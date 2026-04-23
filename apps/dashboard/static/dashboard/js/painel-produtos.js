@@ -114,8 +114,23 @@ function mostrarToast(mensagem, tipo = 'success') {
     setTimeout(() => location.reload(), 2000);
 }
 
+// Função assíncrona para excluir produto
 async function excluirProduto(id) {
     const url = urlExcluirProduto.replace('/0/', `/${id}/`);
+    const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'X-CSRFToken': getCsrf() }
+    });
+    const data = await res.json();
+    if (data.sucesso) {
+        bootstrap.Modal.getInstance(document.getElementById('modalExcluirProduto')).hide();
+        mostrarToast(data.mensagem);
+}
+}
+
+// Função assíncrona para desativar produto
+async function desativarProduto(id) {
+    const url = urlDesativarProduto.replace('/0/', `/${id}/`);
     const res = await fetch(url, {
         method: 'POST',
         headers: { 'X-CSRFToken': getCsrf() }
