@@ -19,15 +19,43 @@ document.getElementById('btn-salvar').addEventListener('click', () => {
       const tbody = document.querySelector('tbody');
       const tr = document.createElement('tr');
       tr.innerHTML = `
-        <td class="text-center px-3 py-2">${res.produto.id}</td>
-        <td class="text-center px-3 py-2">${res.produto.nome}</td>
-        <td class="text-center px-3 py-2">${res.produto.quantidade}</td>
-        <td class="text-center px-3 py-2">${res.produto.descricao}</td>
-        <td class="text-center px-3 py-2">R$ ${res.produto.preco}</td>
-        <td class="text-center px-3 py-2">
-          <a href="#" class="btn btn-sm btn-acao"><i class="bi bi-eye"></i> Ver</a>
-          <a href="#" class="btn btn-sm btn-acao"><i class="bi bi-pencil"></i> Editar</a>
-          <a href="#" class="btn btn-sm btn-acao"><i class="bi bi-trash"></i> Excluir</a>
+        <td class="text-center px-2 py-2">${res.produto.id}</td>
+        <td class="text-center px-2 py-2">${res.produto.nome}</td>
+        <td class="text-center px-2 py-2">${res.produto.quantidade}</td>
+        <td class="text-center px-2 py-2 col-descricao">${res.produto.descricao.substring(0, 15)}${res.produto.descricao.length > 15 ? '...' : ''}</td>
+        <td class="text-center px-2 py-2 col-preco">R$ ${res.produto.preco}</td>
+        <td class="text-center px-2 py-2">
+          <!-- Desktop -->
+          <div class="d-none d-md-flex justify-content-center gap-1">
+            <a class="btn btn-sm btn-acao" title="Ver"><i class="bi bi-eye"></i> <span>Ver</span></a>
+            <a class="btn btn-sm btn-acao" title="Editar"><i class="bi bi-pencil"></i> <span>Editar</span></a>
+            <a class="btn btn-sm btn-acao" title="Excluir"
+              data-bs-toggle="modal"
+              data-bs-target="#modalExcluirProduto"
+              data-id="${res.produto.id}"
+              data-nome="${res.produto.nome}">
+              <i class="bi bi-trash"></i> <span>Excluir</span>
+            </a>
+          </div>
+          <!-- Mobile -->
+          <div class="d-md-none dropdown">
+            <button class="btn btn-sm btn-acao dropdown-toggle" data-bs-toggle="dropdown">
+              <i class="bi bi-three-dots-vertical"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-custom">
+              <li><a class="dropdown-item"><i class="bi bi-eye"></i> Ver</a></li>
+              <li><a class="dropdown-item"><i class="bi bi-pencil"></i> Editar</a></li>
+              <li>
+                <a class="dropdown-item"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalExcluirProduto"
+                  data-id="${res.produto.id}"
+                  data-nome="${res.produto.nome}">
+                  <i class="bi bi-trash"></i> Excluir
+                </a>
+              </li>
+            </ul>
+          </div>
         </td>
       `;
       tbody.appendChild(tr);
