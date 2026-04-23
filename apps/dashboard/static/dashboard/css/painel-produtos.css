@@ -107,6 +107,25 @@ input[type="number"]::-webkit-outer-spin-button {
     color: var(--cor-02);
 }
 
+.dropdown-menu-custom {
+    background-color: var(--cor-01);
+    border: 1px solid var(--cor-02);
+}
+
+.dropdown-menu-custom .dropdown-item {
+    color: var(--cor-02);
+}
+
+.dropdown-menu-custom .dropdown-item:hover {
+    background-color: var(--cor-02);
+    color: var(--cor-01);
+    cursor: pointer;
+}
+
+.col-preco {
+    white-space: nowrap;
+}
+
 @media (max-width: 1150px){
     .btn-acao span {
         display: none;
@@ -117,5 +136,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 @media (max-width: 768px) {
-    
+    .tabela-container {
+        overflow-x: clip;
+    }
 }
