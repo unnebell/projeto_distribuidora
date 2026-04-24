@@ -25,3 +25,19 @@ function mostrarToast(mensagem, tipo = 'success') {
     document.body.appendChild(container);
     setTimeout(() => location.reload(), 2000); // Define o tempo para poder dar o reload na página
 }
+
+// Mostra o dropdawn da tabela por cima dos itens
+document.addEventListener('show.bs.dropdown', function (e) {
+    const menu = e.target.nextElementSibling;
+    if (!menu || !menu.classList.contains('dropdown-tabela')) return;
+
+    const btn = e.target;
+    const rect = btn.getBoundingClientRect();
+
+    menu.style.position = 'fixed';
+    menu.style.top = (rect.bottom + window.scrollY) + 'px';
+    menu.style.left = (rect.left + window.scrollX - menu.offsetWidth + btn.offsetWidth) + 'px';
+    menu.style.zIndex = '9999';
+
+    document.body.appendChild(menu);
+});

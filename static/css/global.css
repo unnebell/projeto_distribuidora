@@ -38,6 +38,11 @@ section {
     scroll-margin-top: 60px;
 }
 
+.navbar {
+    position: relative;
+    z-index: 1040;
+}
+
 /* .btn-voltar {
     position: fixed;
     top: 20px;
