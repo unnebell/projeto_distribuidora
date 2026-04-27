@@ -122,10 +122,17 @@ input[type="number"]::-webkit-outer-spin-button {
     cursor: pointer;
 }
 
+td:last-child {
+    white-space: nowrap;
+}
+
 @media (max-width: 1150px){
     .btn-acao span {
         display: none;
   }
+  .col-email {
+        display: none;
+    }
 }
 
 @media (max-width: 768px) {

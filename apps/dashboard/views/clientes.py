@@ -7,10 +7,12 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 @login_required(login_url='/auth/login/')
 @user_passes_test(lambda u: u.is_staff, login_url='/auth/login')
 def painel_clientes(request):
-    clientes = User.objects.filter(is_staff=False)
+    clientes_ativos = User.objects.filter(is_staff=False, is_active=True)
+    clientes_inativos = User.objects.filter(is_staff=False, is_active=False)
     
     context = {
-        'clientes' : clientes,
+        'clientes_ativos' : clientes_ativos,
+        'clientes_inativos' : clientes_inativos,
     }
     
     return render(request, 'dashboard/painel-clientes.html', context)
@@ -62,7 +64,7 @@ def desativar_cliente(request, id):
     
     cliente = get_object_or_404(User, id=id)
     nome = cliente.username
-    cliente.ativo = False
+    cliente.is_active = False
     cliente.save()
     return JsonResponse({'sucesso':True, 'mensagem': f'Cliente {nome} desativado com sucesso!'})
 
@@ -75,7 +77,7 @@ def ativar_cliente(request, id):
     
     cliente = get_object_or_404(User, id=id)
     nome = cliente.username
-    cliente.ativo = True
+    cliente.is_active = True
     cliente.save()
     return JsonResponse({'sucesso':True, 'mensagem': f'Cliente {nome} Ativado com sucesso!'})
 
