@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block nav_links %}
+  <li class="nav-item">
+    <a class="nav-link link-redirect" href="{% url 'dashboard' %}">
+      <i class="bi bi-bar-chart"></i> Dashboard
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link link-redirect" href="{% url 'painel_produtos' %}">
+      <i class="bi bi-box-seam"></i> Produtos
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link link-redirect" href="#">
+      <i class="bi bi-clipboard-check"></i> Pedidos
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link link-redirect active" href="{% url 'painel_clientes' %}">
+      <i class="bi bi-person"></i> Clientes
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link link-redirect" href="#">
+      <i class="bi bi-gear"></i> Usuários
+    </a>
+  </li>
+{% endblock nav_links %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/global.css' %}"/>
+<link rel="stylesheet" href="{% static 'dashboard/css/painel-clientes.css' %}"/>
+
+<div class="d-flex justify-content-center mt-4 mb-4">
+  <div class="col-11">
+    <div class="text-end">
+      <a class="btn btn-criar-cliente mb-3 pulse-alert" data-bs-toggle="modal" data-bs-target="#modalAdicionarProduto">
+        Adicionar Cliente <i class="bi bi-plus-lg"></i>
+      </a>
+    </div>
+
+ <div class="d-flex flex-column flex-md-row gap-3">
+
+  <!--Tabela principal -->
+  <div class="flex-grow-1">
+    <h6 class="mb-6">Clientes Ativos</h6>
+      <div class="tabela-container table-responsive">
+          <table class="w-100">
+              <thead
+                <tr class="sticky-top">
+                  <th class="text-center px-2 py-2">ID</th>
+                  <th class="text-center px-2 py-2">Nome</th>
+                  <th class="text-center px-2 py-2 col-email">Email</th>
+                  <th class="text-center px-2 py-2">Registro</th>
+                  <th class="text-center px-2 py-2">Último acesso</th>
+                  <th class="text-center px-2 py-2">Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for cliente in clientes %}
+                  <tr>
+                    <td class="text-center px-2 py-2">{{ cliente.id }}</td>
+                    <td class="text-center px-2 py-2">{{ cliente.username }}</td>
+                    <td class="text-center px-2 py-2 col-email">{{ cliente.email }}</td>
+                    <td class="text-center px-2 py-2">{{ cliente.date_joined|date:"d/m/Y" }}</td>
+                    <td class="text-center px-2 py-2">{{ cliente.last_login|date:"d/m/Y" }}</td>
+                    <td class="text-center px-2 py-2">
+                      <a href="#" class="btn btn-sm btn-acao"
+                          title="Ver">
+                        <i class="bi bi-eye"></i> <span>Ver</span> 
+                      </a>
+
+                      <a href="#" class="btn btn-sm btn-acao"
+                          title="Editar">
+                        <i class="bi bi-pencil"></i> <span>Editar</span> 
+                      </a>
+
+                      <a href="#" class="btn btn-sm btn-acao"
+                          title="Excluir">
+                        <i class="bi bi-trash"></i> <span>Excluir</span> 
+                      </a>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block footer %}
+{% endblock footer %}
