@@ -104,6 +104,7 @@ document.getElementById('btn-salvar').addEventListener('click', () => {
         </td>
       `;
       tbody.appendChild(tr);
+      mostrarToast(`Produto ${res.produto.nome} adicionado com sucesso!`);
     } else {
       const msgs = Object.values(res.errors).flat().join('<br>');
       erros.innerHTML = msgs;

@@ -37,7 +37,7 @@
 <div class="d-flex justify-content-center mt-4 mb-4">
   <div class="col-11">
     <div class="text-end">
-      <a class="btn btn-criar-cliente mb-3 pulse-alert" data-bs-toggle="modal" data-bs-target="#modalAdicionarProduto">
+      <a class="btn btn-criar-cliente mb-3 pulse-alert" data-bs-toggle="modal" data-bs-target="#modalAdicionarCliente">
         Adicionar Cliente <i class="bi bi-plus-lg"></i>
       </a>
     </div>
@@ -68,17 +68,36 @@
                     <td class="text-center px-2 py-2">{{ cliente.date_joined|date:"d/m/Y" }}</td>
                     <td class="text-center px-2 py-2">{{ cliente.last_login|date:"d/m/Y" }}</td>
                     <td class="text-center px-2 py-2">
+                      <!--VER CLIENTE-->
                       <a href="#" class="btn btn-sm btn-acao"
+                          data-bs-toggle="modal"
+                          data-bs-target="#modalVerCliente"
+                          data-id="{{ cliente.id }}"
+                          data-nome="{{ cliente.username }}"
+                          data-email="{{ cliente.email }}"
+                          data-joined="{{ cliente.date_joined|date:'d/m/y' }}"
+                          data-lastlogin="{{ cliente.last_login|date:'d/m/y' }}"
                           title="Ver">
                         <i class="bi bi-eye"></i> <span>Ver</span> 
                       </a>
 
+                      <!--EDITAR CLIENTE-->
                       <a href="#" class="btn btn-sm btn-acao"
+                          data-bs-toggle="modal"
+                          data-bs-target="#modalEditarCliente"
+                          data-id="{{ cliente.id }}"
+                          data-nome="{{ cliente.username }}"
+                          data-email="{{ cliente.email }}"
                           title="Editar">
                         <i class="bi bi-pencil"></i> <span>Editar</span> 
                       </a>
 
+                      <!--EXCLUIR CLIENTE-->
                       <a href="#" class="btn btn-sm btn-acao"
+                          data-bs-toggle="modal"
+                          data-bs-target="#modalExcluirCliente"
+                          data-id="{{ cliente.id }}"
+                          data-nome="{{ cliente.username }}"
                           title="Excluir">
                         <i class="bi bi-trash"></i> <span>Excluir</span> 
                       </a>
@@ -92,6 +111,17 @@
       </div>
     </div>
 </div>
+
+{% include "dashboard/modals/painel-clientes/modal-adicionar-cliente.html" %}
+{% include "dashboard/modals/painel-clientes/modal-excluir-cliente.html" %}
+{% include "dashboard/modals/painel-clientes/modal-ver-cliente.html" %}
+{% include "dashboard/modals/painel-clientes/modal-editar-cliente.html" %}
+
+<script src="{% static 'dashboard/js/utils.js' %}"></script>
+<script src="{% static 'dashboard/js/painel-clientes/funcao-adicionar-cliente.js' %}"></script>
+<script src="{% static 'dashboard/js/painel-clientes/funcao-editar-cliente.js' %}"></script>
+<script src="{% static 'dashboard/js/painel-clientes/funcao-excluir-cliente.js' %}"></script>
+<script src="{% static 'dashboard/js/painel-clientes/funcao-ver-cliente.js' %}"></script>
 
 {% endblock content %}
 
