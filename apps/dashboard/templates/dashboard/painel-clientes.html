@@ -54,7 +54,7 @@
                   <th class="text-center px-2 py-2">ID</th>
                   <th class="text-center px-2 py-2">Nome</th>
                   <th class="text-center px-2 py-2 col-email">Email</th>
-                  <th class="text-center px-2 py-2">Registro</th>
+                  <th class="text-center px-2 py-2 col-registro">Registro</th>
                   <th class="text-center px-2 py-2">Último acesso</th>
                   <th class="text-center px-2 py-2">Ações</th>
                 </tr>
@@ -65,7 +65,7 @@
                     <td class="text-center px-2 py-2">{{ cliente.id }}</td>
                     <td class="text-center px-2 py-2">{{ cliente.username }}</td>
                     <td class="text-center px-2 py-2 col-email">{{ cliente.email }}</td>
-                    <td class="text-center px-2 py-2">{{ cliente.date_joined|date:"d/m/y" }}</td>
+                    <td class="text-center px-2 py-2 col-registro">{{ cliente.date_joined|date:"d/m/y" }}</td>
                     <td class="text-center px-2 py-2">
                       {% if cliente.last_login %}
                         {{ cliente.last_login|date:"d/m/y" }}
@@ -74,7 +74,8 @@
                       {% endif %}
                     </td>
                     <td class="text-center px-2 py-2">
-                      <!--VER CLIENTE-->
+                    <!-- Desktop: botões normais -->
+                    <div class="d-none d-md-flex justify-content-center gap-1">
                       <a href="#" class="btn btn-sm btn-acao"
                           data-bs-toggle="modal"
                           data-bs-target="#modalVerCliente"
@@ -84,10 +85,8 @@
                           data-joined="{{ cliente.date_joined|date:'d/m/y' }}"
                           data-lastlogin="{{ cliente.last_login|date:'d/m/y' }}"
                           title="Ver">
-                        <i class="bi bi-eye"></i> <span>Ver</span> 
+                        <i class="bi bi-eye"></i> <span>Ver</span>
                       </a>
-
-                      <!--EDITAR CLIENTE-->
                       <a href="#" class="btn btn-sm btn-acao"
                           data-bs-toggle="modal"
                           data-bs-target="#modalEditarCliente"
@@ -95,19 +94,59 @@
                           data-nome="{{ cliente.username }}"
                           data-email="{{ cliente.email }}"
                           title="Editar">
-                        <i class="bi bi-pencil"></i> <span>Editar</span> 
+                        <i class="bi bi-pencil"></i> <span>Editar</span>
                       </a>
-
-                      <!--EXCLUIR CLIENTE-->
                       <a href="#" class="btn btn-sm btn-acao"
                           data-bs-toggle="modal"
                           data-bs-target="#modalExcluirCliente"
                           data-id="{{ cliente.id }}"
                           data-nome="{{ cliente.username }}"
                           title="Excluir">
-                        <i class="bi bi-trash"></i> <span>Excluir</span> 
+                        <i class="bi bi-trash"></i> <span>Excluir</span>
                       </a>
-                    </td>
+                    </div>
+
+                    <!-- Mobile: dropdown -->
+                    <div class="d-md-none dropdown">
+                      <button class="btn btn-sm btn-acao dropdown-toggle" data-bs-toggle="dropdown">
+                        <i class="bi bi-three-dots-vertical"></i>
+                      </button>
+                      <ul class="dropdown-menu dropdown-tabela dropdown-menu-end dropdown-menu-custom">
+                        <li>
+                          <a class="dropdown-item"
+                              data-bs-toggle="modal"
+                              data-bs-target="#modalVerCliente"
+                              data-id="{{ cliente.id }}"
+                              data-nome="{{ cliente.username }}"
+                              data-email="{{ cliente.email }}"
+                              data-joined="{{ cliente.date_joined|date:'d/m/y' }}"
+                              data-lastlogin="{{ cliente.last_login|date:'d/m/y' }}">
+                            <i class="bi bi-eye"></i> Ver
+                          </a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item"
+                              data-bs-toggle="modal"
+                              data-bs-target="#modalEditarCliente"
+                              data-id="{{ cliente.id }}"
+                              data-nome="{{ cliente.username }}"
+                              data-email="{{ cliente.email }}">
+                            <i class="bi bi-pencil"></i> Editar
+                          </a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item"
+                              data-bs-toggle="modal"
+                              data-bs-target="#modalExcluirCliente"
+                              data-id="{{ cliente.id }}"
+                              data-nome="{{ cliente.username }}">
+                            <i class="bi bi-trash"></i> Excluir
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+
+                  </td>
                   </tr>
                 {% endfor %}
               </tbody>
@@ -119,7 +158,7 @@
 
         <!-- Tabela secundária -->
       {% if clientes_inativos %}
-      <div style="min-width: 260px;">
+      <div style="min-width: 260px;" class="tablea-container table-responsive">
         <h6 class="mb-2 pulse-alert text-warning">Clientes Inativos</h6>
         <div class="tabela-container table-responsive mb-1">
           <table class="w-100">
@@ -134,7 +173,13 @@
               {% for cliente in clientes_inativos %}
               <tr>
                 <td class="text-center px-2 py-2">{{ cliente.username }}</td>
-                <td class="text-center px-2 py-2">{{ cliente.last_login|date:"d/m/y" }}</td>
+                <td class="text-center px-2 py-2">
+                      {% if cliente.last_login %}
+                        {{ cliente.last_login|date:"d/m/y" }}
+                      {% else %}
+                        Nunca acessou
+                      {% endif %}
+                    </td>
                 <td class="text-center px-2 py-2">
                   <a class="btn btn-sm btn-acao pulse-alert" onclick="ativarCliente({{ cliente.id }})"><i class="bi bi-power"></i> Ativar</a>
                 </td>
