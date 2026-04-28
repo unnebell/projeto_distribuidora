@@ -126,7 +126,7 @@ td:last-child {
     white-space: nowrap;
 }
 
-@media (max-width: 1150px){
+@media (max-width: 1000px){
     .btn-acao span {
         display: none;
   }
@@ -142,4 +142,10 @@ td:last-child {
     .col-email {
         display: none;
     }
+    .col-registro {
+        display: none;
+    }
+    .btn-acao span {
+        display: none;
+  }
 }
