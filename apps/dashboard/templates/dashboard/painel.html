@@ -99,9 +99,9 @@
 
               <td class="text-center px-1">
                 {% if produto.quantidade < 5 %}
-                  <span class="badge bg-danger w-100">{{ produto.nome }}</span>
+                  <span class="badge bg-danger w-100">{{ produto.nome|truncatechars:15 }}</span>
                 {% elif produto.quantidade < 15 %}
-                  <span class="badge bg-warning text-dark w-100">{{ produto.nome }}</span>
+                  <span class="badge bg-warning text-dark w-100">{{ produto.nome|truncatechars:15}}</span>
                 {% endif %}
               </td>
 
@@ -133,7 +133,7 @@
       {% endif %}
       {% if produto_estoque_baixo.count > 5 %}<!-- Caso tenha mais de 5 produtos com estoque baixo, aparece o link para ver mais produtos-->
           <div class="text-center mt-2">
-            <a href="#" class="btn-estoque-baixo p-2">Ver mais <i class="bi bi-search"></i></a>
+            <a href="{% url 'painel_produtos' %}" class="btn-estoque-baixo p-2">Ver mais <i class="bi bi-search"></i></a>
           </div>
       {% endif %}
     </div>

@@ -63,7 +63,7 @@
               {% for produto in produtos_ativos %}
               <tr>
                   <td class="text-center px-2 py-2">{{ produto.id }}</td>
-                  <td class="text-center px-2 py-2">{{ produto.nome }}</td>
+                  <td class="text-center px-2 py-2">{{ produto.nome|truncatechars:5 }}</td>
                   <td class="text-center px-2 py-2">{{ produto.quantidade }}</td>
                   <td class="text-center px-2 py-2 col-descricao">{{ produto.descricao|truncatechars:15 }}</td>
                   <td class="text-center px-2 py-2 col-preco">R$ {{ produto.preco }}</td>
@@ -166,7 +166,7 @@
             <tbody>
               {% for produto in produtos_inativos %}
               <tr>
-                <td class="text-center px-2 py-2">{{ produto.nome }}</td>
+                <td class="text-center px-2 py-2">{{ produto.nome|truncatechars:10 }}</td>
                 <td class="text-center px-2 py-2">{{ produto.quantidade }}</td>
                 <td class="text-center px-2 py-2">
                   <a href="#" class="btn btn-sm btn-acao pulse-alert" onclick="ativarProduto({{ produto.id }})"><i class="bi bi-power"></i> Ativar</a>
