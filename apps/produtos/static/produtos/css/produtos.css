@@ -84,6 +84,16 @@
     opacity: 1 !important;
 }
 
+.page-link {
+    color: var(--cor-01);
+}
+
+.page-item.active .page-link{
+    background-color: var(--cor-01);
+    border: 1px solid var(--cor-02);
+    color: var(--cor-02);
+}
+
 @media (min-width: 768px) {
     .box-pesquisa {
         width: 50%;

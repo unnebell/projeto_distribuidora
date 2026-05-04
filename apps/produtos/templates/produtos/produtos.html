@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="{% static 'css/global.css' %}">
 <link rel="stylesheet" href="{% static 'produtos/css/produtos.css' %}">
 
+<!--Caixa de pesquisa de produtos-->
 <div class="d-flex justify-content-center mt-3">
     <div class="box-pesquisa form-floating mb-3 mt-3">
         <input type="search" class="form-control" id="floatingSearch"
@@ -25,20 +26,62 @@
     </div>
 </div>
 
-<div class="row g-4 justify-content-center mt-3">
-    <!--======================================Loop de Produtos ======================================-->
-    {% for produto in produtos|slice:":12" %}
-    <div class="col-12 col-sm-6 col-md-3 mx-1 my-2">
-        <div class="card">
-            <img src="{% static 'img/icon-servidor.png' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title py-2">{{ produto.nome }}</h5>
-                <p class="card-text">{{ produto.descricao }}</p>
+<!--Container principal para exibir os produtos-->
+<div class="container">
+    <div class="row g-4 mt-3">
+        {% for produto in produtos %}
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card">
+                    <img src="{% static 'img/icon-servidor.png' %}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title py-2">{{ produto.nome }}</h5>
+                        <p class="card-text">{{ produto.descricao }}</p>
+                    </div>
+                </div>
             </div>
-        </div>
+            {% endfor %}
     </div>
-    {% endfor %}
+</div>
 
+<!--Links para paginação-->
+{% if page_obj %}
+<div class="w-100 d-flex justify-content-center mt-4 mb-2">
+    <nav>
+        <ul class="pagination shadow">
+
+            <!-- Página Anterior -->
+            <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}">
+                <a class="page-link" href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% if query %}&q={{ query }}{% endif %}{% else %}#{% endif %}">
+                    &laquo;
+                </a>
+            </li>
+
+            <!-- Números -->
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <li class="page-item active">
+                        <span class="page-link">{{ num }}</span>
+                    </li>
+                {% elif num >= page_obj.number|add:"-2" and num <= page_obj.number|add:"2" %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ num }}{% if query %}&q={{ query }}{% endif %}">{{ num }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+
+            <!-- Próxima Página -->
+            <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
+                <a class="page-link" href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }}{% if query %}&q={{ query }}{% endif %}{% else %}#{% endif %}">
+                    &raquo;
+                </a>
+            </li>
+
+        </ul>
+    </nav>
+</div>
+{% endif %}
+
+<!--Carrinho-->
 <a class="btn-carrinho" id="btnCarrinho" data-bs-toggle="modal" data-bs-target="#modalBtnCarrinho">
   <i class="bi bi-cart3"></i>
   <span class="badge pulse-alert" id="badgeCarrinho">0</span>
