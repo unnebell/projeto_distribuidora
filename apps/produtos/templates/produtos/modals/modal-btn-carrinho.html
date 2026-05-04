@@ -2,17 +2,18 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Exibindo produto: <strong><span id="verProdutoNome"></span></strong> </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title"><i class="bi bi-cart3"></i> Carrinho</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
-        <p><strong>ID:</strong> <span id="verProdutoId"></span></p>
-        <p><strong>Quantidade:</strong> <span id="verProdutoQtd"></span></p>
-        <p><strong>Descrição:</strong> <span id="verProdutoDescricao"></span></p>
-        <p><strong>Preço:</strong> R$ <span id="verProdutoPreco"></span></p>
+        <div id="listaCarrinho"></div>
       </div>
-      <div class="modal-footer">
-        <div class="text-end"><button type="button" class="btn btn-acao" data-bs-dismiss="modal">Close</button></div>
+      <div class="modal-footer justify-content-between">
+        <strong>Total: <span id="totalCarrinho">R$ 0,00</span></strong>
+        <div class="d-flex gap-2">
+          <button type="button" class="btn btn-acao" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn pulse-alert btn-acao">Finalizar pedido</button>
+        </div>
       </div>
     </div>
   </div>

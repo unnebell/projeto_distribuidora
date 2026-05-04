@@ -9,6 +9,11 @@ document.getElementById('modalVerProdutoPedido').addEventListener('show.bs.modal
     const trigger = e.relatedTarget?.closest('[data-nome]');
     if (!trigger) return;
 
+    this.dataset.produtoId        = trigger.dataset.id;
+    this.dataset.produtoNome      = trigger.dataset.nome;
+    this.dataset.produtoDescricao = trigger.dataset.descricao;
+    this.dataset.produtoPreco     = trigger.dataset.preco;
+    
     const nome = trigger.dataset.nome;
     const descricao = trigger.dataset.descricao;
     const precoRaw = (trigger.dataset.preco || '0').replace(',', '.');

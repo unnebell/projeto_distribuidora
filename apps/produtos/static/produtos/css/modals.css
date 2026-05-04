@@ -34,3 +34,7 @@ img.modal-ver-produto {
     min-width: 20px;
     text-align: center;
 }
+
+#modalBtnCarrinho .text-muted {
+    color: var(--cor-02) !important;
+}
