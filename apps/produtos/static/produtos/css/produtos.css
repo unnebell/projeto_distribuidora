@@ -83,3 +83,9 @@
     mask-position: center !important;
     opacity: 1 !important;
 }
+
+@media (min-width: 768px) {
+    .box-pesquisa {
+        width: 50%;
+    }
+}

@@ -13,7 +13,17 @@
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 <link rel="stylesheet" href="{% static 'css/global.css' %}">
-<link rel="stylesheet" href="{% static 'css/produtos.css' %}">
+<link rel="stylesheet" href="{% static 'produtos/css/produtos.css' %}">
+
+<div class="d-flex justify-content-center mt-3">
+    <div class="box-pesquisa form-floating mb-3 mt-3">
+        <input type="search" class="form-control" id="floatingSearch"
+               placeholder="O que você procura?"
+               value="{{ query }}"
+               autocomplete="off">
+        <label for="floatingSearch">O que você procura?</label>
+    </div>
+</div>
 
 <div class="row g-4 justify-content-center mt-3">
     <!--======================================Loop de Produtos ======================================-->
@@ -35,6 +45,8 @@
 </a>
 
 {% include "produtos/modals/modal-btn-carrinho.html" %}
+
+<script src="{% static 'produtos/js/pesquisar-produto.js' %}"></script>
 
 {% endblock content %}
 
