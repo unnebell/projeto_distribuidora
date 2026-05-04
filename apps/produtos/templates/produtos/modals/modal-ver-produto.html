@@ -1,11 +1,11 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'produtos/css/modals.css'%}">
 
-<div class="modal fade" id="modalVerProduto" tabindex="-1">
+<div class="modal fade" id="modalVerProdutoPedido" tabindex="-1">
   <div class="modal-dialog mx-auto mt-3 mb-3">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Exibindo produto: <strong><span id="verProdutoNome"></span></strong> </h5>
+        <h5 class="modal-title">Produto: <strong><span id="verProdutoPedidoNome"></span></strong> </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -14,14 +14,11 @@
                 <img src="{% static 'img/icon-servidor.png' %}" class="img-fluid" alt="...">
             </div>
             <div class="col-8">
-                <h2>Produto Nome</h2>
-                <p> <!--descrição-->
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-                    Recusandae iste vero quo laudantium consequuntur animi mollitia 
-                    laborum blanditiis culpa.
-                </p>
+                <h2 id="verProdutoPedidoNomeTitulo"></h2>
+                <p id="verProdutoPedidoDescricao"></p>
                 <div>
-                    <span class="fw-bold">Valor Unitário:</span> R$ 0.000,00
+                    <span class="fw-bold">Valor Unitário:</span>
+                    <span id="verProdutoPedidoPreco"></span>
                 </div>
                 <div class="quantidade-counter mt-3">
                     <span class="fw-bold">Qtd</span>
@@ -29,8 +26,9 @@
                     <span id="qtyValor">1</span>
                     <button class="btn-qty fw-bold" onclick="alterarQty(1)">+</button>
                 </div>
+            </div>
         </div>
-      </div>
+    </div>
       <div class="modal-footer mt-3">
         <div class="text-end"><button type="button" class="btn btn-acao" data-bs-dismiss="modal">Voltar</button></div>
         <div class="text-end"><button type="button" class="btn pulse-alert btn-acao" data-bs-dismiss="modal">Adicionar ao carrinho</button></div>
