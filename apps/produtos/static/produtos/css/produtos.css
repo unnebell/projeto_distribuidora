@@ -84,6 +84,14 @@
     opacity: 1 !important;
 }
 
+.erro-pesquisa {
+    color: var(--cor-02);
+}
+
+.erro-pesquisa-lupa {
+    font-size: 3rem;
+}
+
 .page-link {
     color: var(--cor-01);
 }
