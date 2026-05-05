@@ -25,6 +25,7 @@ def dashboard(request):
     if request.method == 'GET':
         return render(request, 'dashboard/painel.html', context)
 
+#Retira a acentuação para uma busca mais abrangente
 def normalizar(texto):
     return unicodedata.normalize('NFKD', texto).encode('ASCII', 'ignore').decode('ASCII').lower()
 

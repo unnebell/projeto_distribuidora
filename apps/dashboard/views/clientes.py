@@ -3,16 +3,34 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.db.models import Q
+import unicodedata
 
+#Retira a acentuação para uma busca mais abrangente
+def normalizar(texto):
+    return unicodedata.normalize('NFKD', texto).encode('ASCII', 'ignore').decode('ASCII').lower()
 @login_required(login_url='/auth/login/')
 @user_passes_test(lambda u: u.is_staff, login_url='/auth/login')
 def painel_clientes(request):
-    clientes_ativos = User.objects.filter(is_staff=False, is_active=True)
-    clientes_inativos = User.objects.filter(is_staff=False, is_active=False)
+    query = request.GET.get('q', '').strip()
+    
+    clientes = User.objects.filter(is_staff=False)  # exclui admins da busca
+    
+    if query:
+        query_normalizada = normalizar(query)
+        clientes = [
+            c for c in clientes
+            if query_normalizada in normalizar(c.username)  
+            or query_normalizada in normalizar(c.email or '')  
+        ]
+
+    clientes_ativos = [c for c in clientes if c.is_active]      
+    clientes_inativos = [c for c in clientes if not c.is_active] 
     
     context = {
-        'clientes_ativos' : clientes_ativos,
-        'clientes_inativos' : clientes_inativos,
+        'clientes_ativos': clientes_ativos,
+        'clientes_inativos': clientes_inativos,
+        'query': query,  # ✅ passa query para o template
     }
     
     return render(request, 'dashboard/painel-clientes.html', context)

@@ -126,6 +126,25 @@ td:last-child {
     white-space: nowrap;
 }
 
+.box-pesquisa label{
+    color: var(--cor-02);
+}
+
+.form-control:focus,
+.box-pesquisa:focus {
+    border-color: var(--cor-02); 
+    box-shadow: none;            
+    outline: 0;               
+}
+
+.erro-pesquisa {
+    color: var(--cor-02);
+}
+
+.erro-pesquisa-lupa {
+    font-size: 3rem;
+}
+
 @media (max-width: 1000px){
     .btn-acao span {
         display: none;
