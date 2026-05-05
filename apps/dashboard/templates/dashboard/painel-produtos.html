@@ -57,7 +57,7 @@
       
     </div>
       <!--Mensagem de erro caso não encontre o produto-->
-      {% if query and not produtos %}
+      {% if query and not produtos_ativos and not produtos_inativos %}
       <div class="d-flex flex-column align-items-center mt-5 text-center text-muted">
           <div class="erro-pesquisa">
               <i class="erro-pesquisa-lupa bi bi-search"></i>
@@ -88,9 +88,9 @@
               {% for produto in produtos_ativos %}
               <tr>
                   <td class="text-center px-2 py-2">{{ produto.id }}</td>
-                  <td class="text-center px-2 py-2">{{ produto.nome|truncatechars:5 }}</td>
+                  <td class="text-start px-2 py-2 col-nome">{{ produto.nome }}</td>
                   <td class="text-center px-2 py-2">{{ produto.quantidade }}</td>
-                  <td class="text-center px-2 py-2 col-descricao">{{ produto.descricao|truncatechars:15 }}</td>
+                  <td class="text-center px-2 py-2 col-descricao">{{ produto.descricao }}</td>
                   <td class="text-center px-2 py-2 col-preco">R$ {{ produto.preco }}</td>
                   <td class="text-center px-2 py-2">
                     <!-- Desktop: botões normais -->

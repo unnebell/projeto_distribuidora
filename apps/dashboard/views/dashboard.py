@@ -2,6 +2,8 @@ from django.db.models import Sum
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required, user_passes_test
 from apps.produtos.models import Produto
+from django.db.models import Q
+import unicodedata
 
 # Dashboard principal com cálculos dos produtos do bd
 @login_required(login_url='/auth/login/') # Bloqueio de acesso para usuários não autenticados - redirecionamento para página de login
@@ -23,16 +25,32 @@ def dashboard(request):
     if request.method == 'GET':
         return render(request, 'dashboard/painel.html', context)
 
+def normalizar(texto):
+    return unicodedata.normalize('NFKD', texto).encode('ASCII', 'ignore').decode('ASCII').lower()
+
 # Mostra somente itens ativos na tabela principal e inativos em uma segunda tabela
 @login_required(login_url='/auth/login/')
 @user_passes_test(lambda u: u.is_staff, login_url='/auth/login')       
 def painel_produtos(request):
-    produtos_ativos = Produto.objects.filter(ativo=True)
-    produtos_inativos = Produto.objects.filter(ativo=False)
+    query = request.GET.get('q', '').strip()
+    
+    produtos = Produto.objects.all()
+    
+    if query:
+        query_normalizada = normalizar(query)  # "memória" → "memoria"
+        produtos = [
+            p for p in produtos
+            if query_normalizada in normalizar(p.nome)
+            or query_normalizada in normalizar(p.descricao or '')
+        ]
+
+    produtos_ativos = [p for p in produtos if p.ativo]
+    produtos_inativos = [p for p in produtos if not p.ativo]
 
     context = {
         'produtos_ativos': produtos_ativos,
         'produtos_inativos': produtos_inativos,
-        }
+        'query': query,
+    }
     
     return render(request, 'dashboard/painel-produtos.html', context)
