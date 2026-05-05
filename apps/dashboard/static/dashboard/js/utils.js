@@ -51,5 +51,5 @@ input.addEventListener('input', () => {
     timer = setTimeout(() => {
         const q = input.value.trim();
         window.location.href = `?q=${encodeURIComponent(q)}&page=1`;
-    }, 350);
+    }, 1000); //tempo de esperar para atualizar a pagina após fazer uma pesquisa
 });
