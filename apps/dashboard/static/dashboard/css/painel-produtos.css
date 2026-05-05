@@ -124,6 +124,17 @@ input[type="number"]::-webkit-outer-spin-button {
     white-space: nowrap;
 }
 
+.box-pesquisa label{
+    color: var(--cor-02);
+}
+
+.form-control:focus,
+.box-pesquisa:focus {
+    border-color: var(--cor-02); 
+    box-shadow: none;            
+    outline: 0;               
+}
+
 @media (max-width: 1150px){
     .btn-acao span {
         display: none;
