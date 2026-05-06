@@ -1,6 +1,8 @@
+from django.utils import timezone
 from django.db.models import Sum 
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required, user_passes_test
+from apps.pedidos.models import Pedido
 from apps.produtos.models import Produto
 from django.db.models import Q
 import unicodedata
@@ -9,7 +11,13 @@ import unicodedata
 @login_required(login_url='/auth/login/') # Bloqueio de acesso para usuários não autenticados - redirecionamento para página de login
 @user_passes_test(lambda u: u.is_staff, login_url='/auth/login') # Bloqueio de clientes para página adm - acesso somente de administrador
 def dashboard(request):
+    hoje = timezone.now().date()
     produtos = Produto.objects.all()
+    
+    pedidos_mes = Pedido.objects.filter(
+        criado_em__month=hoje.month,
+        criado_em__year=hoje.year
+    ).count()
     
     total_estoque = produtos.aggregate(Sum('quantidade'))['quantidade__sum'] or 0 # Soma de cada item cadastrado
     total_estoque_baixo = produtos.filter(quantidade__lt=15).count()  # Contagem de produto com estoque abaixo de 15
@@ -20,6 +28,7 @@ def dashboard(request):
         'total_estoque': total_estoque,
         'total_estoque_baixo': total_estoque_baixo,
         'produto_estoque_baixo': produto_estoque_baixo,
+        'pedidos_mes': pedidos_mes,
     }
 
     if request.method == 'GET':
