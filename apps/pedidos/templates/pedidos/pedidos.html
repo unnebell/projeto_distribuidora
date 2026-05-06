@@ -2,20 +2,90 @@
 {% load static %}
 
 {% block nav_links %}
+<!-- Alteração na barra de navegação, deixando somente um link para voltar a página principal -->
 <li class="nav-item">
-  <a href="{% url 'index' %}" class="nav-link">Voltar ao site principal</a>
+    <a href="{% url 'index' %}" class="nav-link link-redirect"><i class="bi bi-house"></i> Página Inicial</a>
 </li>
 {% endblock nav_links %}
 
+{% block title %}Pedidos{% endblock %}
+
 {% block content %}
-<section>
-    <h1 class="text-center">Pedidos</h1>
-</section>
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/global.css' %}">
+<link rel="stylesheet" href="{% static 'pedidos/css/pedidos.css' %}">
 
-<section>
-    <div class="container-fluid">
-        
-    </div>
-</section>
+<div class="container py-4">
+    <h4 class="mb-4 fw-semibold">Meus Pedidos <i class="bi bi-clipboard-check"></i></h4>
 
-{% endblock content %}
+    {% if pedidos %}
+        {% for pedido in pedidos %}
+        <div class="box-pedido card mb-3 border">
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <div>
+                        <h5 class="mb-0 fw-semibold text-white">{{ pedido.cliente.get_full_name|default:pedido.cliente.username }}</h5>
+                        <small class="text-secondary">{{ pedido.cliente.email }}</small>
+                    </div>
+                    <div class="text-end">
+                        <div class="text-white">Pedido: #{{ pedido.pk|stringformat:"04d" }}</div>
+                        <small class="text-secondary">{{ pedido.criado_em|date:"d/m/Y" }}</small>
+                    </div>
+                </div>
+
+                <hr class="border-secondary my-2">
+
+                <p class="fw-semibold text-white mb-1">Produtos</p>
+                {% for item in pedido.itens.all %}
+                    <div class="text-secondary">{{ item.quantidade }}x {{ item.produto.nome }}</div>
+                {% endfor %}
+
+                <hr class="border-secondary my-2">
+
+                <div class="row align-items-center">
+                    <div class="col-12 col-sm-8 text-start p-0 mb-2 mb-sm-0">
+                        <span class="fw-bold text-white">
+                            Total: R$ {{ pedido.total|floatformat:2 }}
+                        </span>
+                    </div>
+                    <div class="col-12 col-sm-4 p-0">
+                        <div class="d-flex gap-2">
+                            <a href="#"
+                            data-bs-toggle="modal"
+                            data-bs-target="#modalExcluirPedido"
+                            data-id="{{ pedido.pk }}"
+                            data-url="{% url 'pedidos:cancelar' pedido_id=pedido.pk %}"
+                            class="btn btn-danger btn-sm flex-fill">
+                                <i class="bi bi-ban"></i> Cancelar
+                            </a>
+                            <a href="#"
+                            data-bs-toggle="modal"
+                            data-bs-target="#modalDetalhePedido"
+                            data-id="{{ pedido.pk }}"
+                            data-itens='[{% for item in pedido.itens.all %}{"produto":"{{ item.produto.nome }}","quantidade":{{ item.quantidade }},"unitario":"{{ item.preco_unitario|floatformat:2 }}","subtotal":"{{ item.subtotal|floatformat:2 }}"}{% if not forloop.last %},{% endif %}{% endfor %}]'
+                            data-total="{{ pedido.total|floatformat:2 }}"
+                            class="btn btn-acao btn-sm flex-fill">
+                                <i class="bi bi-eye"></i> Detalhes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p class="text-secondary">Nenhum pedido encontrado.</p>
+    {% endif %}
+</div>
+
+{% include 'pedidos/modals/cancelar-pedido.html' %}
+{% include 'pedidos/modals/detalhe-pedido.html' %}
+
+<script src="{% static 'pedidos/js/pedidos.js' %}"></script>
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

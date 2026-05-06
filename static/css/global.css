@@ -42,25 +42,24 @@ section {
     z-index: 1040;
 }
 
-/* .btn-voltar {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    transform: none;
-    background-color: var(--cor-02);
-    color: var(--cor-04);
-    padding: 8px 18px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-    z-index: 999;
+.btn-acao {
+    background-color: transparent;
+    border: 1px solid var(--cor-02);
+    color: var(--cor-02);
+    border-radius: 5px;
 }
 
-.btn-voltar:hover {
-    background-color: var(--cor-03);
-    color: var(--cor-04);
-} */
+.btn-acao:hover {
+    background-color: var(--cor-02);
+    color: var(--cor-01);
+
+    transition: ease-in-out 0.3s;
+}
+
+.modal-popup {
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
 
 .box-auth {
     background-color: var(--cor-02);
