@@ -4,12 +4,17 @@
 }
 
 .foot h2 {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 
 .foot h3 {
     font-size: 1rem;
     font-weight: 400;
+}
+
+.cont-foot p {
+    text-align: justify;
+    max-width: 82%;
 }
 
 .foot p,
@@ -36,4 +41,35 @@
 
 .nav-link.dropdown-toggle:hover {
     box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+.integrante-foot {
+    white-space: nowrap;
+}
+
+.integrante-foot h3:hover {
+    color: var(--cor-03);
+    cursor: default;
+}
+
+.icon-social i {
+    font-size: 1.5rem;
+    color: var(--cor-02);
+    margin: 10px 10px 10px 0px;
+}
+
+.icon-social a {
+    display: inline-block;
+    transition: transform 0.2s ease-in-out; 
+    text-decoration: none; 
+}
+
+.icon-social a:hover {
+    transform: translateY(-3px);
+}
+
+@media (max-width: 567px) {
+    .cont-foot p {
+    max-width: 100%;
+}
 }
