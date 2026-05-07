@@ -38,3 +38,19 @@ img.modal-ver-produto {
 #modalBtnCarrinho .text-muted {
     color: var(--cor-02) !important;
 }
+
+@media (max-width: 768px) {
+    .modal-dialog {
+        max-width: 92vw;
+        margin: 0.5rem auto;
+    }
+
+    .modal-ver-produto .col-4 {
+        display: none; /* esconde a imagem no mobile */
+    }
+
+    .modal-ver-produto .col-8 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
