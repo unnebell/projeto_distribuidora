@@ -4,6 +4,29 @@ function getCsrf() {
         ?.split('=')[1];
 }
 
+function mostrarToast(mensagem, tipo = 'success', redirect = null) {
+    const icone = tipo === 'success' ? 'bi-check-circle-fill' : 'bi-x-circle-fill';
+    const cor = tipo === 'success' ? 'text-bg-success' : 'text-bg-danger';
+
+    const container = document.createElement('div');
+    container.className = 'toast-container position-fixed top-0 start-50 translate-middle-x p-3';
+    container.style.zIndex = 9999;
+    container.innerHTML = `
+        <div class="toast align-items-center ${cor} border-0 show" role="alert">
+            <div class="d-flex">
+                <div class="toast-body fw-semibold">
+                    <i class="bi ${icone} me-2"></i>${mensagem}
+                </div>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(container);
+    setTimeout(() => {
+        container.remove();
+        if (redirect) window.location.href = redirect;
+    }, 2000);
+}
+
 // Carrega carrinho do localStorage ou inicia vazio
 const carrinho = JSON.parse(localStorage.getItem('carrinho') || '[]');
 
@@ -16,7 +39,6 @@ function atualizarBadge() {
     document.getElementById('badgeCarrinho').textContent = total;
 }
 
-// Inicializa badge ao carregar a página
 atualizarBadge();
 
 // Adiciona produto no carrinho
@@ -85,7 +107,7 @@ function removerItem(idx) {
 // Finalizar pedido
 document.getElementById('btnFinalizarPedido').addEventListener('click', async function () {
     if (!carrinho.length) {
-        alert('Seu carrinho está vazio.');
+        mostrarToast('Seu carrinho está vazio.', 'danger');
         return;
     }
 
@@ -113,12 +135,11 @@ document.getElementById('btnFinalizarPedido').addEventListener('click', async fu
             salvarCarrinho();
             atualizarBadge();
             bootstrap.Modal.getInstance(document.getElementById('modalBtnCarrinho')).hide();
-            alert(`Pedido #${String(data.pedido_id).padStart(4, '0')} realizado com sucesso!`);
-            window.location.href = '/pedidos/';
+            mostrarToast(`Pedido #${String(data.pedido_id).padStart(4, '0')} realizado com sucesso!`, 'success', '/pedidos/');
         } else {
-            alert('Erro: ' + (data.erro || 'tente novamente'));
+            mostrarToast('Erro: ' + (data.erro || 'tente novamente'), 'danger');
         }
     } catch (e) {
-        alert('Erro de conexão. Tente novamente.');
+        mostrarToast('Faça login para finalizar o pedido.', 'danger');
     }
 });
