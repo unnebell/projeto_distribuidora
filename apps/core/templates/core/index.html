@@ -36,7 +36,7 @@
         <!--======================================1º Produto======================================-->
         {% for produto in produtos|slice:":6" %}
         <div class="col-12 col-sm-6 col-md-4">
-            <div class="card">
+            <div class="card card-produtos">
                 <img src="{% static 'img/icon-servidor.png' %}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title py-2">{{ produto.nome }}</h5>
@@ -46,7 +46,7 @@
         </div>
         {% endfor %}
     <!-- Botão para acessar a página de produtos - somente cliente -->
-    <a class="btn-produtos btn btn-light d-flex justify-content-center mx-auto" href="{% url 'produtos' %}">Conheça mais!</a>
+    <a class="btn-produtos pulse-alert btn btn-acao d-flex justify-content-center mx-auto" href="{% url 'produtos' %}">Conheça mais!</a>
 </section>
 
 <!--======================================SESSÃO SOBRE======================================-->
