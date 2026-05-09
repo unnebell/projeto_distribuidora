@@ -8,7 +8,7 @@ def index(request):
         {'id': 3, 'nome': 'Redes e Conectividade', 'descricao': 'Roteadores, switches, access points, cabos de rede, conectores, patch panels.'},
         {'id': 4, 'nome': 'Segurança e Vigilância','descricao': 'Câmeras IP, DVRs, NVRs, alarmes, controle de acesso.'},
         {'id': 5, 'nome': 'Energia e Infraestrutura', 'descricao': 'Nobreaks, estabilizadores, filtros de linha, racks, organizadores de cabos.'},
-        {'id': 6, 'nome': 'Softwares e Licenças', 'descricao': 'Sistemas operacionais, antivírus, pacotes Office, licenças corporativas e SaaS.'},
+        {'id': 6, 'nome': 'Softwares e Licenças', 'descricao': 'Sistemas operacionais, antivírus, pacotes Office, licenças corporativas.'},
     ]
     
     

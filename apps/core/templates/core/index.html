@@ -36,7 +36,7 @@
         <!--======================================1º Produto======================================-->
         {% for produto in produtos|slice:":6" %}
         <div class="col-12 col-sm-6 col-md-4">
-            <div class="card card-produtos">
+            <div class="card card-produtos h-100">
                 <img src="{% static 'img/icon-servidor.png' %}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title py-2">{{ produto.nome }}</h5>
