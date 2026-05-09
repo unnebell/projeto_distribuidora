@@ -1,0 +1,56 @@
+.modal-dialog {
+    max-width: 60vw;
+    max-height: 600px;
+}
+
+img.modal-ver-produto {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+}
+
+.quantidade-counter {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: var(--cor-01);
+    border: 1px solid var(--cor-02);
+    border-radius: 20px;
+    padding: 5px 15px;
+    width: fit-content;
+}
+
+.btn-qty {
+    background: none;
+    border: none;
+    color: var(--cor-02);
+    cursor: pointer;
+    line-height: 1;
+}
+
+#qtyValor {
+    color: var(--cor-02);
+    font-weight: 600;
+    min-width: 20px;
+    text-align: center;
+}
+
+#modalBtnCarrinho .text-muted {
+    color: var(--cor-02) !important;
+}
+
+@media (max-width: 768px) {
+    .modal-dialog {
+        max-width: 92vw;
+        margin: 0.5rem auto;
+    }
+
+    .modal-ver-produto .col-4 {
+        display: none; /* esconde a imagem no mobile */
+    }
+
+    .modal-ver-produto .col-8 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}

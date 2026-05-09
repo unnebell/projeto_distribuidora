@@ -1,9 +1,5 @@
-
-
 /*=========================================== Inicio ===========================================*/
 #inicio {
-
-    /*Conteúdo*/
 
     & img {
         width: 100%;
@@ -23,7 +19,6 @@
 
 }
 
-
 /*=========================================== Produtos ===========================================*/
 #produtos {
     padding: 25px 50px;
@@ -32,6 +27,10 @@
 .card-img-top {
     width: 50px;
     margin: 5px 10px;
+}
+
+.card-produtos {
+    min-height: 200px;
 }
 
 .card:hover {
@@ -78,6 +77,7 @@
         padding: 10px 50px;
         margin-top: 30px;
     }
+
 }
 
 @media (max-width: 768px) {
@@ -114,20 +114,27 @@ form {
     resize: none;
 }
 
-.contato_img {
+.contato_icons {
     width: 80px;
-    background-color: var(--cor-02);
     padding: 5px;
+    background-color: var(--cor-02);
     display: flex;
     justify-content: center;
     border-radius: 50%;
+
+    font-size: 3rem;
+    transition: 0.2s ease-in-out;
 }
 
-.contato_img img {
-    width: 100%;
+.contato_icons i {
+    color: var(--cor-01);
 }
 
-.contato_img:hover {
+.contato_icons:hover {
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
-    transition: 0.2s ease;
+    background-color: var(--cor-01);
+}
+
+.contato_icons:hover i {
+    color: var(--cor-02);
 }
