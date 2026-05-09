@@ -126,8 +126,6 @@ td:last-child {
     white-space: nowrap;
 }
 
-<<<<<<< HEAD
-=======
 .box-pesquisa label{
     color: var(--cor-02);
 }
@@ -147,7 +145,6 @@ td:last-child {
     font-size: 3rem;
 }
 
->>>>>>> feature
 @media (max-width: 1000px){
     .btn-acao span {
         display: none;
