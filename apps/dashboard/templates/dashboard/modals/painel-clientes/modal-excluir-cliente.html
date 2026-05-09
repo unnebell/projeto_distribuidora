@@ -1,0 +1,31 @@
+<div class="modal fade modal-popup" id="modalExcluirCliente" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Atenção!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div id="form-erros-excluir" class="alert alert-danger d-none"></div>
+        <form id="form-produto">
+          {% csrf_token %}
+          <div class="mb-3">
+            <p><strong>Esta ação não pode ser desfeita!</strong> Você também pode apenas desativar o cliente para ocultá-lo.</p>
+            <p> <strong>Cliente: </strong>[ <span id="id-cliente-modal"></span> ] - <span id="nome-cliente-modal"></span></p>
+          </div>
+          <div class="text-center">
+            <button type="button" class="btn btn-acao m-3 mb-0" id="btn-desativar">Desativar</button>
+            <button type="button" class="btn btn-danger m-3 mb-0" id="btn-excluir">Excluir</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  const urlAtivarCliente = "{% url 'ativar_cliente' id=0 %}";
+  const urlExcluirCliente = "{% url 'excluir_cliente' id=0 %}";
+  const urlDesativarCliente = "{% url 'desativar_cliente' id=0 %}";
+</script>

@@ -1,0 +1,25 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'pedidos/css/cancelar-pedido.css' %}">
+
+<div class="modal fade modal-poupup" id="modalExcluirPedido" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Atenção!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div id="form-erros-excluir" class="alert alert-danger d-none"></div>
+        <div class="mb-3">
+            <p>Deseja realmente cancelar este pedido?</p>
+            <p><strong>Esta ação não pode ser desfeita!</strong></p>
+            <p><strong>Pedido: </strong>#<span id="id-pedido-modal"></span></p>
+        </div>
+        <div class="text-end">
+            <button type="button" class="btn btn-acao mx-1" data-bs-dismiss="modal">Voltar</button>
+            <button id="btn-confirmar-cancelar" class="btn btn-danger mx-1">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

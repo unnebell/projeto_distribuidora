@@ -7,6 +7,7 @@ class Produto(models.Model):
     descricao = models.TextField()
     preco = models.DecimalField(max_digits=10, decimal_places=2)
     quantidade = models.IntegerField()
+    ativo = models.BooleanField(default=True)
 
     def __str__(self):
         return self.nome

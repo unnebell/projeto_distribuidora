@@ -1,0 +1,33 @@
+<div class="modal fade modal-popup" id="modalEditarCliente" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Editando: <strong><span id="editarClienteNome"></span></strong></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div id="editar-form-erros" class="alert alert-danger d-none"></div>
+        <form id="form-editar-cliente">
+          {% csrf_token %}
+          <input type="hidden" id="editarClienteId" name="id">
+          <div class="mb-3">
+            <label class="form-label">Nome</label>
+            <input type="text" id="editarInputNome" name="nome" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" id="editarInputEmail" name="email" class="form-control" required>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-acao" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-acao" id="btn-salvar-edicao">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const urlEditarCliente = "{% url 'editar_cliente' id=0 %}";
+</script>

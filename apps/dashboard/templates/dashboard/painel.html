@@ -13,17 +13,17 @@
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link link-redirect {% if aba == 'pedidos' %}active{% endif %}" href="?page=pedidos">
+    <a class="nav-link link-redirect {% if aba == 'pedidos' %}active{% endif %}" href="{% url 'painel_pedidos' %}">
       <i class="bi bi-clipboard-check"></i> Pedidos
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link link-redirect {% if aba == 'clientes' %}active{% endif %}" href="?page=clientes">
+    <a class="nav-link link-redirect {% if aba == 'clientes' %}active{% endif %}" href="{% url 'painel_clientes' %}">
       <i class="bi bi-person"></i> Clientes
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link link-redirect {% if aba == 'usuarios' %}active{% endif %}" href="?page=usuarios">
+    <a class="nav-link link-redirect {% if aba == 'usuarios' %}active{% endif %}" href="{% url 'painel_usuarios' %}">
       <i class="bi bi-gear"></i> Usuários
     </a>
   </li>
@@ -55,7 +55,7 @@
         <div class="box-admin">
             <i class="bi bi-clipboard-check card-icon"></i>
             <span class="card-label">Pedidos este Mês</span>
-            <span class="card-valor mt-2 mb-0 h-100">0</span> <!-- Falta criar as requisições de pedidos-->
+            <span class="card-valor mt-2 mb-0 h-100">{{ pedidos_mes }}</span> <!-- Falta criar as requisições de pedidos-->
         </div>
     </div>
     <div class="col-6 col-md-3">
@@ -99,9 +99,9 @@
 
               <td class="text-center px-1">
                 {% if produto.quantidade < 5 %}
-                  <span class="badge bg-danger w-100">{{ produto.nome }}</span>
+                  <span class="badge bg-danger w-100">{{ produto.nome|truncatechars:15 }}</span>
                 {% elif produto.quantidade < 15 %}
-                  <span class="badge bg-warning text-dark w-100">{{ produto.nome }}</span>
+                  <span class="badge bg-warning text-dark w-100">{{ produto.nome|truncatechars:15}}</span>
                 {% endif %}
               </td>
 
@@ -133,7 +133,7 @@
       {% endif %}
       {% if produto_estoque_baixo.count > 5 %}<!-- Caso tenha mais de 5 produtos com estoque baixo, aparece o link para ver mais produtos-->
           <div class="text-center mt-2">
-            <a href="#" class="btn-estoque-baixo p-2">Ver mais <i class="bi bi-search"></i></a>
+            <a href="{% url 'painel_produtos' %}" class="btn-estoque-baixo p-2">Ver mais <i class="bi bi-search"></i></a>
           </div>
       {% endif %}
     </div>
@@ -141,8 +141,12 @@
 
   <div class="col-12 col-sm-6">
     <div class="box-admin">
-      <h5>Top Produtos</h5>
-      <p>Produtos mais vendidos</p>
+      <h5>Em desenvolvimento <i class="bi bi-hammer"></i></h5>
+      <ul class="list-unstyled">
+        <li>...</li>
+        <li>...</li>
+        <li>...</li>
+      </ul>
     </div>
   </div>
 </div>
@@ -152,16 +156,20 @@
 <div class="row g-3 p-3 dashboard-atividades">
   <div class="col-12">
     <div class="box-admin">
-      <h5>Atividades Recentes</h5>
+      <h5>Em desenvolvimento <i class="bi bi-hammer"></i></h5>
       <ul class="list-unstyled">
-        <li class="mt-3">Produto "X" adicionado ao estoque</li>
-        <li class="mt-3">Pedido #1234 finalizado</li>
-        <li class="mt-3">Cliente "Y" cadastrado</li>
-        <li class="mt-3">Usuário "admin" atualizado perfil</li>
+        <li>...</li>
+        <li>...</li>
+        <li>...</li>
       </ul>
     </div>
   </div>
 </div>
+
+<!-- Recarregar a página a cada 60 segundos -->
+<script>
+  setTimeout(() => location.reload(), 30000);
+</script>
 
 {% endblock content %} 
 

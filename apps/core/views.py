@@ -3,12 +3,12 @@ from django.shortcuts import render
 # Create your views here.
 def index(request):
     produtos = [
-        {'id': 1, 'nome': 'Notebook', 'quantidade': 3, 'descricao': 'Ideapad 3I'},
-        {'id': 2, 'nome': 'Mouse', 'quantidade': 10, 'descricao': 'Logitech G305'},
-        {'id': 3, 'nome': 'Teclado', 'quantidade': 5, 'descricao': 'Mecânico RGB'},
-        {'id': 4, 'nome': 'Notebook', 'quantidade': 3, 'descricao': 'Ideapad 3I'},
-        {'id': 5, 'nome': 'Mouse', 'quantidade': 10, 'descricao': 'Logitech G305'},
-        {'id': 6, 'nome': 'Teclado', 'quantidade': 5, 'descricao': 'Mecânico RGB'},
+        {'id': 1, 'nome': 'Hardware','descricao': 'Processadores, placas-mãe, memórias RAM, SSDs, fontes, placas de vídeo.'},
+        {'id': 2, 'nome': 'Periféricos', 'descricao': 'Teclados, mouses, headsets, webcams, monitores, impressoras.'},
+        {'id': 3, 'nome': 'Redes e Conectividade', 'descricao': 'Roteadores, switches, access points, cabos de rede, conectores, patch panels.'},
+        {'id': 4, 'nome': 'Segurança e Vigilância','descricao': 'Câmeras IP, DVRs, NVRs, alarmes, controle de acesso.'},
+        {'id': 5, 'nome': 'Energia e Infraestrutura', 'descricao': 'Nobreaks, estabilizadores, filtros de linha, racks, organizadores de cabos.'},
+        {'id': 6, 'nome': 'Softwares e Licenças', 'descricao': 'Sistemas operacionais, antivírus, pacotes Office, licenças corporativas.'},
     ]
     
     

@@ -1,0 +1,11 @@
+.box-pedido {
+    background-color: var(--cor-01);
+}
+
+h4 {
+    color: var(--cor-02);
+}
+
+.text-secondary {
+    color: var(--cor-02) !important;
+}

@@ -38,25 +38,28 @@ section {
     scroll-margin-top: 60px;
 }
 
-/* .btn-voltar {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    transform: none;
-    background-color: var(--cor-02);
-    color: var(--cor-04);
-    padding: 8px 18px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-    z-index: 999;
+.navbar {
+    z-index: 1040;
 }
 
-.btn-voltar:hover {
-    background-color: var(--cor-03);
-    color: var(--cor-04);
-} */
+.btn-acao {
+    background-color: transparent;
+    border: 1px solid var(--cor-02);
+    color: var(--cor-02);
+    border-radius: 5px;
+}
+
+.btn-acao:hover {
+    background-color: var(--cor-02);
+    color: var(--cor-01);
+
+    transition: ease-in-out 0.3s;
+}
+
+.modal-popup {
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
 
 .box-auth {
     background-color: var(--cor-02);
@@ -118,6 +121,25 @@ section {
 
 .link-redirect:hover::after {
     width: 100%;
+}
+
+
+.badge {
+    animation: pulse 3s ease-in-out infinite;
+}
+
+.pulse-alert {
+    animation: pulse-text 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 4px rgba(220, 53, 69, 0.4); }
+    50% { box-shadow: 0 0 12px rgba(220, 53, 69, 0.9); }
+}
+
+@keyframes pulse-text {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.6; }
 }
 
 @media (max-width: 576px) {

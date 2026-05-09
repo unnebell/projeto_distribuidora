@@ -1,0 +1,24 @@
+h2 {
+    color: var(--cor-02);
+}
+
+.pedido {
+    border: 1px solid var(--cor-02);
+    border-radius: 10px;
+
+    color: var(--cor-02);
+}
+
+.btn-ver-detalhes {
+    background-color: var(--cor-01);
+    border: 1px solid var(--cor-02);
+    color: var(--cor-02);
+    border-radius: 10px;
+}
+
+.btn-ver-detalhes:hover {
+    background-color: var(--cor-02);
+    color: var(--cor-01);
+
+    transition: ease-in-out 0.3s;
+}
