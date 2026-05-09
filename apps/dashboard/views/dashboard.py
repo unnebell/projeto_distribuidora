@@ -61,6 +61,7 @@ def painel_produtos(request):
         'produtos_ativos': produtos_ativos,
         'produtos_inativos': produtos_inativos,
         'query': query,
+        'aba': 'produtos',
     }
     
     return render(request, 'dashboard/painel-produtos.html', context)

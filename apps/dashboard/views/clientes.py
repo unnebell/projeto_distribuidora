@@ -31,6 +31,7 @@ def painel_clientes(request):
         'clientes_ativos': clientes_ativos,
         'clientes_inativos': clientes_inativos,
         'query': query,  # ✅ passa query para o template
+        'aba': 'clientes',
     }
     
     return render(request, 'dashboard/painel-clientes.html', context)
