@@ -3,27 +3,27 @@
 
 {% block nav_links %}
   <li class="nav-item">
-    <a class="nav-link link-redirect" href="{% url 'dashboard' %}">
+    <a class="nav-link link-redirect {% if aba == 'dashboard' %}active{% endif %}" href="{% url 'dashboard' %}">
       <i class="bi bi-bar-chart"></i> Dashboard
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link link-redirect active" href="{% url 'painel_produtos' %}">
+    <a class="nav-link link-redirect {% if aba == 'produtos' %}active{% endif %}" href="{% url 'painel_produtos' %}">
       <i class="bi bi-box-seam"></i> Produtos
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link link-redirect" href="{% url 'painel_pedidos' %}">
+    <a class="nav-link link-redirect {% if aba == 'pedidos' %}active{% endif %}" href="{% url 'painel_pedidos' %}">
       <i class="bi bi-clipboard-check"></i> Pedidos
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link link-redirect" href="{% url 'painel_clientes' %}">
+    <a class="nav-link link-redirect {% if aba == 'clientes' %}active{% endif %}" href="{% url 'painel_clientes' %}">
       <i class="bi bi-person"></i> Clientes
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link link-redirect" href="#">
+    <a class="nav-link link-redirect {% if aba == 'usuarios' %}active{% endif %}" href="{% url 'painel_usuarios' %}">
       <i class="bi bi-gear"></i> Usuários
     </a>
   </li>
