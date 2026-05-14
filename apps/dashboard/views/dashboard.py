@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required, user_passes_test
 from apps.pedidos.models import Pedido
 from apps.produtos.models import Produto
+from apps.dashboard.models import Atividade
 from django.db.models import Q
 import unicodedata
 
@@ -22,6 +23,8 @@ def dashboard(request):
     total_estoque = produtos.aggregate(Sum('quantidade'))['quantidade__sum'] or 0 # Soma de cada item cadastrado
     total_estoque_baixo = produtos.filter(quantidade__lt=15).count()  # Contagem de produto com estoque abaixo de 15
     produto_estoque_baixo = produtos.filter(quantidade__lt=15) # Lista de produtos com estoque abaixo de 15
+    # Lista das últimas 10 atividades baseadas no dia atual
+    atividades_recentes = Atividade.objects.select_related('usuario').filter(criado_em__date=hoje)[:10] 
     
     context = {
         'produtos': produtos,
@@ -29,6 +32,7 @@ def dashboard(request):
         'total_estoque_baixo': total_estoque_baixo,
         'produto_estoque_baixo': produto_estoque_baixo,
         'pedidos_mes': pedidos_mes,
+        'atividades_recentes': atividades_recentes,
     }
 
     if request.method == 'GET':

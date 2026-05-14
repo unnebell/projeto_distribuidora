@@ -61,3 +61,83 @@
   width: 80px;
   display: inline-block;
 }
+
+/* Tabela de atividades recentes */
+.tabela-container {
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: visible;
+}
+
+.dropdown-item-text {
+    z-index: 9999;
+}
+
+.tabela-container th {
+    background-color: var(--cor-01);
+    padding-bottom: 1.2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.col-descricao {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 300px;
+}
+
+.col-data{
+    white-space: nowrap;
+}
+
+.badge-atv-recente {
+    font-size: 0.70rem;
+    font-weight: bolder;
+    text-transform: uppercase;
+    padding: 0.25rem 0.5rem;
+    border-radius: 15px;
+    display: inline-block;
+    white-space: nowrap;
+    
+    max-width: 200px;
+}
+
+.badge {
+    width: 100%;
+}
+
+.col-data {
+    width: 1%;
+    white-space: nowrap;
+}
+
+.badge-login {
+    color: black;
+    background-color: var(--cor-02);
+}
+
+.col-descricao{
+    text-align: center;
+}
+
+@media (max-width: 567px) {
+    .badge-atv-recente {
+        font-size: 0.60rem;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .col-hora {
+        display: none;
+    }
+    
+}
+
+@media (max-width: 768px) {
+    .col-descricao {
+        overflow: visible !important; /* Permite que o dropdown "saia" da célula */
+        white-space: normal; 
+    }
+}
