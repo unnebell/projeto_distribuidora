@@ -61,7 +61,7 @@ def adicionar_staff(request):
 
 # Modal para excluir Staff
 @login_required(login_url='/auth/login/')
-@user_passes_test(lambda u: u.is_staff, login_url='/auth/login') 
+@user_passes_test(lambda u: u.is_superuser, login_url='/auth/login') 
 def excluir_staff(request, id):
     if request.method != 'POST':
         return JsonResponse({'erro':'Método não permitido'}, status=405)

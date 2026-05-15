@@ -1,0 +1,23 @@
+<div class="modal fade modal-popup" id="modalAcessoNegado" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title pulse-alert text-danger">Acesso Negado</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div id="form-erros-excluir" class="alert alert-danger d-none"></div>
+        <form id="form-produto">
+          {% csrf_token %}
+          <div class="mb-3">
+            <strong><p class="text-danger">Você não tem permissão para realizar esta ação. Contate um <i class="text-decoration-underline">superuser</i> para obter acesso.</p></strong>
+          </div>
+          <div class="text-center">
+            <button type="button" class="btn btn-acao" data-bs-dismiss="modal">Voltar</button>
+        </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

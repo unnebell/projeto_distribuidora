@@ -71,7 +71,7 @@
 
   <!--Tabela principal -->
   <div class="flex-grow-1">
-    <h6 class="mb-6">Usuários Ativos</h6>
+    <h6 class="mb-6">Staffs Ativos</h6>
       <div class="tabela-container table-responsive">
           <table class="w-100">
               <thead
@@ -121,6 +121,7 @@
                           title="Editar">
                         <i class="bi bi-pencil"></i> <span>Editar</span>
                       </a>
+                      {% if request.user.is_superuser %}
                       <a href="#" class="btn btn-sm btn-acao"
                           data-bs-toggle="modal"
                           data-bs-target="#modalExcluirStaff"
@@ -129,6 +130,16 @@
                           title="Excluir">
                         <i class="bi bi-trash"></i> <span>Excluir</span>
                       </a>
+                      {% else %}
+                      <a href="#" class="btn btn-sm btn-acao"
+                          data-bs-toggle="modal"
+                          data-bs-target="#modalAcessoNegado"
+                          data-id="{{ staff.id }}"
+                          data-nome="{{ staff.username }}"
+                          title="Excluir">
+                        <i class="bi bi-trash"></i> <span>Excluir</span>
+                      </a>
+                      {% endif %}
                     </div>
 
                     <!-- Mobile: dropdown -->
@@ -159,6 +170,7 @@
                             <i class="bi bi-pencil"></i> Editar
                           </a>
                         </li>
+                        {% if request.user.is_superuser %}
                         <li>
                           <a class="dropdown-item"
                               data-bs-toggle="modal"
@@ -168,6 +180,7 @@
                             <i class="bi bi-trash"></i> Excluir
                           </a>
                         </li>
+                        {% endif %}
                       </ul>
                     </div>
 
@@ -183,7 +196,7 @@
 
         <!-- Tabela secundária -->
       {% if staffs_inativos %}
-      <div style="min-width: 260px;" class="tablea-container table-responsive">
+      <div style="min-width: 260px;" class="table-responsive">
         <h6 class="mb-2 pulse-alert text-warning">Staffs Inativos</h6>
         <div class="tabela-container table-responsive mb-1">
           <table class="w-100">
@@ -224,6 +237,7 @@
 {% include "dashboard/modals/painel-staffs/modal-excluir-staff.html" %}
 {% include "dashboard/modals/painel-staffs/modal-ver-staff.html" %}
 {% include "dashboard/modals/painel-staffs/modal-editar-staff.html" %}
+{% include "dashboard/modals/painel-staffs/modal-acesso-negado.html" %}
 
 <script src="{% static 'dashboard/js/utils.js' %}"></script>
 <script src="{% static 'dashboard/js/painel-staffs/funcao-adicionar-staff.js' %}"></script>
