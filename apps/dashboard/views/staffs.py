@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 def painel_staffs(request):
     query = request.GET.get('q', '').strip()
     
-    staffs = User.objects.filter(is_staff=True)
+    staffs = User.objects.filter(is_staff=True, is_superuser=False).order_by('username')
     
     if query:
         query_normalizada = normalizar(query)
