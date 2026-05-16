@@ -84,12 +84,12 @@
 
       {% if produto_estoque_baixo.count > 0  %}
       <p>Estoque abaixo de 15 unidades</p>
-      <table class="w-100 mb-3 mt-3">
+      <table class="w-100 mb-3 mt-3" style="table-layout: fixed;">
         <thead>
           <tr>
-            <th class="text-center">Produto</th>
-            <th class="text-center">Status</th>
-            <th class="text-center">Estoque</th>
+            <th class="text-center" style="width: 50%;">Produto</th>
+            <th class="text-center" style="width: 30%;">Status</th>
+            <th class="text-center" style="width: 20%;">Estoque</th>
           </tr>
         </thead>
         <tbody>
@@ -109,9 +109,9 @@
 
               <td class="text-center px-1">
                 {% if produto.quantidade < 5 %}
-                  <span class="badge bg-danger w-100">Crítico</span>
+                  <span class="badge bg-danger w-100 px-0">Crítico</span>
                 {% elif produto.quantidade < 15 %}
-                  <span class="badge bg-warning text-dark w-100">Atenção</span>
+                  <span class="badge bg-warning text-dark w-100 px-0">Atenção</span>
                 {% endif %}
               </td>
 
@@ -119,9 +119,9 @@
 
               <td class="text-center px-1">
                 {% if produto.quantidade < 5 %}
-                  <span class="badge bg-danger w-100">{{ produto.quantidade }}</span>
+                  <span class="badge bg-danger w-100 px-0">{{ produto.quantidade }}</span>
                 {% elif produto.quantidade < 15 %}
-                  <span class="badge bg-warning text-dark w-100">{{ produto.quantidade }}</span>
+                  <span class="badge bg-warning text-dark w-100 px-0">{{ produto.quantidade }}</span>
                 {% endif %}
               </td>
             </tr>
@@ -141,12 +141,31 @@
 
   <div class="col-12 col-sm-6">
     <div class="box-admin">
-      <h5>Em desenvolvimento <i class="bi bi-hammer"></i></h5>
-      <ul class="list-unstyled">
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-      </ul>
+      <h5>Top Produtos</h5>
+
+      {% if top_produtos %}
+      <p>Pedido por 3 ou mais clientes</p>
+      <table class="w-100 mb-3 mt-3">
+        <thead>
+          <tr>
+            <th class="text-start">Produto</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for produto in top_produtos %}
+            <tr>
+              <td class="text-start" style="max-width: 200px;">
+                <span class="d-inline-block text-truncate w-100" title="{{ produto.nome }}">
+                    <strong class="text-warning pulse-alert">{{ produto.num_clientes }}x</strong> - {{ produto.nome }}
+                </span>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+        <p class="text-start mt-3 mb-3">Nenhum produto atingiu o critério (mín. 3 clientes).</p>
+      {% endif %}
     </div>
   </div>
 </div>

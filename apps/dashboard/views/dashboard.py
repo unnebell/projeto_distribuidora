@@ -1,5 +1,5 @@
 from django.utils import timezone
-from django.db.models import Sum 
+from django.db.models import Sum, Count
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required, user_passes_test
 from apps.pedidos.models import Pedido
@@ -26,6 +26,11 @@ def dashboard(request):
     # Lista das últimas 10 atividades baseadas no dia atual
     atividades_recentes = Atividade.objects.select_related('usuario').filter(criado_em__date=hoje)[:10] 
     
+    # Produtos mais requisitados (por pelo menos 3 clientes diferentes)
+    top_produtos = produtos.annotate(
+        num_clientes=Count('itempedido__pedido__cliente', distinct=True)
+    ).filter(num_clientes__gte=3).order_by('-num_clientes')[:5]
+    
     context = {
         'produtos': produtos,
         'total_estoque': total_estoque,
@@ -33,6 +38,7 @@ def dashboard(request):
         'produto_estoque_baixo': produto_estoque_baixo,
         'pedidos_mes': pedidos_mes,
         'atividades_recentes': atividades_recentes,
+        'top_produtos': top_produtos,
     }
 
     if request.method == 'GET':
