@@ -95,7 +95,7 @@
                     <p class="mb-0 text-muted" style="font-size:12px;">{{ user.email }}</p>
                   </li>
 
-                  {% if user.is_superuser %}
+                  {% if user.is_staff %}
                     <li>
                       <a class="dropdown-item d-flex align-items-center gap-2" href="{% url 'dashboard' %}">
                         <i class="bi bi-shield-lock"></i> Painel Admin
