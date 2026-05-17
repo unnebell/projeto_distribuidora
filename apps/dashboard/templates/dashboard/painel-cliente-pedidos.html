@@ -54,6 +54,7 @@
                     <tr class="sticky-top">
                         <th class="text-center px-2 py-2">ID</th>
                         <th class="text-center px-2 py-2 d-none d-sm-table-cell">Data</th>
+                        <th class="text-center px-2 py-2">Status</th>
                         <th class="text-center px-2 py-2">Total</th>
                         <th class="text-center px-2 py-2">Detalhes</th>
                     </tr>
@@ -64,6 +65,13 @@
                     <tr data-bs-toggle="collapse" data-bs-target="#itensPedido{{ pedido.id }}" class="linha-pedido">
                         <td class="text-center px-2 py-2"><strong>#{{ pedido.id }}</strong></td>
                         <td class="text-center px-2 py-2 d-none d-sm-table-cell">{{ pedido.criado_em|date:"d/m/y H:i" }}</td>
+                        <td class="text-center px-2 py-2">
+                            {% if pedido.status == 'Concluído' %}
+                                <span class="badge bg-success rounded-pill px-3">{{ pedido.status }}</span>
+                            {% else %}
+                                <span class="badge bg-warning text-dark rounded-pill px-3">{{ pedido.status }}</span>
+                            {% endif %}
+                        </td>
                         <td class="text-center px-2 py-2"><strong>R$ {{ pedido.total|floatformat:2 }}</strong></td>
                         <td class="text-center px-2 py-2">
                             <i class="bi bi-chevron-down"></i>
@@ -71,7 +79,7 @@
                     </tr>
                     <!-- Gaveta com os itens do pedido -->
                     <tr class="gaveta-itens">
-                        <td colspan="4" class="p-0 border-0">
+                        <td colspan="5" class="p-0 border-0">
                             <div id="itensPedido{{ pedido.id }}" class="collapse">
                                 <div class="p-3 destaque-gaveta" style="border-top: 1px solid var(--cor-02); border-bottom: 1px solid var(--cor-02);">
                                 <h6 class="mb-3"><i class="bi bi-box-seam"></i> Itens do Pedido #{{ pedido.id }}</h6>
@@ -98,8 +106,10 @@
                                     </table>
                                 </div>
                                 <div class="gaveta-acoes d-flex justify-content-end gap-2 mt-3 pt-2 border-top">
-                                    <button class="btn btn-sm btn-acao">Marcar como Concluído</button>
-                                    <button class="btn btn-sm btn-acao">Remover</button>
+                                    {% if pedido.status != 'Concluído' %}
+                                    <button class="btn btn-sm btn-acao btn-concluir" data-id="{{ pedido.id }}">Marcar como Concluído</button>
+                                    {% endif %}
+                                    <button class="btn btn-sm btn-acao btn-remover" data-id="{{ pedido.id }}">Remover</button>
                                 </div>
                             </div>
                             </div>
@@ -120,4 +130,82 @@
 {% endblock content %}
 
 {% block footer %}
+{% include 'dashboard/modals/painel-pedidos/modal-concluir-pedido.html' %}
+{% include 'dashboard/modals/painel-pedidos/modal-remover-pedido.html' %}
+<script src="{% static 'dashboard/js/utils.js' %}"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    let pedidoSelecionadoId = null;
+    const modalConcluir = new bootstrap.Modal(document.getElementById('modalConcluirPedido'));
+    const modalRemover = new bootstrap.Modal(document.getElementById('modalRemoverPedido'));
+
+    // Botão Marcar como Concluído (Abre o Modal)
+    document.querySelectorAll('.btn-concluir').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            pedidoSelecionadoId = e.target.getAttribute('data-id');
+            document.getElementById('id-pedido-concluir-modal').textContent = `#${pedidoSelecionadoId}`;
+            modalConcluir.show();
+        });
+    });
+
+    // Confirmação de Concluir Pedido (No Modal)
+    document.getElementById('btn-confirmar-concluir').addEventListener('click', async () => {
+        if (!pedidoSelecionadoId) return;
+
+        try {
+            const response = await fetch(`/dashboard/pedidos/concluir/${pedidoSelecionadoId}/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': getCsrf(),
+                    'Content-Type': 'application/json'
+                }
+            });
+            
+            const data = await response.json();
+            if (data.sucesso) {
+                mostrarToast(data.mensagem, 'success');
+                modalConcluir.hide();
+            } else {
+                mostrarToast(data.erro || 'Erro ao concluir o pedido.', 'error');
+            }
+        } catch (error) {
+            mostrarToast('Erro na requisição.', 'error');
+        }
+    });
+
+    // Botão Remover (Abre o Modal)
+    document.querySelectorAll('.btn-remover').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            pedidoSelecionadoId = e.target.getAttribute('data-id');
+            document.getElementById('id-pedido-remover-modal').textContent = `#${pedidoSelecionadoId}`;
+            modalRemover.show();
+        });
+    });
+
+    // Confirmação de Remover Pedido (No Modal)
+    document.getElementById('btn-confirmar-remover').addEventListener('click', async () => {
+        if (!pedidoSelecionadoId) return;
+
+        try {
+            const response = await fetch(`/dashboard/pedidos/remover/${pedidoSelecionadoId}/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': getCsrf(),
+                    'Content-Type': 'application/json'
+                }
+            });
+            
+            const data = await response.json();
+            if (data.sucesso) {
+                mostrarToast(data.mensagem, 'success');
+                modalRemover.hide();
+            } else {
+                mostrarToast(data.erro || 'Erro ao remover o pedido.', 'error');
+            }
+        } catch (error) {
+            mostrarToast('Erro na requisição.', 'error');
+        }
+    });
+});
+</script>
 {% endblock footer %}
