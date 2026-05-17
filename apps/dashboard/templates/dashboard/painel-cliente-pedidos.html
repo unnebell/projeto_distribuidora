@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block nav_links %}
+  <li class="nav-item">
+    <a class="nav-link link-redirect {% if aba == 'dashboard' %}active{% endif %}" href="{% url 'dashboard' %}">
+      <i class="bi bi-bar-chart"></i> Dashboard
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link link-redirect {% if aba == 'produtos' %}active{% endif %}" href="{% url 'painel_produtos' %}">
+      <i class="bi bi-box-seam"></i> Produtos
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link link-redirect {% if aba == 'pedidos' %}active{% endif %}" href="{% url 'painel_pedidos' %}">
+      <i class="bi bi-clipboard-check"></i> Pedidos
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link link-redirect {% if aba == 'clientes' %}active{% endif %}" href="{% url 'painel_clientes' %}">
+      <i class="bi bi-person"></i> Clientes
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link link-redirect {% if aba == 'staffs' %}active{% endif %}" href="{% url 'painel_staffs' %}">
+      <i class="bi bi-gear"></i> Staffs
+    </a>
+  </li>
+{% endblock nav_links %} 
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/global.css' %}"/>
+<link rel="stylesheet" href="{% static 'dashboard/css/painel-pedidos.css' %}"/>
+
+<div class="d-flex justify-content-center mt-4 mb-4">
+  <div class="col-11">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3 mb-4">
+      <h2 class="m-0">Pedidos de {{ cliente.username }}</h2>
+      <a href="{% url 'painel_pedidos' %}" class="btn btn-sm btn-acao pulse-alert">
+          <i class="bi bi-arrow-left"></i> Voltar
+      </a>
+    </div>
+
+    <div class="d-flex flex-column flex-md-row gap-3">
+      <div class="flex-grow-1">
+        <p class="mb-3">Histórico de Pedidos</p>
+        
+        {% if pedidos %}
+        <div class="tabela-container table-responsive">
+            <table class="w-100 table-hover table-pedidos">
+                <thead>
+                    <tr class="sticky-top">
+                        <th class="text-center px-2 py-2">ID</th>
+                        <th class="text-center px-2 py-2 d-none d-sm-table-cell">Data</th>
+                        <th class="text-center px-2 py-2">Total</th>
+                        <th class="text-center px-2 py-2">Detalhes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pedido in pedidos %}
+                    <!-- Linha principal do pedido -->
+                    <tr data-bs-toggle="collapse" data-bs-target="#itensPedido{{ pedido.id }}" class="linha-pedido">
+                        <td class="text-center px-2 py-2"><strong>#{{ pedido.id }}</strong></td>
+                        <td class="text-center px-2 py-2 d-none d-sm-table-cell">{{ pedido.criado_em|date:"d/m/y H:i" }}</td>
+                        <td class="text-center px-2 py-2"><strong>R$ {{ pedido.total|floatformat:2 }}</strong></td>
+                        <td class="text-center px-2 py-2">
+                            <i class="bi bi-chevron-down"></i>
+                        </td>
+                    </tr>
+                    <!-- Gaveta com os itens do pedido -->
+                    <tr class="gaveta-itens">
+                        <td colspan="4" class="p-0 border-0">
+                            <div id="itensPedido{{ pedido.id }}" class="collapse">
+                                <div class="p-3 destaque-gaveta" style="border-top: 1px solid var(--cor-02); border-bottom: 1px solid var(--cor-02);">
+                                <h6 class="mb-3"><i class="bi bi-box-seam"></i> Itens do Pedido #{{ pedido.id }}</h6>
+                                <div class="table-responsive">
+                                    <table class="w-100">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-start px-2 py-2 border-bottom">Produto</th>
+                                                <th class="text-center px-2 py-2 border-bottom">Qtd</th>
+                                                <th class="text-end px-2 py-2 border-bottom d-none d-md-table-cell">Preço Un.</th>
+                                                <th class="text-end px-2 py-2 border-bottom">Subtotal</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for item in pedido.itens.all %}
+                                            <tr>
+                                                <td class="text-start px-2 py-2">{{ item.produto.nome }}</td>
+                                                <td class="text-center px-2 py-2">{{ item.quantidade }}</td>
+                                                <td class="text-end px-2 py-2 d-none d-md-table-cell">R$ {{ item.preco_unitario|floatformat:2 }}</td>
+                                                <td class="text-end px-2 py-2">R$ {{ item.subtotal|floatformat:2 }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="gaveta-acoes d-flex justify-content-end gap-2 mt-3 pt-2 border-top">
+                                    <button class="btn btn-sm btn-acao">Marcar como Concluído</button>
+                                    <button class="btn btn-sm btn-acao">Remover</button>
+                                </div>
+                            </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <p class="text-muted mt-3">Nenhum pedido encontrado para este cliente.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+
+{% block footer %}
+{% endblock footer %}

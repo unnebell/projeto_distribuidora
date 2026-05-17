@@ -18,7 +18,7 @@ urlpatterns = [
     path('clientes/editar/<int:id>/', views.editar_cliente, name='editar_cliente'),
 
     path('pedidos/', views.painel_pedidos, name='painel_pedidos'),
-    
+    path('pedidos/cliente/<int:id>/', views.cliente_pedidos, name='cliente_pedidos'),
     path('staffs/', views.painel_staffs, name='painel_staffs'),
     path('staffs/adicionar/', views.adicionar_staff, name='adicionar_staff'),
     path('staffs/excluir/<int:id>/', views.excluir_staff, name='excluir_staff'),
