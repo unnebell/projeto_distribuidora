@@ -33,7 +33,12 @@
                     </div>
                     <div class="text-end">
                         <div class="text-white">Pedido: #{{ pedido.pk|stringformat:"04d" }}</div>
-                        <small class="text-secondary">{{ pedido.criado_em|date:"d/m/Y" }}</small>
+                        <small class="text-secondary d-block mb-1">{{ pedido.criado_em|date:"d/m/Y" }}</small>
+                        {% if pedido.status == 'Concluído' %}
+                            <span class="badge bg-success rounded-pill px-2 py-1">{{ pedido.status }}</span>
+                        {% else %}
+                            <span class="badge bg-warning text-dark rounded-pill px-2 py-1">{{ pedido.status }}</span>
+                        {% endif %}
                     </div>
                 </div>
 
@@ -54,6 +59,7 @@
                     </div>
                     <div class="col-12 col-sm-4 p-0">
                         <div class="d-flex gap-2">
+                            {% if pedido.status != 'Concluído' %}
                             <a href="#"
                             data-bs-toggle="modal"
                             data-bs-target="#modalExcluirPedido"
@@ -62,6 +68,7 @@
                             class="btn btn-danger btn-sm flex-fill">
                                 <i class="bi bi-ban"></i> Cancelar
                             </a>
+                            {% endif %}
                             <a href="#"
                             data-bs-toggle="modal"
                             data-bs-target="#modalDetalhePedido"
