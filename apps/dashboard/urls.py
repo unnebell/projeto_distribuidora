@@ -19,6 +19,9 @@ urlpatterns = [
 
     path('pedidos/', views.painel_pedidos, name='painel_pedidos'),
     path('pedidos/cliente/<int:id>/', views.cliente_pedidos, name='cliente_pedidos'),
+    path('pedidos/concluir/<int:id>/', views.concluir_pedido, name='concluir_pedido'),
+    path('pedidos/remover/<int:id>/', views.remover_pedido, name='remover_pedido'),
+
     path('staffs/', views.painel_staffs, name='painel_staffs'),
     path('staffs/adicionar/', views.adicionar_staff, name='adicionar_staff'),
     path('staffs/excluir/<int:id>/', views.excluir_staff, name='excluir_staff'),
