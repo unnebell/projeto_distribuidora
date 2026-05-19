@@ -5,6 +5,7 @@ from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.db.models import Q
 import unicodedata
+from apps.core.http import wants_partial
 
 #Retira a acentuação para uma busca mais abrangente
 def normalizar(texto):
@@ -34,6 +35,8 @@ def painel_clientes(request):
         'aba': 'clientes',
     }
     
+    if wants_partial(request):
+        return render(request, 'dashboard/partials/painel-clientes-resultados.html', context)
     return render(request, 'dashboard/painel-clientes.html', context)
 
 

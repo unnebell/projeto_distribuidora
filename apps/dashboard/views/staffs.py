@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.decorators import login_required, user_passes_test
+from apps.core.http import wants_partial
 
 @login_required(login_url='/auth/login/')
 @user_passes_test(lambda u: u.is_staff, login_url='/auth/login')
@@ -22,12 +23,15 @@ def painel_staffs(request):
     staffs_ativos = [s for s in staffs if s.is_active]
     staffs_inativos = [s for s in staffs if not s.is_active]
     
-    return render(request, 'dashboard/painel-staffs.html', {
+    context = {
         'aba': 'staffs',
         'staffs_ativos': staffs_ativos,
         'staffs_inativos': staffs_inativos,
         'query': query,
-    })
+    }
+    if wants_partial(request):
+        return render(request, 'dashboard/partials/painel-staffs-resultados.html', context)
+    return render(request, 'dashboard/painel-staffs.html', context)
 
 #Retira a acentuação para uma busca mais abrangente
 def normalizar(texto):

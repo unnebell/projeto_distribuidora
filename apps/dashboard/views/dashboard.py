@@ -7,6 +7,7 @@ from apps.produtos.models import Produto
 from apps.dashboard.models import Atividade
 from django.db.models import Q
 import unicodedata
+from apps.core.http import wants_partial
 
 # Dashboard principal com cálculos dos produtos do bd
 @login_required(login_url='/auth/login/') # Bloqueio de acesso para usuários não autenticados - redirecionamento para página de login
@@ -74,4 +75,6 @@ def painel_produtos(request):
         'aba': 'produtos',
     }
     
+    if wants_partial(request):
+        return render(request, 'dashboard/partials/painel-produtos-resultados.html', context)
     return render(request, 'dashboard/painel-produtos.html', context)
