@@ -3,6 +3,10 @@ document.getElementById('btn-salvar').addEventListener('click', () => {
   const form = document.getElementById('form-produto');
   const erros = document.getElementById('form-erros');
   const data = new FormData(form);
+  let preco = data.get('preco');
+  if (preco) {
+    data.set('preco', preco.replace(/\./g, '').replace(',', '.'));
+  }
 
   fetch( urlAdicionarProduto, {
     method: 'POST',
@@ -120,5 +124,20 @@ document.querySelectorAll('input[type="number"]').forEach(input => {
                          'Backspace','Delete','ArrowLeft','ArrowRight',
                          'ArrowUp','ArrowDown','Tab','.'];
         if (!allowed.includes(e.key)) e.preventDefault();
+    });
+});
+
+// Mascara de moeda para o preco
+document.querySelectorAll('input[name="preco"]').forEach(input => {
+    input.addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, "");
+        if (!value) {
+            e.target.value = "";
+            return;
+        }
+        value = (parseInt(value) / 100).toFixed(2);
+        value = value.replace(".", ",");
+        value = value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+        e.target.value = value;
     });
 });
