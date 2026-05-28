@@ -13,7 +13,7 @@ from apps.core.http import wants_partial
 @login_required(login_url='/auth/login/') # Bloqueio de acesso para usuários não autenticados - redirecionamento para página de login
 @user_passes_test(lambda u: u.is_staff, login_url='/auth/login') # Bloqueio de clientes para página adm - acesso somente de administrador
 def dashboard(request):
-    hoje = timezone.now().date()
+    hoje = timezone.localdate()
     produtos = Produto.objects.all()
     
     pedidos_mes = Pedido.objects.filter(
