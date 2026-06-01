@@ -116,14 +116,20 @@
     <div class="d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-between gap-4 px-md-5">
 
         <!--Formulário de envio de mensagens via email-->
-        <form>
+        <form id="contactForm" class="w-100" style="max-width: 450px;" action="https://api.staticforms.dev/submit" method="POST">
+            <input type="hidden" name="apiKey" value="sf_fe18651faeb3f20f568c3ebb" />
+            <input type="hidden" name="subject" value="FAHAN Distribuidora Tech submission" />
+            <div class="mb-3">
+                <label for="inputNome" class="form-label">Nome</label>
+                <input type="text" class="form-control" id="inputNome" name="name" required>
+            </div>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email</label>
-                <input type="email" class="form-control" id="exampleInputEmail1">
+                <input type="email" class="form-control" id="exampleInputEmail1" name="email" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">Mensagem</label>
-                <textarea class="form-control" id="form_mensagem"></textarea>
+                <textarea class="form-control" id="form_mensagem" name="message" required></textarea>
             </div>
             <button id="btn-form" type="submit" class="btn">Enviar</button>
         </form>
@@ -143,6 +149,18 @@
 
     </div>
 </section>
+
+<!-- Toast de Feedback de Contato (Pop-up pequeno) -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1100;">
+  <div id="contatoToast" class="toast align-items-center text-white border-0" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+      <div class="toast-body" id="contatoToastBody">
+        <!-- A mensagem será inserida dinamicamente via JS -->
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  </div>
+</div>
 
 <script src="{% static 'core/js/index.js' %}"></script>
 {% endblock content %}
