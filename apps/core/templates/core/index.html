@@ -8,9 +8,9 @@
 <title>Fahan</title>
 <!--======================================SESSÃO INÍCIO======================================-->
 <section id="inicio" class="container-fluid">
-    <div class="row align-items-center py-4">
+    <div class="row align-items-center py-4 reveal">
         <div class="col-12 col-md-6 px-4 px-md-5">
-            <h1>Soluções Completas em TI para você!</h1>
+            <h1 class="reveal">Soluções Completas em TI para você!</h1>
             <p>Distribuidora líder em tecnologia com os melhores produtos, preços que cabem no seu bolso com a entrega mais
                 rápida de todo o Brasil.</p>
             <ul class="container-fluid">
@@ -27,7 +27,7 @@
 
 <!--======================================SESSÃO PRODUTOS======================================-->
 <section id="produtos" class="container-fluid">
-    <div class="container-fluid text-center">
+    <div class="container-fluid text-center reveal">
         <h1>Nossas Categorias de Produtos</h1>
         <p>Oferecemos as melhores marcas e tecnologias do mercado para atender todas as necessidades da sua empresa.</p>
     </div>
@@ -35,7 +35,7 @@
     <div class="row g-4 justify-content-center">
         <!--======================================1º Produto======================================-->
         {% for produto in produtos|slice:":6" %}
-        <div class="col-12 col-sm-6 col-md-4">
+        <div class="col-12 col-sm-6 col-md-4 reveal" style="transition-delay: {{ forloop.counter0 }}00ms">
             <div class="card card-produtos h-100">
                 <img src="{% static 'img/icon-servidor.png' %}" class="card-img-top" alt="...">
                 <div class="card-body">
@@ -46,23 +46,23 @@
         </div>
         {% endfor %}
     <!-- Botão para acessar a página de produtos - somente cliente -->
-    <a class="btn-produtos pulse-alert btn btn-acao d-flex justify-content-center mx-auto" href="{% url 'produtos' %}">Conheça mais!</a>
+    <a class="btn-produtos pulse-alert btn btn-acao d-flex justify-content-center mx-auto reveal" href="{% url 'produtos' %}">Conheça mais!</a>
 </section>
 
 <!--======================================SESSÃO SOBRE======================================-->
 <section id="sobre" class="container-fluid">
     <!--Título e descrição breve-->
-    <div class="container-fluid text-center mb-4"> 
+    <div class="container-fluid text-center mb-4 reveal"> 
         <h1>Sobre nós</h1>
         <p class="mx-auto" >Somos uma distribuidora de TI consolidada no mercado, comprometida em oferecer as melhores soluções tecnológicas para empresas de todos os portes.</p>
     </div>
 
     <!--Imagem e descrição detalhada-->
     <div class="row align-items-center justify-content-center gx-5">
-        <div class="col-12 col-lg-6 mb-4 mb-lg-0">
+        <div class="col-12 col-lg-6 mb-4 mb-lg-0 reveal">
             <img id="img-sobre" class="img-fluid rounded" src="{% static 'img/img-sobre.jpg' %}" alt="...">
         </div>
-        <div id="descricao-sobre" class="col-12 col-lg-6 texto-sobre text-center text-lg-start">
+        <div id="descricao-sobre" class="col-12 col-lg-6 texto-sobre text-center text-lg-start reveal">
             <h2 class="mb-3">Distribuição de TI com Excelência</h2>
             <p>Trabalhamos com as principais marcas globais de tecnologia e mantemos um estoque robusto para garantir entregas rápidas e eficientes. Nossa equipe de especialistas está sempre pronta para auxiliar na escolha das melhores soluções para cada necessidade.</p>
             <p>Acreditamos que tecnologia deve ser acessível e nosso compromisso é democratizar o acesso às melhores soluções do mercado, oferecendo preços competitivos sem abrir mão da qualidade e do suporte que nossos clientes merecem.</p>
@@ -74,7 +74,7 @@
 
         <!--Missão-->
         <div class="card-sobre col-12 col-sm-6 col-md-4">
-                <div class="card h-100">
+                <div class="card h-100 reveal" style="transition-delay: 100ms">
                     <div class="card-body">
                         <h5 class="card-title py-2">Missão</h5>
                         <p class="card-text">Fornecer soluções tecnológicas de ponta com excelência no atendimento,  
@@ -85,7 +85,7 @@
 
         <!--Visão-->
         <div class="card-sobre col-12 col-sm-6 col-md-4">
-                <div class="card h-100">
+                <div class="card h-100 reveal" style="transition-delay: 300ms">
                     <div class="card-body">
                         <h5 class="card-title py-2">Visão</h5>
                         <p class="card-text">Ser a distribuidora de TI mais confiável e inovadora do Brasil,  
@@ -96,7 +96,7 @@
 
         <!--Valores-->
         <div class="card-sobre col-12 col-sm-6 col-md-4">
-                <div class="card h-100">
+                <div class="card reveal" style="transition-delay: 500ms">
                     <div class="card-body">
                         <h5 class="card-title py-2">Valores</h5>
                         <p class="card-text">Comprometimento com a excelência, transparência nas relações 
@@ -110,7 +110,7 @@
 
 <!--======================================SESSÃO CONTATO======================================-->
 <section id="contato" class="container-fluid">
-    <div class="container-fluid text-center mb-4"> 
+    <div class="container-fluid text-center mb-4 reveal"> 
         <h1>Entre em contato!</h1>
     </div>
     <div class="d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-between gap-4 px-md-5">
