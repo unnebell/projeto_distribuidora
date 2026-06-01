@@ -47,7 +47,7 @@ document.getElementById('btnAdicionarCarrinho').addEventListener('click', functi
     const id        = modal.dataset.produtoId;
     const nome      = modal.dataset.produtoNome;
     const descricao = modal.dataset.produtoDescricao;
-    const precoRaw  = (modal.dataset.produtoPreco || '0').replace(',', '.');
+    const precoRaw  = (modal.dataset.produtoPreco || '0').replace(/\./g, '').replace(',', '.');
     const preco     = parseFloat(precoRaw);
     const qty       = parseInt(document.getElementById('qtyValor').textContent);
 

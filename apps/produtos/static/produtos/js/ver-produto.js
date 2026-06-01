@@ -16,7 +16,7 @@ document.getElementById('modalVerProdutoPedido').addEventListener('show.bs.modal
     
     const nome = trigger.dataset.nome;
     const descricao = trigger.dataset.descricao;
-    const precoRaw = (trigger.dataset.preco || '0').replace(',', '.');
+    const precoRaw = (trigger.dataset.preco || '0').replace(/\./g, '').replace(',', '.');
     const preco = parseFloat(precoRaw).toLocaleString('pt-BR', {
         style: 'currency',
         currency: 'BRL'

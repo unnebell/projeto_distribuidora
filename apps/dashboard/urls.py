@@ -18,6 +18,14 @@ urlpatterns = [
     path('clientes/editar/<int:id>/', views.editar_cliente, name='editar_cliente'),
 
     path('pedidos/', views.painel_pedidos, name='painel_pedidos'),
-    
-    path('usuarios/', views.painel_usuarios, name='painel_usuarios'),
+    path('pedidos/cliente/<int:id>/', views.cliente_pedidos, name='cliente_pedidos'),
+    path('pedidos/concluir/<int:id>/', views.concluir_pedido, name='concluir_pedido'),
+    path('pedidos/remover/<int:id>/', views.remover_pedido, name='remover_pedido'),
+
+    path('staffs/', views.painel_staffs, name='painel_staffs'),
+    path('staffs/adicionar/', views.adicionar_staff, name='adicionar_staff'),
+    path('staffs/excluir/<int:id>/', views.excluir_staff, name='excluir_staff'),
+    path('staffs/desativar/<int:id>/', views.desativar_staff, name='desativar_staff'),
+    path('staffs/ativar/<int:id>/', views.ativar_staff, name='ativar_staff'),
+    path('staffs/editar/<int:id>/', views.editar_staff, name='editar_staff'),
 ]

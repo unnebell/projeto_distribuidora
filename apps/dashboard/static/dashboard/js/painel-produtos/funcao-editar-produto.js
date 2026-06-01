@@ -5,7 +5,7 @@ document.getElementById('modalEditarProduto').addEventListener('show.bs.modal', 
   document.getElementById('editarProdutoNome').textContent = btn.dataset.nome;
   document.getElementById('editarInputNome').value         = btn.dataset.nome;
   document.getElementById('editarInputDescricao').value    = btn.dataset.descricao;
-  document.getElementById('editarInputPreco').value = btn.dataset.preco.replace(',', '.');
+  document.getElementById('editarInputPreco').value = btn.dataset.preco;
   document.getElementById('editarInputQtd').value          = btn.dataset.qtd;
 });
 
@@ -15,6 +15,10 @@ document.getElementById('btn-salvar-edicao').addEventListener('click', () => {
   const erros = document.getElementById('editar-form-erros');
   const id = document.getElementById('editarProdutoId').value;
   const data = new FormData(form);
+  let preco = data.get('preco');
+  if (preco) {
+    data.set('preco', preco.replace(/\./g, '').replace(',', '.'));
+  }
   const url = urlEditarProduto.replace('/0/', `/${id}/`);
 
   fetch(url, {

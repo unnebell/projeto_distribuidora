@@ -8,9 +8,9 @@
 <title>Fahan</title>
 <!--======================================SESSÃO INÍCIO======================================-->
 <section id="inicio" class="container-fluid">
-    <div class="row align-items-center py-4">
+    <div class="row align-items-center py-4 reveal">
         <div class="col-12 col-md-6 px-4 px-md-5">
-            <h1>Soluções Completas em TI para você!</h1>
+            <h1 class="reveal">Soluções Completas em TI para você!</h1>
             <p>Distribuidora líder em tecnologia com os melhores produtos, preços que cabem no seu bolso com a entrega mais
                 rápida de todo o Brasil.</p>
             <ul class="container-fluid">
@@ -27,7 +27,7 @@
 
 <!--======================================SESSÃO PRODUTOS======================================-->
 <section id="produtos" class="container-fluid">
-    <div class="container-fluid text-center">
+    <div class="container-fluid text-center reveal">
         <h1>Nossas Categorias de Produtos</h1>
         <p>Oferecemos as melhores marcas e tecnologias do mercado para atender todas as necessidades da sua empresa.</p>
     </div>
@@ -35,9 +35,9 @@
     <div class="row g-4 justify-content-center">
         <!--======================================1º Produto======================================-->
         {% for produto in produtos|slice:":6" %}
-        <div class="col-12 col-sm-6 col-md-4">
+        <div class="col-12 col-sm-6 col-md-4 reveal" style="transition-delay: {{ forloop.counter0 }}00ms">
             <div class="card card-produtos h-100">
-                <img src="{% static 'img/icon-servidor.png' %}" class="card-img-top" alt="...">
+                <i class="bi {{ produto.icone }} icon-produto"></i>
                 <div class="card-body">
                     <h5 class="card-title py-2">{{ produto.nome }}</h5>
                     <p class="card-text">{{ produto.descricao }}</p>
@@ -46,23 +46,23 @@
         </div>
         {% endfor %}
     <!-- Botão para acessar a página de produtos - somente cliente -->
-    <a class="btn-produtos pulse-alert btn btn-acao d-flex justify-content-center mx-auto" href="{% url 'produtos' %}">Conheça mais!</a>
+    <a class="btn-produtos pulse-alert btn btn-acao d-flex justify-content-center mx-auto reveal" href="{% url 'produtos' %}">Conheça mais!</a>
 </section>
 
 <!--======================================SESSÃO SOBRE======================================-->
 <section id="sobre" class="container-fluid">
     <!--Título e descrição breve-->
-    <div class="container-fluid text-center mb-4"> 
+    <div class="container-fluid text-center mb-4 reveal"> 
         <h1>Sobre nós</h1>
         <p class="mx-auto" >Somos uma distribuidora de TI consolidada no mercado, comprometida em oferecer as melhores soluções tecnológicas para empresas de todos os portes.</p>
     </div>
 
     <!--Imagem e descrição detalhada-->
     <div class="row align-items-center justify-content-center gx-5">
-        <div class="col-12 col-lg-6 mb-4 mb-lg-0">
+        <div class="col-12 col-lg-6 mb-4 mb-lg-0 reveal">
             <img id="img-sobre" class="img-fluid rounded" src="{% static 'img/img-sobre.jpg' %}" alt="...">
         </div>
-        <div id="descricao-sobre" class="col-12 col-lg-6 texto-sobre text-center text-lg-start">
+        <div id="descricao-sobre" class="col-12 col-lg-6 texto-sobre text-center text-lg-start reveal">
             <h2 class="mb-3">Distribuição de TI com Excelência</h2>
             <p>Trabalhamos com as principais marcas globais de tecnologia e mantemos um estoque robusto para garantir entregas rápidas e eficientes. Nossa equipe de especialistas está sempre pronta para auxiliar na escolha das melhores soluções para cada necessidade.</p>
             <p>Acreditamos que tecnologia deve ser acessível e nosso compromisso é democratizar o acesso às melhores soluções do mercado, oferecendo preços competitivos sem abrir mão da qualidade e do suporte que nossos clientes merecem.</p>
@@ -74,7 +74,7 @@
 
         <!--Missão-->
         <div class="card-sobre col-12 col-sm-6 col-md-4">
-                <div class="card h-100">
+                <div class="card h-100 reveal" style="transition-delay: 100ms">
                     <div class="card-body">
                         <h5 class="card-title py-2">Missão</h5>
                         <p class="card-text">Fornecer soluções tecnológicas de ponta com excelência no atendimento,  
@@ -85,7 +85,7 @@
 
         <!--Visão-->
         <div class="card-sobre col-12 col-sm-6 col-md-4">
-                <div class="card h-100">
+                <div class="card h-100 reveal" style="transition-delay: 300ms">
                     <div class="card-body">
                         <h5 class="card-title py-2">Visão</h5>
                         <p class="card-text">Ser a distribuidora de TI mais confiável e inovadora do Brasil,  
@@ -96,7 +96,7 @@
 
         <!--Valores-->
         <div class="card-sobre col-12 col-sm-6 col-md-4">
-                <div class="card h-100">
+                <div class="card reveal" style="transition-delay: 500ms">
                     <div class="card-body">
                         <h5 class="card-title py-2">Valores</h5>
                         <p class="card-text">Comprometimento com a excelência, transparência nas relações 
@@ -110,20 +110,26 @@
 
 <!--======================================SESSÃO CONTATO======================================-->
 <section id="contato" class="container-fluid">
-    <div class="container-fluid text-center mb-4"> 
+    <div class="container-fluid text-center mb-4 reveal"> 
         <h1>Entre em contato!</h1>
     </div>
     <div class="d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-between gap-4 px-md-5">
 
         <!--Formulário de envio de mensagens via email-->
-        <form>
+        <form id="contactForm" class="w-100" style="max-width: 450px;" action="https://api.staticforms.dev/submit" method="POST">
+            <input type="hidden" name="apiKey" value="sf_fe18651faeb3f20f568c3ebb" />
+            <input type="hidden" name="subject" value="FAHAN Distribuidora Tech submission" />
+            <div class="mb-3">
+                <label for="inputNome" class="form-label">Nome</label>
+                <input type="text" class="form-control" id="inputNome" name="name" required>
+            </div>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email</label>
-                <input type="email" class="form-control" id="exampleInputEmail1">
+                <input type="email" class="form-control" id="exampleInputEmail1" name="email" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">Mensagem</label>
-                <textarea class="form-control" id="form_mensagem"></textarea>
+                <textarea class="form-control" id="form_mensagem" name="message" required></textarea>
             </div>
             <button id="btn-form" type="submit" class="btn">Enviar</button>
         </form>
@@ -144,4 +150,17 @@
     </div>
 </section>
 
+<!-- Toast de Feedback de Contato (Pop-up pequeno) -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1100;">
+  <div id="contatoToast" class="toast align-items-center text-white border-0" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+      <div class="toast-body" id="contatoToastBody">
+        <!-- A mensagem será inserida dinamicamente via JS -->
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'core/js/index.js' %}"></script>
 {% endblock content %}

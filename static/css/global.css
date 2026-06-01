@@ -149,3 +149,9 @@ section {
         max-height: 650px;
     }
 }
+
+#pesquisa-resultados.pesquisa-carregando {
+    opacity: 0.55;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+}

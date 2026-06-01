@@ -49,22 +49,22 @@
           <ul class="navbar-nav gap-2 mx-auto">
             {% block nav_links %} <!-- Adicionado para alteração singular em outras páginas que não precisem dos links -->
               <li class="nav-item link-redirect">
-                <a class="nav-link" href="#inicio">
+                <a class="nav-link" href="#" data-target="inicio">
                   <i class="bi bi-house"></i> Início
                 </a>
               </li>
               <li class="nav-item link-redirect">
-                <a class="nav-link" href="#produtos">
+                <a class="nav-link" href="#" data-target="produtos">
                   <i class="bi bi-cart"></i> Produtos
                 </a>
               </li>
               <li class="nav-item link-redirect">
-                <a class="nav-link" href="#sobre">
+                <a class="nav-link" href="#" data-target="sobre">
                   <i class="bi bi-info-circle"></i> Sobre
                 </a>
               </li>
               <li class="nav-item link-redirect">
-                <a class="nav-link" href="#contato">
+                <a class="nav-link" href="#" data-target="contato">
                   <i class="bi bi-telephone"></i> Contato
                 </a>
               </li>
@@ -95,19 +95,13 @@
                     <p class="mb-0 text-muted" style="font-size:12px;">{{ user.email }}</p>
                   </li>
 
-                  {% if user.is_superuser %}
+                  {% if user.is_staff %}
                     <li>
                       <a class="dropdown-item d-flex align-items-center gap-2" href="{% url 'dashboard' %}">
                         <i class="bi bi-shield-lock"></i> Painel Admin
                       </a>
                     </li>
                   {% endif %}
-
-                  <li>
-                    <a class="dropdown-item d-flex align-items-center gap-2" href="#">
-                      <i class="bi bi-person"></i> Meu perfil
-                    </a>
-                  </li>
 
                   <li>
                     <a class="dropdown-item d-flex align-items-center gap-2" href="{% url 'pedidos:pedidos' %}">
@@ -165,8 +159,8 @@
                 <div class="integrante-foot mt-2 mb-0 p-0 col-12 col-sm-12 col-lg-6"> <!-- Adriele da Rocha Paiva - Front-end -->
                   <h3>Adriele da Rocha Paiva - Front-end</h3>
                   <div class="icon-social">
-                    <a href="#" target="_blank"><i class="bi bi-instagram"></i></a>
-                    <a href="#" target="_blank"><i class="bi bi-linkedin"></i></a>
+                    <a href="https://www.instagram.com/2adrielepaiva/" target="_blank"><i class="bi bi-instagram"></i></a>
+                    <a href="#"><i class="bi bi-linkedin"></i></a>
                     <a href="https://wa.me/5591985082007" target="_blank"><i class="bi bi-whatsapp"></i></a>
                   </div>
                 </div>
@@ -175,7 +169,7 @@
                   <h3>Andreia Amaro da Silva - DBA</h3>
                   <div class="icon-social">
                     <a href="https://www.instagram.com/_a.amaro" target="_blank"><i class="bi bi-instagram"></i></a>
-                    <a href="#" target="_blank"><i class="bi bi-linkedin"></i></a>
+                    <a href="#"><i class="bi bi-linkedin"></i></a>
                     <a href="https://wa.me/5591980564528" target="_blank"><i class="bi bi-whatsapp"></i></a>
                   </div>
                 </div>
@@ -183,7 +177,7 @@
                 <div class="integrante-foot mt-2 mb-0 p-0 col-12 col-sm-12 col-lg-6"> <!-- Fábio Kauã Silva - Fullstack -->
                   <h3>Fábio Kauã Silva - Fullstack</h3>
                   <div class="icon-social">
-                    <a href="https://www.instagram.com/" target="_blank"><i class="bi bi-instagram"></i></a>
+                    <a href="https://www.instagram.com/neb.fabeo/" target="_blank"><i class="bi bi-instagram"></i></a>
                     <a href="https://www.linkedin.com/in/" target="_blank"><i class="bi bi-linkedin"></i></a>
                     <a href="https://wa.me/5591984818135" target="_blank"><i class="bi bi-whatsapp"></i></a>
                   </div>
@@ -193,7 +187,7 @@
                   <h3>Maria de Nazaré Santos - Designer</h3>
                   <div class="icon-social">
                     <a href="https://www.instagram.com/naza_caldas/" target="_blank"><i class="bi bi-instagram"></i></a>
-                    <a href="#" target="_blank"><i class="bi bi-linkedin"></i></a>
+                    <a href="#"><i class="bi bi-linkedin"></i></a>
                     <a href="https://wa.me/5591986071381" target="_blank"><i class="bi bi-whatsapp"></i></a>
                   </div>
                 </div>
@@ -201,8 +195,8 @@
                 <div class="integrante-foot mt-2 mb-0 p-0 col-12 col-sm-12 col-lg-6"> <!-- Helionete Ribeiro Rodrigues - Documentadora -->
                   <h3>Helionete Rodrigues - Documentadora</h3>
                   <div class="icon-social">
-                    <a href="#" target="_blank"><i class="bi bi-instagram"></i></a>
-                    <a href="#" target="_blank"><i class="bi bi-linkedin"></i></a>
+                    <a href="#"><i class="bi bi-instagram"></i></a>
+                    <a href="#"><i class="bi bi-linkedin"></i></a>
                     <a href="https://wa.me/5591983783901" target="_blank"><i class="bi bi-whatsapp"></i></a>
                   </div>
                 </div>

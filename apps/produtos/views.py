@@ -1,6 +1,7 @@
 import unicodedata
 from django.shortcuts import render
 from django.core.paginator import Paginator
+from apps.core.http import wants_partial
 from .models import Produto
 
 def remover_acentos(texto):
@@ -19,8 +20,11 @@ def produtos(request):
     paginator = Paginator(qs, 12) #Divide cada página com 12 produtos
     page_obj = paginator.get_page(request.GET.get('page'))
 
-    return render(request, 'produtos/produtos.html', {
+    context = {
         'produtos': page_obj,
         'query': query,
         'page_obj': page_obj,
-    })
+    }
+    if wants_partial(request):
+        return render(request, 'produtos/partials/lista-produtos.html', context)
+    return render(request, 'produtos/produtos.html', context)

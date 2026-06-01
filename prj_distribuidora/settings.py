@@ -60,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "django_browser_reload.middleware.BrowserReloadMiddleware",
+    'apps.dashboard.middleware.CurrentUserMiddleware',
 ]
 
 ROOT_URLCONF = 'prj_distribuidora.urls'

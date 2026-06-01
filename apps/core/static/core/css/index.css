@@ -4,7 +4,7 @@
     & img {
         width: 100%;
         max-width: 450px;
-        padding-right: 38px;
+        margin-right: 38px;
     }
 }
 
@@ -14,6 +14,7 @@
 
         & img {
             padding: 0px;
+            margin-right: 0px;
         }
     }
 
@@ -24,9 +25,11 @@
     padding: 25px 50px;
 }
 
-.card-img-top {
-    width: 50px;
-    margin: 5px 10px;
+.icon-produto {
+    font-size: 2.5rem;
+    color: var(--cor-01);
+    margin: 5px 15px;
+    display: inline-block;
 }
 
 .card-produtos {
@@ -137,4 +140,15 @@ form {
 
 .contato_icons:hover i {
     color: var(--cor-02);
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
