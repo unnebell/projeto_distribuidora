@@ -23,7 +23,7 @@ def dashboard(request):
     
     total_estoque = produtos.aggregate(Sum('quantidade'))['quantidade__sum'] or 0 # Soma de cada item cadastrado
     total_estoque_baixo = produtos.filter(quantidade__lt=15).count()  # Contagem de produto com estoque abaixo de 15
-    produto_estoque_baixo = produtos.filter(quantidade__lt=15) # Lista de produtos com estoque abaixo de 15
+    produto_estoque_baixo = produtos.filter(quantidade__lt=15).order_by('quantidade') # Lista de produtos com estoque abaixo de 15
     # Lista das últimas 10 atividades baseadas no dia atual
     atividades_recentes = Atividade.objects.select_related('usuario').filter(criado_em__date=hoje)[:10] 
     

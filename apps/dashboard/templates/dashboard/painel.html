@@ -89,7 +89,7 @@
           <tr>
             <th class="text-center" style="width: 50%;">Produto</th>
             <th class="text-center" style="width: 30%;">Status</th>
-            <th class="text-center" style="width: 20%;">Estoque</th>
+            <th class="text-center" style="width: 20%;">QTD</th>
           </tr>
         </thead>
         <tbody>
@@ -97,31 +97,31 @@
             <tr>
               <!-- NOME DOS PRODUTOS -->
 
-              <td class="text-center px-1">
+              <td class="text-center px-1 align-middle">
                 {% if produto.quantidade < 5 %}
-                  <span class="badge bg-danger w-100">{{ produto.nome|truncatechars:15 }}</span>
+                  <span class="badge bg-danger d-inline-block text-truncate align-middle" style="max-width: 100%;" title="{{ produto.nome }}">{{ produto.nome }}</span>
                 {% elif produto.quantidade < 15 %}
-                  <span class="badge bg-warning text-dark w-100">{{ produto.nome|truncatechars:15}}</span>
+                  <span class="badge bg-warning text-dark d-inline-block text-truncate align-middle" style="max-width: 100%;" title="{{ produto.nome }}">{{ produto.nome }}</span>
                 {% endif %}
               </td>
 
               <!-- STATUS DOS PRODUTOS -->
 
-              <td class="text-center px-1">
+              <td class="text-center px-1 align-middle">
                 {% if produto.quantidade < 5 %}
-                  <span class="badge bg-danger w-100 px-0">Crítico</span>
+                  <span class="badge bg-danger align-middle">Crítico</span>
                 {% elif produto.quantidade < 15 %}
-                  <span class="badge bg-warning text-dark w-100 px-0">Atenção</span>
+                  <span class="badge bg-warning text-dark align-middle">Atenção</span>
                 {% endif %}
               </td>
 
               <!-- QUANTIDADE DOS PRODUTOS -->
 
-              <td class="text-center px-1">
+              <td class="text-center px-1 align-middle">
                 {% if produto.quantidade < 5 %}
-                  <span class="badge bg-danger w-100 px-0">{{ produto.quantidade }}</span>
+                  <span class="badge bg-danger align-middle">{{ produto.quantidade }}</span>
                 {% elif produto.quantidade < 15 %}
-                  <span class="badge bg-warning text-dark w-100 px-0">{{ produto.quantidade }}</span>
+                  <span class="badge bg-warning text-dark align-middle">{{ produto.quantidade }}</span>
                 {% endif %}
               </td>
             </tr>
