@@ -2,6 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 {% load static %}
+<link rel="icon" href="{% static 'img/flavicon.jpeg' %}" />
 <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
 <link rel="stylesheet" href="{% static 'css/global.css' %}" />
 <link rel="stylesheet" href="{% static 'auth/css/login.css' %}" />
@@ -15,8 +16,8 @@
         <form id="formLogin" action="{% url 'login' %}" method="POST" class="col-12 col-sm-6 col-lg-5 p-4">{% csrf_token %}
             <div class="mb-2">
                 <h1>Login</h1>
-                <label class="form-label mb-1 mt-2">Usuário</label>
-                <input type="text" class="form-control" name="username" id="username" placeholder="Digite seu usuário" autocomplete="off">
+                <label class="form-label mb-1 mt-2" for="email">E-mail</label>
+                <input type="email" class="form-control" name="email" id="email" placeholder="Digite seu e-mail" autocomplete="off" required>
             </div>
             <label class="form-label mb-1 mt-2" for="senha">Senha</label>
             <div class="position-relative">

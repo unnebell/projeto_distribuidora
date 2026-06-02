@@ -9,8 +9,11 @@ def login(request):
     if request.method == "GET":
         return render(request, 'auth/login.html')
     else:
-        username = request.POST.get('username', '').strip()
+        email = request.POST.get('email', '').strip()
         senha = request.POST.get('senha', '').strip()
+        
+        user_obj = User.objects.filter(email=email).first()
+        username = user_obj.username if user_obj else None
         
         user = authenticate(username=username, password=senha)
         
@@ -24,7 +27,7 @@ def login(request):
             })
         else:
             return render(request, 'auth/login.html', {
-                'erro': 'Usuário ou senha inválidos.'
+                'erro': 'E-mail ou senha inválidos.'
             })
 
 def register(request):
@@ -39,6 +42,11 @@ def register(request):
         if User.objects.filter(username=username).exists():
             return render(request, 'auth/register.html', {
                 'erros': {'username': 'Este usuário já existe!'} 
+            })
+            
+        if User.objects.filter(email=email).exists():
+            return render(request, 'auth/register.html', {
+                'erros': {'email': 'Este e-mail já está cadastrado!'} 
             })
         
         user = User.objects.create_user(username=username, email=email, password=senha) #cria o usuário 
