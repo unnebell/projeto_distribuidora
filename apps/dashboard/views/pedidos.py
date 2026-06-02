@@ -37,5 +37,11 @@ def remover_pedido(request, id):
     
     pedido = get_object_or_404(Pedido, id=id)
     pedido_id = pedido.id
+    
+    # Devolver produtos ao estoque
+    for item in pedido.itens.all():
+        item.produto.quantidade += item.quantidade
+        item.produto.save()
+        
     pedido.delete()
     return JsonResponse({'sucesso': True, 'mensagem': f'Pedido #{pedido_id} removido com sucesso!'})
