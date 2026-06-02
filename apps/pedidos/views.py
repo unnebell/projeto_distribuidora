@@ -23,6 +23,12 @@ def finalizar_pedido(request):
         if not itens:
             return JsonResponse({'erro': 'Carrinho vazio'}, status=400)
 
+        # Verificar estoque primeiro
+        for item in itens:
+            produto = Produto.objects.get(pk=item['id'])
+            if item['quantidade'] > produto.quantidade:
+                return JsonResponse({'erro': f'Quantidade indisponível para o produto {produto.nome}. Estoque: {produto.quantidade}'}, status=400)
+
         pedido = Pedido.objects.create(cliente=request.user)
 
         for item in itens:
@@ -33,6 +39,9 @@ def finalizar_pedido(request):
                 quantidade=item['quantidade'],
                 preco_unitario=item['preco'],
             )
+            # Baixa no estoque
+            produto.quantidade -= item['quantidade']
+            produto.save()
 
         return JsonResponse({'sucesso': True, 'pedido_id': pedido.pk})
 
@@ -46,6 +55,11 @@ def finalizar_pedido(request):
 def cancelar_pedido(request, pedido_id):
     try:
         pedido = Pedido.objects.get(pk=pedido_id, cliente=request.user)
+        # Devolver produtos ao estoque
+        for item in pedido.itens.all():
+            item.produto.quantidade += item.quantidade
+            item.produto.save()
+            
         pedido.delete()
         return JsonResponse({'ok': True})
     except Pedido.DoesNotExist:

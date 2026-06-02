@@ -73,7 +73,7 @@
                             data-bs-toggle="modal"
                             data-bs-target="#modalDetalhePedido"
                             data-id="{{ pedido.pk }}"
-                            data-itens='[{% for item in pedido.itens.all %}{"produto":"{{ item.produto.nome }}","quantidade":{{ item.quantidade }},"unitario":"{{ item.preco_unitario|floatformat:2 }}","subtotal":"{{ item.subtotal|floatformat:2 }}"}{% if not forloop.last %},{% endif %}{% endfor %}]'
+                            data-itens='[{% for item in pedido.itens.all %}{"produto":"{{ item.produto.nome|escapejs }}","quantidade":{{ item.quantidade }},"unitario":"{{ item.preco_unitario|floatformat:2 }}","subtotal":"{{ item.subtotal|floatformat:2 }}"}{% if not forloop.last %},{% endif %}{% endfor %}]'
                             data-total="{{ pedido.total|floatformat:2 }}"
                             class="btn btn-acao btn-sm flex-fill">
                                 <i class="bi bi-eye"></i> Detalhes

@@ -41,7 +41,6 @@ function atualizarBadge() {
 
 atualizarBadge();
 
-// Adiciona produto no carrinho
 document.getElementById('btnAdicionarCarrinho').addEventListener('click', function () {
     const modal     = document.getElementById('modalVerProdutoPedido');
     const id        = modal.dataset.produtoId;
@@ -50,12 +49,21 @@ document.getElementById('btnAdicionarCarrinho').addEventListener('click', functi
     const precoRaw  = (modal.dataset.produtoPreco || '0').replace(/\./g, '').replace(',', '.');
     const preco     = parseFloat(precoRaw);
     const qty       = parseInt(document.getElementById('qtyValor').textContent);
+    const maxQty    = parseInt(modal.dataset.produtoQuantidade || '999');
 
     const existente = carrinho.find(i => i.id === id);
     if (existente) {
+        if (existente.qty + qty > maxQty) {
+            mostrarToast(`Estoque insuficiente para ${nome}. Disponível: ${maxQty}`, 'danger');
+            return;
+        }
         existente.qty += qty;
     } else {
-        carrinho.push({ id, nome, descricao, preco, qty });
+        if (qty > maxQty) {
+            mostrarToast(`Estoque insuficiente para ${nome}. Disponível: ${maxQty}`, 'danger');
+            return;
+        }
+        carrinho.push({ id, nome, descricao, preco, qty, maxQty });
     }
 
     salvarCarrinho();
