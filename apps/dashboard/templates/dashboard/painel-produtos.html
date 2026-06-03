@@ -48,6 +48,15 @@
         <label for="floatingSearch">Pesquise um produto</label>
       </div>
 
+      <!-- Filtros de Ordenação -->
+      <div class="btn-group" role="group" aria-label="Filtros de Ordenação">
+         <button type="button" class="btn btn-outline-secondary btn-sort" data-sort="preco_desc" title="Maior Preço"><i class="bi bi-sort-numeric-down-alt"></i></button>
+         <button type="button" class="btn btn-outline-secondary btn-sort" data-sort="preco_asc" title="Menor Preço"><i class="bi bi-sort-numeric-down"></i></button>
+         <button type="button" class="btn btn-outline-secondary btn-sort" data-sort="qtd_desc" title="Maior Quantidade"><i class="bi bi-sort-up"></i></button>
+         <button type="button" class="btn btn-outline-secondary btn-sort" data-sort="qtd_asc" title="Menor Quantidade"><i class="bi bi-sort-down"></i></button>
+         <button type="button" class="btn btn-outline-secondary btn-sort active" data-sort="" title="Padrão"><i class="bi bi-arrow-counterclockwise"></i></button>
+      </div>
+
       <!-- Botão Adicionar -->
       <div class="text-end w-100 text-md-end">
         <a class="btn btn-criar-produto pulse-alert" data-bs-toggle="modal" data-bs-target="#modalAdicionarProduto">
