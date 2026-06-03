@@ -54,8 +54,20 @@ def normalizar(texto):
 @user_passes_test(lambda u: u.is_staff, login_url='/auth/login')       
 def painel_produtos(request):
     query = request.GET.get('q', '').strip()
+    sort = request.GET.get('sort', '').strip()
     
     produtos = Produto.objects.all()
+
+    if sort == 'preco_desc':
+        produtos = produtos.order_by('-preco')
+    elif sort == 'preco_asc':
+        produtos = produtos.order_by('preco')
+    elif sort == 'qtd_desc':
+        produtos = produtos.order_by('-quantidade')
+    elif sort == 'qtd_asc':
+        produtos = produtos.order_by('quantidade')
+    else:
+        produtos = produtos.order_by('id')
     
     if query:
         query_normalizada = normalizar(query)  # "memória" → "memoria"

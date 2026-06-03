@@ -50,28 +50,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let timer;
     let controller;
+    let currentSort = new URL(window.location.href).searchParams.get('sort') || '';
 
     function paramsFromUrl() {
         const url = new URL(window.location.href);
         return {
             q: url.searchParams.get('q') || '',
             page: url.searchParams.get('page') || '1',
+            sort: url.searchParams.get('sort') || '',
         };
     }
 
-    function syncUrl(q, page) {
+    function syncUrl(q, page, sort) {
         const url = new URL(window.location.href);
         const trimmed = (q || '').trim();
         if (trimmed) url.searchParams.set('q', trimmed);
         else url.searchParams.delete('q');
         if (page && page !== '1') url.searchParams.set('page', page);
         else url.searchParams.delete('page');
+        if (sort) url.searchParams.set('sort', sort);
+        else url.searchParams.delete('sort');
         history.replaceState(null, '', url);
     }
 
-    async function carregar({ q, page } = {}) {
+    function atualizarBotoesSort(sort) {
+        document.querySelectorAll('.btn-sort').forEach(btn => {
+            if (btn.dataset.sort === sort) {
+                btn.classList.add('active', 'btn-secondary');
+                btn.classList.remove('btn-outline-secondary');
+            } else {
+                btn.classList.remove('active', 'btn-secondary');
+                btn.classList.add('btn-outline-secondary');
+            }
+        });
+    }
+
+    // Inicializa estado visual dos botões
+    atualizarBotoesSort(currentSort);
+
+    async function carregar({ q, page, sort } = {}) {
         const query = q !== undefined ? q : input.value.trim();
         const pagina = page || '1';
+        const sorting = sort !== undefined ? sort : currentSort;
+        currentSort = sorting;
 
         if (controller) controller.abort();
         controller = new AbortController();
@@ -81,6 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
         else url.searchParams.delete('q');
         if (pagina !== '1') url.searchParams.set('page', pagina);
         else url.searchParams.delete('page');
+        if (sorting) url.searchParams.set('sort', sorting);
+        else url.searchParams.delete('sort');
 
         target.classList.add('pesquisa-carregando');
 
@@ -92,7 +115,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
             target.innerHTML = await res.text();
-            syncUrl(query, pagina);
+            syncUrl(query, pagina, sorting);
+            atualizarBotoesSort(sorting);
         } catch (err) {
             if (err.name !== 'AbortError') console.error('Pesquisa:', err);
         } finally {
@@ -120,9 +144,19 @@ document.addEventListener('DOMContentLoaded', () => {
         carregar({ page: link.dataset.pesquisaPage });
     });
 
+    document.querySelectorAll('.btn-sort').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            carregar({ page: '1', sort: btn.dataset.sort });
+        });
+    });
+
     window.addEventListener('popstate', () => {
-        const { q, page } = paramsFromUrl();
+        const { q, page, sort } = paramsFromUrl();
         input.value = q;
-        carregar({ q, page });
+        currentSort = sort;
+        atualizarBotoesSort(sort);
+        carregar({ q, page, sort });
     });
 });
+
