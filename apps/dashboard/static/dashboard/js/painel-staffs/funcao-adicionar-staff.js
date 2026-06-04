@@ -1,5 +1,10 @@
 document.getElementById('btn-salvar').addEventListener('click', () => {
   const form = document.getElementById('form-cliente'); 
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
+  
   const erros = document.getElementById('form-erros');
   const data = new FormData(form);
 

@@ -43,6 +43,21 @@ table {
     color: var(--cor-02);
 }
 
+.btn-acao {
+    background-color: transparent;
+    border: 1px solid var(--cor-02);
+    color: var(--cor-02);
+    border-radius: 5px;
+}
+
+.btn-acao:hover,
+.btn-acao.active {
+    background-color: var(--cor-02);
+    color: var(--cor-01);
+
+    transition: ease-in-out 0.3s;
+}
+
 .col-nome {
     max-width: 0;
     width: 25%;
