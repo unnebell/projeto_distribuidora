@@ -35,7 +35,7 @@
     <div class="row g-4 justify-content-center">
         <!--======================================1º Produto======================================-->
         {% for produto in produtos|slice:":6" %}
-        <div class="col-12 col-sm-6 col-md-4 reveal" style="transition-delay: {{ forloop.counter0 }}00ms">
+        <a href="{% url 'produtos' %}" class="col-12 col-sm-6 col-md-4 reveal text-decoration-none" style="transition-delay: {{ forloop.counter0 }}00ms">
             <div class="card card-produtos h-100">
                 <i class="bi {{ produto.icone }} icon-produto"></i>
                 <div class="card-body">
@@ -43,7 +43,7 @@
                     <p class="card-text">{{ produto.descricao }}</p>
                 </div>
             </div>
-        </div>
+        </a>
         {% endfor %}
     <!-- Botão para acessar a página de produtos - somente cliente -->
     <a class="btn-produtos pulse-alert btn btn-acao d-flex justify-content-center mx-auto reveal" href="{% url 'produtos' %}">Conheça mais!</a>
