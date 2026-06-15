@@ -10,6 +10,11 @@ document.getElementById('modalEditarStaff').addEventListener('show.bs.modal', fu
 // Salva a edição via AJAX
 document.getElementById('btn-salvar-edicao').addEventListener('click', () => {
   const form = document.getElementById('form-editar-staff');
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
+
   const erros = document.getElementById('editar-form-erros');
   const id = document.getElementById('editarStaffId').value;
   const data = new FormData(form);

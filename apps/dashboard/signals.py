@@ -11,49 +11,53 @@ from apps.dashboard.middleware import get_current_user
 @receiver(post_save, sender=Produto)
 def produto_salvo(sender, instance, created, **kwargs):
     usuario = get_current_user()
-    if created:
-        Atividade.objects.create(
-            tipo='produto_criado',
-            descricao=f'Produto "{instance.nome}" foi cadastrado por {usuario.get_full_name() or usuario.username}.',
-            usuario=usuario,
-        )
-    else:
-        Atividade.objects.create(
-            tipo='produto_editado',
-            descricao=f'Produto "{instance.nome}" foi atualizado por {usuario.get_full_name() or usuario.username}.',
-            usuario=usuario,
-        )
+    if usuario and usuario.is_authenticated and usuario.is_staff:
+        if created:
+            Atividade.objects.create(
+                tipo='produto_criado',
+                descricao=f'Produto "{instance.nome}" foi cadastrado por {usuario.get_full_name() or usuario.username}.',
+                usuario=usuario,
+            )
+        else:
+            Atividade.objects.create(
+                tipo='produto_editado',
+                descricao=f'Produto "{instance.nome}" foi atualizado por {usuario.get_full_name() or usuario.username}.',
+                usuario=usuario,
+            )
 
 # remoção de produto
 @receiver(post_delete, sender=Produto)
 def produto_deletado(sender, instance, **kwargs):
     usuario = get_current_user()
-    Atividade.objects.create(
-        tipo='produto_deletado',
-        descricao=f'Produto "{instance.nome}" foi removido por {usuario.get_full_name() or usuario.username}.',
-        usuario=usuario,
-    )
+    if usuario and usuario.is_authenticated and usuario.is_staff:
+        Atividade.objects.create(
+            tipo='produto_deletado',
+            descricao=f'Produto "{instance.nome}" foi removido por {usuario.get_full_name() or usuario.username}.',
+            usuario=usuario,
+        )
 
 # criação de pedido
 @receiver(post_save, sender=Pedido)
 def pedido_criado(sender, instance, created, **kwargs):
     if created:
         usuario = get_current_user()
-        Atividade.objects.create(
-            tipo='pedido_criado',
-            descricao=f'Pedido #{instance.pk} criado por {usuario.get_full_name() or usuario.username}.',
-            usuario=usuario,
-        )
+        if usuario and usuario.is_authenticated:
+            Atividade.objects.create(
+                tipo='pedido_criado',
+                descricao=f'Pedido #{instance.pk} criado por {usuario.get_full_name() or usuario.username}.',
+                usuario=usuario,
+            )
 
 # cancelamento ou remoção de pedido
 @receiver(post_delete, sender=Pedido)
 def pedido_deletado(sender, instance, **kwargs):
     usuario = get_current_user()
-    Atividade.objects.create(
-        tipo='pedido_deletado',
-        descricao=f'Pedido #{instance.pk} foi cancelado/removido por {usuario.get_full_name() or usuario.username}.',
-        usuario=usuario,
-    )
+    if usuario and usuario.is_authenticated:
+        Atividade.objects.create(
+            tipo='pedido_deletado',
+            descricao=f'Pedido #{instance.pk} foi cancelado/removido por {usuario.get_full_name() or usuario.username}.',
+            usuario=usuario,
+        )
 
 # login de usuario
 @receiver(user_logged_in)

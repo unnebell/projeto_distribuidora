@@ -46,7 +46,7 @@ def register(request):
             
         if User.objects.filter(email=email).exists():
             return render(request, 'auth/register.html', {
-                'erros': {'email': 'Este e-mail já está cadastrado!'} 
+                'erros': {'email': 'E-mail já cadastrado!'} 
             })
         
         user = User.objects.create_user(username=username, email=email, password=senha) #cria o usuário 

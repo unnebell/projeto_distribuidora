@@ -63,13 +63,21 @@
 
     & #img-sobre {
         width: 100%;       
-        max-width: 500px;
+        max-width: 600px;
         display: block;
         margin: 10px auto;
     }
 
     & .texto-sobre {
-        padding-right: 50px;
+        @media (min-width: 992px) {
+            padding-right: 62px;
+        }
+    }
+
+    & .col-img-sobre {
+        @media (min-width: 992px) {
+            padding-left: 62px;
+        }
     }
 
     & .texto-sobre > p {
@@ -83,13 +91,24 @@
 
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991px) {
     #sobre {
         & .texto-sobre > p {
             text-align: center;
+            margin-left: auto;
+            margin-right: auto;
         }
     }
     
+}
+
+@media (min-width: 992px) {
+    #sobre {
+        & #img-sobre {
+            margin-left: 0;
+            margin-right: auto;
+        }
+    }
 }
 
 /*=========================================== Contato ===========================================*/
